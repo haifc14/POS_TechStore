@@ -1,0 +1,76 @@
+CREATE DATABASE eCommerse
+GO
+
+USE eCommerse
+GO
+
+
+CREATE TABLE Customer
+(
+    ID int IDENTITY PRIMARY KEY,
+    Name NVARCHAR(80) NOT NULL,
+    TotalPoint INT NOT NULL DEFAULT 0 
+)
+GO
+
+CREATE TABLE Brand
+(
+    ID int IDENTITY PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL
+)
+GO
+
+CREATE TABLE Category
+(
+    ID int IDENTITY PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL
+)
+GO
+
+CREATE TABLE Product
+(
+    Barcode INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Quantity int NOT NULL DEFAULT 0,
+    Price MONEY NOT NULL DEFAULT 0,
+    Discount MONEY NOT NULL DEFAULT 0,
+    Tax FLOAT NOT NULL DEFAULT 0.05,
+    CategoryID INT FOREIGN KEY REFERENCES Category(ID),
+    BrandID INT FOREIGN KEY REFERENCES Brand(ID)
+)
+GO
+
+CREATE TABLE eOrder
+(
+    OrderNo INT IDENTITY PRIMARY KEY,
+    OrderDate DATETIME2 NOT NULL DEFAULT GETDATE(),
+    TotalPrice MONEY NOT NULL DEFAULT 0,
+    TotalDiscount MONEY NOT NULL DEFAULT 0,
+    TotalTaxAmount MONEY NOT NULL DEFAULT 0,
+    CardPayAmount MONEY NOT NULL DEFAULT 0,
+    CashPayAmount MONEY NOT NULL DEFAULT 0,
+    TotalPointsRedeem INT NOT NULL DEFAULT 0,
+    TotalPointsEarned INT NOT NULL DEFAULT 0,
+    IsReturned INT NOT NULL DEFAULT 0,          -- 1 For returned , 0 for not return
+    CustomerID INT FOREIGN KEY REFERENCES Customer(ID) 
+)
+GO
+
+CREATE TABLE ProductOrder
+(
+    ID INT IDENTITY PRIMARY KEY,
+    Barcode INT FOREIGN KEY REFERENCES Product(Barcode),
+    OrderNo INT FOREIGN KEY REFERENCES eOrder(OrderNo)
+)
+GO
+
+CREATE TABLE CustomerPurchase 
+(
+    ID INT IDENTITY PRIMARY KEY,
+    PurchaseDate DATETIME2 NOT NULL DEFAULT GETDATE(),
+    CustomerID INT FOREIGN KEY REFERENCES Customer(CustomerID),
+    Barcode INT FOREIGN KEY REFERENCES Product(Barcode)
+)
+GO
+
+
