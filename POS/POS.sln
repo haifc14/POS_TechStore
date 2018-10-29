@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POSLibrary", "POSLibrary\POSLibrary.csproj", "{F928B343-A753-48A5-862E-774EB4A4CFD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POSLibTest", "POSLibTest\POSLibTest.csproj", "{1C613692-5452-470A-AC1F-25D5FCC8F2E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POSApp", "POSApp\POSApp.csproj", "{8AC324B1-8950-4F14-A609-32E2F3F8D37E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F928B343-A753-48A5-862E-774EB4A4CFD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F928B343-A753-48A5-862E-774EB4A4CFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F928B343-A753-48A5-862E-774EB4A4CFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F928B343-A753-48A5-862E-774EB4A4CFD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C613692-5452-470A-AC1F-25D5FCC8F2E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C613692-5452-470A-AC1F-25D5FCC8F2E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C613692-5452-470A-AC1F-25D5FCC8F2E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C613692-5452-470A-AC1F-25D5FCC8F2E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AC324B1-8950-4F14-A609-32E2F3F8D37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AC324B1-8950-4F14-A609-32E2F3F8D37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AC324B1-8950-4F14-A609-32E2F3F8D37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AC324B1-8950-4F14-A609-32E2F3F8D37E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {168EB5A4-E2DA-4701-8B7E-4F7D94EBC17D}
+	EndGlobalSection
+EndGlobal
