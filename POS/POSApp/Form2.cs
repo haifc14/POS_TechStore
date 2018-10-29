@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace POSApp
 {
-    public partial class POS_GP_CFriends : Form
+    public partial class POS_GP_CFriends_SignIn_Form : Form
     {
-        public POS_GP_CFriends()
+        public POS_GP_CFriends_SignIn_Form()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
