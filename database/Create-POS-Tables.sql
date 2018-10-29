@@ -44,7 +44,8 @@ CREATE TABLE [Order]
     PointEarned INT DEFAULT 0,
     OrdeDate DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     IsReturned INT DEFAULT 0 CHECK (IsReturned = 0 OR IsReturned = 1),
-    CustomerID INT FOREIGN KEY REFERENCES Customer(CustomerID)
+    CustomerID INT FOREIGN KEY REFERENCES Customer(CustomerID),
+    EmployeeID INT FOREIGN KEY REFERENCES Employee(EmployeeID)
 )
 GO
 
@@ -139,10 +140,11 @@ GO
 INSERT INTO [Order] (TotalPrice, TotalDiscount, TotalTax, CardPayment, CashPayment,
                     PoitRedeem, PointEarned, IsReturned, CustomerID)
 VALUES 
-    (200, 25, 10, 200, 0, 0, 200, 0, 1),
-    (500, 0, 45, 200, 300, 0, 500, 0, 2),
-    (10000, 200, 250, 5000, 5000, 20000, 10000, 0, 3),
-    (6000, 300, 100, 0, 6000, 0, 6000, 1, 3)
+    (200, 25, 10, 200, 0, 0, 200, 0, 1, 11),
+    (500, 0, 45, 200, 300, 0, 500, 0, 2, 22),
+    (10000, 200, 250, 5000, 5000, 20000, 10000, 0, 3, 44),
+    (6000, 300, 100, 0, 6000, 0, 6000, 1, 3, 33),
+    (6000, 300, 100, 0, 6000, 0, 6000, 1, 3, 22)
     
 
 INSERT INTO Category(Name)
