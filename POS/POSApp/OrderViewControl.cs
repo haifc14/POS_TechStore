@@ -10,7 +10,7 @@ namespace POSApp
     public class OrderViewControl
     {
         public Order CurrentOrder { get; private set; }
-
+        public int EmployeeID { get; private set; }
         /// <summary>
         /// All the methods below are events hanlder which will affect the current order
         /// </summary>

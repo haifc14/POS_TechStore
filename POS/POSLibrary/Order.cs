@@ -14,8 +14,9 @@ namespace POSLibrary
         public decimal SubTotal { get; private set; }
         public decimal Tax { get; private set; }
         public bool IsReturn { get; private set; } = false;
+        public int EmployeeID;
 
-        public Order(List<Product> listOfProducts, decimal totalDiscount, decimal total, decimal subTotal, decimal tax, bool isReturn)
+        public Order(List<Product> listOfProducts, decimal totalDiscount, decimal total, decimal subTotal, decimal tax, bool isReturn, int employeeID)
         {
             ListOfItems = listOfProducts;
             TotalDiscount = totalDiscount;
@@ -23,6 +24,7 @@ namespace POSLibrary
             SubTotal = subTotal;
             Tax = tax;
             IsReturn = isReturn;
+            EmployeeID = employeeID;
         }
 
         public void AddItem(Product productToAdd)
