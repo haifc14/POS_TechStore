@@ -23,8 +23,7 @@ GO
 
 CREATE TABLE Employee 
 (
-    EmployeeID INT PRIMARY KEY IDENTITY,
-    Username INT NOT NULL,
+    Username INT PRIMARY KEY,
     Pwd INT NOT NULL
 )
 GO
@@ -45,7 +44,7 @@ CREATE TABLE [Order]
     OrdeDate DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     IsReturned INT DEFAULT 0 CHECK (IsReturned = 0 OR IsReturned = 1),
     CustomerID INT FOREIGN KEY REFERENCES Customer(CustomerID),
-    EmployeeID INT FOREIGN KEY REFERENCES Employee(EmployeeID)
+    Username INT FOREIGN KEY REFERENCES Employee(Username)
 )
 GO
 
@@ -132,13 +131,11 @@ VALUES
     (11, 1234),
     (22, 1234),
     (33, 1234),
-    (44, 1234),
-    (55, 1234),
-    (66, 1234)
+    (44, 1234)
 GO
 
 INSERT INTO [Order] (TotalPrice, TotalDiscount, TotalTax, CardPayment, CashPayment,
-                    PoitRedeem, PointEarned, IsReturned, CustomerID, EmployeeID)
+                    PoitRedeem, PointEarned, IsReturned, CustomerID, Username)
 VALUES 
     (200, 25, 10, 200, 0, 0, 200, 0, 1, 11),
     (500, 0, 45, 200, 300, 0, 500, 0, 2, 22),
