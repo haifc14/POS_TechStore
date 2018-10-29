@@ -138,7 +138,7 @@ VALUES
 GO
 
 INSERT INTO [Order] (TotalPrice, TotalDiscount, TotalTax, CardPayment, CashPayment,
-                    PoitRedeem, PointEarned, IsReturned, CustomerID)
+                    PoitRedeem, PointEarned, IsReturned, CustomerID, EmployeeID)
 VALUES 
     (200, 25, 10, 200, 0, 0, 200, 0, 1, 11),
     (500, 0, 45, 200, 300, 0, 500, 0, 2, 22),
