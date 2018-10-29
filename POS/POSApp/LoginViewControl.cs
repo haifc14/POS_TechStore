@@ -10,8 +10,8 @@ namespace POSApp
 {
     public class LoginViewControl
     {
-        public TextBox UserName { get; set; }
-        public TextBox Pwd { get; set; }
+        public TextBox UserNameTextbox { get; set; }
+        public TextBox PwdTextBox { get; set; }
         public Button SubmitButton { get; set; }
 
         public bool OnLoginSubmit()
