@@ -1,3 +1,12 @@
+DROP DATABASE IF EXISTS POSSystem
+GO
+
+CREATE DATABASE POSSystem
+GO
+
+USE POSSystem
+GO
+
 DROP TABLE IF EXISTS Customer
 GO
 
@@ -6,6 +15,16 @@ CREATE TABLE Customer
     CustomerID INT PRIMARY KEY IDENTITY,
     Name NVARCHAR(80),
     TotalPoints INT NOT NULL DEFAULT 0
+)
+GO
+
+DROP TABLE IF EXISTS Employee
+GO
+
+CREATE TABLE Employee 
+(
+    Username INT PRIMARY KEY,
+    Pwd INT NOT NULL
 )
 GO
 
@@ -24,7 +43,8 @@ CREATE TABLE [Order]
     PointEarned INT DEFAULT 0,
     OrdeDate DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     IsReturned INT DEFAULT 0 CHECK (IsReturned = 0 OR IsReturned = 1),
-    CustomerID INT FOREIGN KEY REFERENCES Customer(CustomerID)
+    CustomerID INT FOREIGN KEY REFERENCES Customer(CustomerID),
+    Username INT FOREIGN KEY REFERENCES Employee(Username)
 )
 GO
 
@@ -105,13 +125,23 @@ VALUES
     ('Saad', 20000)
 GO
 
-INSERT INTO [Order] (TotalPrice, TotalDiscount, TotalTax, CardPayment, CashPayment,
-                    PoitRedeem, PointEarned, IsReturned, CustomerID)
+INSERT INTO Employee (Username, Pwd)
+
 VALUES 
-    (200, 25, 10, 200, 0, 0, 200, 0, 1),
-    (500, 0, 45, 200, 300, 0, 500, 0, 2),
-    (10000, 200, 250, 5000, 5000, 20000, 10000, 0, 3),
-    (6000, 300, 100, 0, 6000, 0, 6000, 1, 3)
+    (11, 1234),
+    (22, 1234),
+    (33, 1234),
+    (44, 1234)
+GO
+
+INSERT INTO [Order] (TotalPrice, TotalDiscount, TotalTax, CardPayment, CashPayment,
+                    PoitRedeem, PointEarned, IsReturned, CustomerID, Username)
+VALUES 
+    (200, 25, 10, 200, 0, 0, 200, 0, 1, 11),
+    (500, 0, 45, 200, 300, 0, 500, 0, 2, 22),
+    (10000, 200, 250, 5000, 5000, 20000, 10000, 0, 3, 44),
+    (6000, 300, 100, 0, 6000, 0, 6000, 1, 3, 33),
+    (6000, 300, 100, 0, 6000, 0, 6000, 1, 3, 22)
     
 
 INSERT INTO Category(Name)
