@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace POSApp
 {
-    public partial class SingInForm : Form
+    public partial class POS_GP_CFriends : Form
     {
-        public SingInForm()
+        public POS_GP_CFriends()
         {
             InitializeComponent();
         }
 
-        private void SingInForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            var posForm = new POSForm();
-            posForm.Show();
+
         }
     }
 }

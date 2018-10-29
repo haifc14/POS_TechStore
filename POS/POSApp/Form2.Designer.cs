@@ -1,6 +1,6 @@
 ﻿namespace POSApp
 {
-    partial class POS_GP_CFriends_SignIn_Form
+    partial class SingInForm
     {
         /// <summary>
         /// Required designer variable.
@@ -79,7 +79,7 @@
             this.textBox2.Size = new System.Drawing.Size(164, 20);
             this.textBox2.TabIndex = 4;
             // 
-            // POS_GP_CFriends_SignIn_Form
+            // SingInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,8 +89,9 @@
             this.Controls.Add(this.Password_Label);
             this.Controls.Add(this.Username_label);
             this.Controls.Add(this.SignIn_Button);
-            this.Name = "POS_GP_CFriends_SignIn_Form";
+            this.Name = "SingInForm";
             this.Text = "POS_GP_CFriends_Sign In";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SingInForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

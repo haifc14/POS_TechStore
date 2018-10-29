@@ -16,7 +16,8 @@ namespace POSApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new POS_GP_CFriends());
+            var signInForm = new SingInForm();
+            Application.Run(signInForm);
         }
     }
 }
