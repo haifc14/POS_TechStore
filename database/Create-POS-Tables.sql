@@ -1,3 +1,12 @@
+DROP DATABASE IF EXISTS POSSystem
+GO
+
+CREATE DATABASE POSSystem
+GO
+
+USE POSSystem
+GO
+
 DROP TABLE IF EXISTS Customer
 GO
 
@@ -6,6 +15,17 @@ CREATE TABLE Customer
     CustomerID INT PRIMARY KEY IDENTITY,
     Name NVARCHAR(80),
     TotalPoints INT NOT NULL DEFAULT 0
+)
+GO
+
+DROP TABLE IF EXISTS Employee
+GO
+
+CREATE TABLE Employee 
+(
+    EmployeeID INT PRIMARY KEY IDENTITY,
+    Username INT NOT NULL,
+    Pwd INT NOT NULL
 )
 GO
 
@@ -103,6 +123,17 @@ VALUES
     ('Pablo', 3000),
     ('Khush', 10000),
     ('Saad', 20000)
+GO
+
+INSERT INTO Employee (Username, Pwd)
+
+VALUES 
+    (11, 1234),
+    (22, 1234),
+    (33, 1234),
+    (44, 1234),
+    (55, 1234),
+    (66, 1234)
 GO
 
 INSERT INTO [Order] (TotalPrice, TotalDiscount, TotalTax, CardPayment, CashPayment,
