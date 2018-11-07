@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace POSApp
 {
-    public partial class POS_GP_CFriends : Form
+    public partial class POSForm : Form
     {
-        public POS_GP_CFriends()
+        public POSForm()
         {
             InitializeComponent();
         }

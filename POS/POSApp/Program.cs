@@ -17,7 +17,8 @@ namespace POSApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var signInForm = new SingInForm();
-            Application.Run(signInForm);
+            signInForm.Show();
+            Application.Run();
         }
     }
 }

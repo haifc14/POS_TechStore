@@ -45,6 +45,7 @@
             this.SignInBtn.TabIndex = 0;
             this.SignInBtn.Text = "Sign In";
             this.SignInBtn.UseVisualStyleBackColor = true;
+            this.SignInBtn.Click += new System.EventHandler(this.SignInBtn_Click);
             // 
             // UsernameLabel
             // 
@@ -97,7 +98,6 @@
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "SingInForm";
             this.Text = "POS";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SingInForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

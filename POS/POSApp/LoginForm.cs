@@ -17,9 +17,10 @@ namespace POSApp
             InitializeComponent();
         }
 
-        private void SingInForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void SignInBtn_Click(object sender, EventArgs e)
         {
             var posForm = new POSForm();
+            this.Close();
             posForm.Show();
         }
     }
