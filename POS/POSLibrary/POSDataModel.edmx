@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bpatel405Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PBrand">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" />
+          <Property Name="TotalPoints" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PCustomerPurchase">
+          <Key>
+            <PropertyRef Name="CustomerPurchaseID" />
+          </Key>
+          <Property Name="CustomerPurchaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurchaseDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="Barcode" Type="int" />
+        </EntityType>
+        <EntityType Name="PEmployee">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="int" Nullable="false" />
+          <Property Name="Pwd" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POrder">
+          <Key>
+            <PropertyRef Name="OrderNumber" />
+          </Key>
+          <Property Name="OrderNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TotalPrice" Type="money" Nullable="false" />
+          <Property Name="TotalDiscount" Type="money" Nullable="false" />
+          <Property Name="TotalTax" Type="money" Nullable="false" />
+          <Property Name="CardPayment" Type="money" Nullable="false" />
+          <Property Name="CashPayment" Type="money" Nullable="false" />
+          <Property Name="PoitRedeem" Type="int" />
+          <Property Name="PointEarned" Type="int" />
+          <Property Name="OrdeDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IsReturned" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="Username" Type="int" />
+        </EntityType>
+        <EntityType Name="POrderItems">
+          <Key>
+            <PropertyRef Name="OrderItemsID" />
+          </Key>
+          <Property Name="OrderItemsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Barcode" Type="int" />
+          <Property Name="OrderNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="PProduct">
+          <Key>
+            <PropertyRef Name="Barcode" />
+          </Key>
+          <Property Name="Barcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Tax" Type="money" Nullable="false" />
+          <Property Name="Discount" Type="money" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="BrandID" Type="int" />
+        </EntityType>
+        <Association Name="FK__PCustomer__Barco__6B509E62">
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="0..1" />
+          <End Role="PCustomerPurchase" Type="Self.PCustomerPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PProduct">
+              <PropertyRef Name="Barcode" />
+            </Principal>
+            <Dependent Role="PCustomerPurchase">
+              <PropertyRef Name="Barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PCustomer__Custo__6A5C7A29">
+          <End Role="PCustomer" Type="Self.PCustomer" Multiplicity="0..1" />
+          <End Role="PCustomerPurchase" Type="Self.PCustomerPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="PCustomerPurchase">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrder__Customer__5D027F0B">
+          <End Role="PCustomer" Type="Self.PCustomer" Multiplicity="0..1" />
+          <End Role="POrder" Type="Self.POrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="POrder">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrder__Username__5DF6A344">
+          <End Role="PEmployee" Type="Self.PEmployee" Multiplicity="0..1" />
+          <End Role="POrder" Type="Self.POrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEmployee">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="POrder">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrderIte__Barco__6E2D0B0D">
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="0..1" />
+          <End Role="POrderItems" Type="Self.POrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PProduct">
+              <PropertyRef Name="Barcode" />
+            </Principal>
+            <Dependent Role="POrderItems">
+              <PropertyRef Name="Barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrderIte__Order__6F212F46">
+          <End Role="POrder" Type="Self.POrder" Multiplicity="0..1" />
+          <End Role="POrderItems" Type="Self.POrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POrder">
+              <PropertyRef Name="OrderNumber" />
+            </Principal>
+            <Dependent Role="POrderItems">
+              <PropertyRef Name="OrderNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PProduct__BrandI__668BE945">
+          <End Role="PBrand" Type="Self.PBrand" Multiplicity="0..1" />
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PBrand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="PProduct">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PProduct__Catego__6597C50C">
+          <End Role="PCategory" Type="Self.PCategory" Multiplicity="0..1" />
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PProduct">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bpatel405ModelStoreContainer">
+          <EntitySet Name="PBrand" EntityType="Self.PBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PCategory" EntityType="Self.PCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PCustomer" EntityType="Self.PCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PCustomerPurchase" EntityType="Self.PCustomerPurchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEmployee" EntityType="Self.PEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POrder" EntityType="Self.POrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POrderItems" EntityType="Self.POrderItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PProduct" EntityType="Self.PProduct" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PCustomer__Barco__6B509E62" Association="Self.FK__PCustomer__Barco__6B509E62">
+            <End Role="PProduct" EntitySet="PProduct" />
+            <End Role="PCustomerPurchase" EntitySet="PCustomerPurchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PCustomer__Custo__6A5C7A29" Association="Self.FK__PCustomer__Custo__6A5C7A29">
+            <End Role="PCustomer" EntitySet="PCustomer" />
+            <End Role="PCustomerPurchase" EntitySet="PCustomerPurchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrder__Customer__5D027F0B" Association="Self.FK__POrder__Customer__5D027F0B">
+            <End Role="PCustomer" EntitySet="PCustomer" />
+            <End Role="POrder" EntitySet="POrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrder__Username__5DF6A344" Association="Self.FK__POrder__Username__5DF6A344">
+            <End Role="PEmployee" EntitySet="PEmployee" />
+            <End Role="POrder" EntitySet="POrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrderIte__Barco__6E2D0B0D" Association="Self.FK__POrderIte__Barco__6E2D0B0D">
+            <End Role="PProduct" EntitySet="PProduct" />
+            <End Role="POrderItems" EntitySet="POrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrderIte__Order__6F212F46" Association="Self.FK__POrderIte__Order__6F212F46">
+            <End Role="POrder" EntitySet="POrder" />
+            <End Role="POrderItems" EntitySet="POrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PProduct__BrandI__668BE945" Association="Self.FK__PProduct__BrandI__668BE945">
+            <End Role="PBrand" EntitySet="PBrand" />
+            <End Role="PProduct" EntitySet="PProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PProduct__Catego__6597C50C" Association="Self.FK__PProduct__Catego__6597C50C">
+            <End Role="PCategory" EntitySet="PCategory" />
+            <End Role="PProduct" EntitySet="PProduct" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bpatel405Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PBrand">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PProducts" Relationship="Self.FK__PProduct__BrandI__668BE945" FromRole="PBrand" ToRole="PProduct" />
+        </EntityType>
+        <EntityType Name="PCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PProducts" Relationship="Self.FK__PProduct__Catego__6597C50C" FromRole="PCategory" ToRole="PProduct" />
+        </EntityType>
+        <EntityType Name="PCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="TotalPoints" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PCustomerPurchases" Relationship="Self.FK__PCustomer__Custo__6A5C7A29" FromRole="PCustomer" ToRole="PCustomerPurchase" />
+          <NavigationProperty Name="POrders" Relationship="Self.FK__POrder__Customer__5D027F0B" FromRole="PCustomer" ToRole="POrder" />
+        </EntityType>
+        <EntityType Name="PCustomerPurchase">
+          <Key>
+            <PropertyRef Name="CustomerPurchaseID" />
+          </Key>
+          <Property Name="CustomerPurchaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="Barcode" Type="Int32" />
+          <NavigationProperty Name="PCustomer" Relationship="Self.FK__PCustomer__Custo__6A5C7A29" FromRole="PCustomerPurchase" ToRole="PCustomer" />
+          <NavigationProperty Name="PProduct" Relationship="Self.FK__PCustomer__Barco__6B509E62" FromRole="PCustomerPurchase" ToRole="PProduct" />
+        </EntityType>
+        <EntityType Name="PEmployee">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="Int32" Nullable="false" />
+          <Property Name="Pwd" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="POrders" Relationship="Self.FK__POrder__Username__5DF6A344" FromRole="PEmployee" ToRole="POrder" />
+        </EntityType>
+        <EntityType Name="POrder">
+          <Key>
+            <PropertyRef Name="OrderNumber" />
+          </Key>
+          <Property Name="OrderNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TotalDiscount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TotalTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CardPayment" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CashPayment" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PoitRedeem" Type="Int32" />
+          <Property Name="PointEarned" Type="Int32" />
+          <Property Name="OrdeDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IsReturned" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="Username" Type="Int32" />
+          <NavigationProperty Name="PCustomer" Relationship="Self.FK__POrder__Customer__5D027F0B" FromRole="POrder" ToRole="PCustomer" />
+          <NavigationProperty Name="PEmployee" Relationship="Self.FK__POrder__Username__5DF6A344" FromRole="POrder" ToRole="PEmployee" />
+          <NavigationProperty Name="POrderItems" Relationship="Self.FK__POrderIte__Order__6F212F46" FromRole="POrder" ToRole="POrderItems" />
+        </EntityType>
+        <EntityType Name="POrderItem">
+          <Key>
+            <PropertyRef Name="OrderItemsID" />
+          </Key>
+          <Property Name="OrderItemsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Barcode" Type="Int32" />
+          <Property Name="OrderNumber" Type="Int32" />
+          <NavigationProperty Name="POrder" Relationship="Self.FK__POrderIte__Order__6F212F46" FromRole="POrderItems" ToRole="POrder" />
+          <NavigationProperty Name="PProduct" Relationship="Self.FK__POrderIte__Barco__6E2D0B0D" FromRole="POrderItems" ToRole="PProduct" />
+        </EntityType>
+        <EntityType Name="PProduct">
+          <Key>
+            <PropertyRef Name="Barcode" />
+          </Key>
+          <Property Name="Barcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="BrandID" Type="Int32" />
+          <NavigationProperty Name="PBrand" Relationship="Self.FK__PProduct__BrandI__668BE945" FromRole="PProduct" ToRole="PBrand" />
+          <NavigationProperty Name="PCategory" Relationship="Self.FK__PProduct__Catego__6597C50C" FromRole="PProduct" ToRole="PCategory" />
+          <NavigationProperty Name="PCustomerPurchases" Relationship="Self.FK__PCustomer__Barco__6B509E62" FromRole="PProduct" ToRole="PCustomerPurchase" />
+          <NavigationProperty Name="POrderItems" Relationship="Self.FK__POrderIte__Barco__6E2D0B0D" FromRole="PProduct" ToRole="POrderItems" />
+        </EntityType>
+        <Association Name="FK__PProduct__BrandI__668BE945">
+          <End Role="PBrand" Type="Self.PBrand" Multiplicity="0..1" />
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PBrand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="PProduct">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PProduct__Catego__6597C50C">
+          <End Role="PCategory" Type="Self.PCategory" Multiplicity="0..1" />
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PProduct">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PCustomer__Custo__6A5C7A29">
+          <End Role="PCustomer" Type="Self.PCustomer" Multiplicity="0..1" />
+          <End Role="PCustomerPurchase" Type="Self.PCustomerPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="PCustomerPurchase">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrder__Customer__5D027F0B">
+          <End Role="PCustomer" Type="Self.PCustomer" Multiplicity="0..1" />
+          <End Role="POrder" Type="Self.POrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="POrder">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PCustomer__Barco__6B509E62">
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="0..1" />
+          <End Role="PCustomerPurchase" Type="Self.PCustomerPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PProduct">
+              <PropertyRef Name="Barcode" />
+            </Principal>
+            <Dependent Role="PCustomerPurchase">
+              <PropertyRef Name="Barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrder__Username__5DF6A344">
+          <End Role="PEmployee" Type="Self.PEmployee" Multiplicity="0..1" />
+          <End Role="POrder" Type="Self.POrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEmployee">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="POrder">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrderIte__Order__6F212F46">
+          <End Role="POrder" Type="Self.POrder" Multiplicity="0..1" />
+          <End Role="POrderItems" Type="Self.POrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POrder">
+              <PropertyRef Name="OrderNumber" />
+            </Principal>
+            <Dependent Role="POrderItems">
+              <PropertyRef Name="OrderNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__POrderIte__Barco__6E2D0B0D">
+          <End Role="PProduct" Type="Self.PProduct" Multiplicity="0..1" />
+          <End Role="POrderItems" Type="Self.POrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PProduct">
+              <PropertyRef Name="Barcode" />
+            </Principal>
+            <Dependent Role="POrderItems">
+              <PropertyRef Name="Barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bpatel405Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PBrands" EntityType="Self.PBrand" />
+          <EntitySet Name="PCategories" EntityType="Self.PCategory" />
+          <EntitySet Name="PCustomers" EntityType="Self.PCustomer" />
+          <EntitySet Name="PCustomerPurchases" EntityType="Self.PCustomerPurchase" />
+          <EntitySet Name="PEmployees" EntityType="Self.PEmployee" />
+          <EntitySet Name="POrders" EntityType="Self.POrder" />
+          <EntitySet Name="POrderItems" EntityType="Self.POrderItem" />
+          <EntitySet Name="PProducts" EntityType="Self.PProduct" />
+          <AssociationSet Name="FK__PProduct__BrandI__668BE945" Association="Self.FK__PProduct__BrandI__668BE945">
+            <End Role="PBrand" EntitySet="PBrands" />
+            <End Role="PProduct" EntitySet="PProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PProduct__Catego__6597C50C" Association="Self.FK__PProduct__Catego__6597C50C">
+            <End Role="PCategory" EntitySet="PCategories" />
+            <End Role="PProduct" EntitySet="PProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PCustomer__Custo__6A5C7A29" Association="Self.FK__PCustomer__Custo__6A5C7A29">
+            <End Role="PCustomer" EntitySet="PCustomers" />
+            <End Role="PCustomerPurchase" EntitySet="PCustomerPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrder__Customer__5D027F0B" Association="Self.FK__POrder__Customer__5D027F0B">
+            <End Role="PCustomer" EntitySet="PCustomers" />
+            <End Role="POrder" EntitySet="POrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PCustomer__Barco__6B509E62" Association="Self.FK__PCustomer__Barco__6B509E62">
+            <End Role="PProduct" EntitySet="PProducts" />
+            <End Role="PCustomerPurchase" EntitySet="PCustomerPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrder__Username__5DF6A344" Association="Self.FK__POrder__Username__5DF6A344">
+            <End Role="PEmployee" EntitySet="PEmployees" />
+            <End Role="POrder" EntitySet="POrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrderIte__Order__6F212F46" Association="Self.FK__POrderIte__Order__6F212F46">
+            <End Role="POrder" EntitySet="POrders" />
+            <End Role="POrderItems" EntitySet="POrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__POrderIte__Barco__6E2D0B0D" Association="Self.FK__POrderIte__Barco__6E2D0B0D">
+            <End Role="PProduct" EntitySet="PProducts" />
+            <End Role="POrderItems" EntitySet="POrderItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bpatel405ModelStoreContainer" CdmEntityContainer="bpatel405Entities">
+          <EntitySetMapping Name="PBrands">
+            <EntityTypeMapping TypeName="bpatel405Model.PBrand">
+              <MappingFragment StoreEntitySet="PBrand">
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCategories">
+            <EntityTypeMapping TypeName="bpatel405Model.PCategory">
+              <MappingFragment StoreEntitySet="PCategory">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCustomers">
+            <EntityTypeMapping TypeName="bpatel405Model.PCustomer">
+              <MappingFragment StoreEntitySet="PCustomer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TotalPoints" ColumnName="TotalPoints" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCustomerPurchases">
+            <EntityTypeMapping TypeName="bpatel405Model.PCustomerPurchase">
+              <MappingFragment StoreEntitySet="PCustomerPurchase">
+                <ScalarProperty Name="CustomerPurchaseID" ColumnName="CustomerPurchaseID" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEmployees">
+            <EntityTypeMapping TypeName="bpatel405Model.PEmployee">
+              <MappingFragment StoreEntitySet="PEmployee">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POrders">
+            <EntityTypeMapping TypeName="bpatel405Model.POrder">
+              <MappingFragment StoreEntitySet="POrder">
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
+                <ScalarProperty Name="CardPayment" ColumnName="CardPayment" />
+                <ScalarProperty Name="CashPayment" ColumnName="CashPayment" />
+                <ScalarProperty Name="PoitRedeem" ColumnName="PoitRedeem" />
+                <ScalarProperty Name="PointEarned" ColumnName="PointEarned" />
+                <ScalarProperty Name="OrdeDate" ColumnName="OrdeDate" />
+                <ScalarProperty Name="IsReturned" ColumnName="IsReturned" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POrderItems">
+            <EntityTypeMapping TypeName="bpatel405Model.POrderItem">
+              <MappingFragment StoreEntitySet="POrderItems">
+                <ScalarProperty Name="OrderItemsID" ColumnName="OrderItemsID" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PProducts">
+            <EntityTypeMapping TypeName="bpatel405Model.PProduct">
+              <MappingFragment StoreEntitySet="PProduct">
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
