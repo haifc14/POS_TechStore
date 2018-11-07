@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
       <Diagram DiagramId="df6cedf4e6844b71821dbdfe4a150397" Name="Diagram1">
+=======
+      <Diagram DiagramId="5780d915b61240ffaa14dfc98d89eab6" Name="Diagram1">
+>>>>>>> c5734d701de35c09818c59efa0fa3ea65d296010
         <EntityTypeShape EntityType="bpatel405Model.PBrand" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="bpatel405Model.PCategory" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="bpatel405Model.PCustomer" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />

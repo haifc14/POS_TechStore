@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿// T4 code generation is enabled for model 'C:\Users\bpate\OneDrive\Software Development\OOP\sodv2202_pos_gp_c-friends\POS\POSLibrary\POSDataModel.edmx'. 
+=======
+﻿// T4 code generation is enabled for model 'Z:\Sofware_development\Third-Semester\OOP-C#\Group_Project\sodv2202_pos_gp_c-friends\POS\POSLibrary\POSDataModel.edmx'. 
+>>>>>>> c5734d701de35c09818c59efa0fa3ea65d296010
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
