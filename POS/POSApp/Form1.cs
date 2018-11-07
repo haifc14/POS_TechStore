@@ -21,5 +21,13 @@ namespace POSApp
         {
 
         }
+
+        private void SubmitBarcodeBtn_Click(object sender, EventArgs e)
+        {
+            // This event is to get Product info based on Barcode 
+            // and show Product info to the Ordered List
+
+            MessageBox.Show("Get Product info");
+        }
     }
 }
