@@ -34,7 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +82,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\POSLibrary.PBrand.datasource" />
+    <None Include="Properties\DataSources\POSLibrary.PCategory.datasource" />
+    <None Include="Properties\DataSources\POSLibrary.PCustomer.datasource" />
+    <None Include="Properties\DataSources\POSLibrary.PCustomerPurchase.datasource" />
+    <None Include="Properties\DataSources\POSLibrary.PEmployee.datasource" />
+    <None Include="Properties\DataSources\POSLibrary.POrder.datasource" />
+    <None Include="Properties\DataSources\POSLibrary.POrderItem.datasource" />
+    <None Include="Properties\DataSources\POSLibrary.PProduct.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

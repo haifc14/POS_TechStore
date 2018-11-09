@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using POSLibrary;
+using System.Configuration;
+using System.Data.Objects;
+using System.Data.SqlClient;
 
 namespace POSApp
 {
@@ -40,6 +45,21 @@ namespace POSApp
             }
 
             // Get List of Products from DB
+
+            var cnn = @"Server=199.103.60.77;Database=bpatel405;User Id=bpatel405;Password=6657975543222680;";
+
+            SqlConnection sqlconn = new SqlConnection(cnn);
+
+            
+            //var context = new ObjectContext();
+            //context.DefaultContainerName = "Products";
+            //ObjectSet<PProduct> products = context.CreateObjectSet<PProduct>();
+
+            //MessageBox.Show(products.Count().ToString());
+
+
+            sqlconn.Dispose();
+
 
 
             // Retrieve a list of Product that match the barcode
