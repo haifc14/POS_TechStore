@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TOrder">
+  <DataContextMoniker Name="/TOrderDataContext" />
+  <nestedChildShapes>
+    <classShape Id="74894d4c-4eae-462c-9e6f-f024560911d8" absoluteBounds="6.375, 3.375, 2, 3.1170068359375">
+      <DataClassMoniker Name="/TOrderDataContext/TOrder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="934e17f4-d10a-4173-afff-e43718a76d71" absoluteBounds="6.39, 3.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

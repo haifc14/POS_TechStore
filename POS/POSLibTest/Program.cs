@@ -10,6 +10,7 @@ namespace POSLibTest
     {
         static void Main(string[] args)
         {
+            //POSLibrary.Helper.ConnectPOSDB();
         }
     }
 }

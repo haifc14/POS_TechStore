@@ -41,7 +41,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -55,75 +54,129 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="Order.cs" />
-    <Compile Include="PBrand.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PCategory.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PCustomer.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PCustomerPurchase.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PEmployee.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POrder.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POrderItem.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POSDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>POSDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POSDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POSDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="PProduct.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="ProductCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="POSDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>POSDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="TBrand.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TBrand.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TCategory.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCategory.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TCustomer.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCustomer.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TCustomerPurchase.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCustomerPurchase.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TEmployee.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TEmployee.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TOrder.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOrder.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TOrderItems.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOrderItems.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TProduct.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TProduct.dbml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="POSDataModel.edmx.diagram">
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TBrand.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TBrand.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TBrand.dbml.layout">
+      <DependentUpon>TBrand.dbml</DependentUpon>
+    </None>
+    <None Include="TCategory.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TCategory.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TCategory.dbml.layout">
+      <DependentUpon>TCategory.dbml</DependentUpon>
+    </None>
+    <None Include="TCustomer.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TCustomer.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TCustomer.dbml.layout">
+      <DependentUpon>TCustomer.dbml</DependentUpon>
+    </None>
+    <None Include="TCustomerPurchase.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TCustomerPurchase.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TCustomerPurchase.dbml.layout">
+      <DependentUpon>TCustomerPurchase.dbml</DependentUpon>
+    </None>
+    <None Include="TEmployee.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TEmployee.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TEmployee.dbml.layout">
+      <DependentUpon>TEmployee.dbml</DependentUpon>
+    </None>
+    <None Include="TOrder.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TOrder.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TOrder.dbml.layout">
+      <DependentUpon>TOrder.dbml</DependentUpon>
+    </None>
+    <None Include="TOrderItems.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TOrderItems.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TOrderItems.dbml.layout">
+      <DependentUpon>TOrderItems.dbml</DependentUpon>
+    </None>
+    <None Include="TProduct.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TProduct.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TProduct.dbml.layout">
+      <DependentUpon>TProduct.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="POSDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>POSDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="POSDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
-      <LastGenOutput>POSDataModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
