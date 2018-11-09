@@ -53,11 +53,6 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="Order.cs" />
-    <Compile Include="PProduct.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PProduct.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="ProductCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,21 +61,117 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="TBrand.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TBrand.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TCategory.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCategory.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TCustomer.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCustomer.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TCustomerPurchase.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCustomerPurchase.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TEmployee.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TEmployee.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TOrder.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOrder.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TOrderItems.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOrderItems.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TProduct.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TProduct.dbml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="PProduct.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>PProduct.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PProduct.dbml.layout">
-      <DependentUpon>PProduct.dbml</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TBrand.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TBrand.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TBrand.dbml.layout">
+      <DependentUpon>TBrand.dbml</DependentUpon>
+    </None>
+    <None Include="TCategory.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TCategory.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TCategory.dbml.layout">
+      <DependentUpon>TCategory.dbml</DependentUpon>
+    </None>
+    <None Include="TCustomer.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TCustomer.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TCustomer.dbml.layout">
+      <DependentUpon>TCustomer.dbml</DependentUpon>
+    </None>
+    <None Include="TCustomerPurchase.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TCustomerPurchase.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TCustomerPurchase.dbml.layout">
+      <DependentUpon>TCustomerPurchase.dbml</DependentUpon>
+    </None>
+    <None Include="TEmployee.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TEmployee.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TEmployee.dbml.layout">
+      <DependentUpon>TEmployee.dbml</DependentUpon>
+    </None>
+    <None Include="TOrder.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TOrder.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TOrder.dbml.layout">
+      <DependentUpon>TOrder.dbml</DependentUpon>
+    </None>
+    <None Include="TOrderItems.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TOrderItems.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TOrderItems.dbml.layout">
+      <DependentUpon>TOrderItems.dbml</DependentUpon>
+    </None>
+    <None Include="TProduct.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TProduct.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TProduct.dbml.layout">
+      <DependentUpon>TProduct.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
