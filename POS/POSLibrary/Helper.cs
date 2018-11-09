@@ -12,12 +12,14 @@ namespace POSLibrary
     {
         //public static string DB_CONNECTION_STRING = ConfigurationManager.ConnectionStrings["bpatel405Entities"].ConnectionString;
 
-        public static void ConnectPOSDB()
+        public static TProduct GetProducts(int barcode)
         {
             var context = new DataContext(GetConnectionString("199.103.60.77"));
             var products = context.GetTable<TProduct>();
-            Console.WriteLine(products.Count());
-            Console.ReadKey();
+
+            var filteredProduct = products.Where(product => product.Barcode == barcode).ToList();
+
+            return filteredProduct[0];
         }
 
         static string GetConnectionString(string serverName)
@@ -25,9 +27,9 @@ namespace POSLibrary
             System.Data.SqlClient.SqlConnectionStringBuilder builder =
                            new System.Data.SqlClient.SqlConnectionStringBuilder();
             builder["Data Source"] = serverName;
-            builder["Initial Catalog"] = "bpatel405";
-            builder["User Id"] = "bpatel405";
-            builder["Password"] = "6657975543222680";
+            builder["Initial Catalog"] = "retailmgmt";
+            builder["User Id"] = "retailmgmt";
+            builder["Password"] = "dgQDR9q8THTgalP";
             return builder.ConnectionString;
         }
     }

@@ -46,9 +46,9 @@ namespace POSApp
 
             // Get List of Products from DB
 
-            var cnn = @"Server=199.103.60.77;Database=bpatel405;User Id=bpatel405;Password=6657975543222680;";
+            
 
-            SqlConnection sqlconn = new SqlConnection(cnn);
+            
 
             
             //var context = new ObjectContext();
@@ -58,7 +58,7 @@ namespace POSApp
             //MessageBox.Show(products.Count().ToString());
 
 
-            sqlconn.Dispose();
+            
 
 
 

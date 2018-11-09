@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POSLibrary;
 
 namespace POSLibTest
 {
@@ -10,7 +11,13 @@ namespace POSLibTest
     {
         static void Main(string[] args)
         {
-            //POSLibrary.Helper.ConnectPOSDB();
+            int barcode = 2;
+           var productFound =  Helper.GetProducts(barcode);
+
+            Console.WriteLine(productFound.Name);
+            Console.WriteLine(productFound.Quantity);
+
+            Console.ReadKey();
         }
     }
 }
