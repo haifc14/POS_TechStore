@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="retailmgmt" Class="TOrderDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=199.103.60.77;Initial Catalog=retailmgmt;Persist Security Info=True;User ID=retailmgmt" SettingsObjectName="POSLibrary.Properties.Settings" SettingsPropertyName="retailmgmtConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TOrder" Member="TOrders">
+    <Type Name="TOrder">
+      <Column Name="OrderNumber" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDiscount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TotalTax" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="CardPayment" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="CashPayment" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="PoitRedeem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PointEarned" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrdeDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="IsReturned" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

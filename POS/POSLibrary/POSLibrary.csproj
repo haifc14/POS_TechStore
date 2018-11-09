@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -52,75 +53,38 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="Order.cs" />
-    <Compile Include="PBrand.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PCategory.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PCustomer.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PCustomerPurchase.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PEmployee.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POrder.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POrderItem.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POSDataModel.Context.cs">
+    <Compile Include="PProduct.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>POSDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POSDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>POSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POSDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="PProduct.cs">
-      <DependentUpon>POSDataModel.tt</DependentUpon>
+      <DependentUpon>PProduct.dbml</DependentUpon>
     </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="ProductCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="POSDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>POSDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="POSDataModel.edmx.diagram">
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
+    <None Include="PProduct.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>PProduct.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PProduct.dbml.layout">
+      <DependentUpon>PProduct.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="POSDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>POSDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="POSDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>POSDataModel.edmx</DependentUpon>
-      <LastGenOutput>POSDataModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
