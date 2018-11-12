@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Linq;
 
 namespace POSLibrary
 {
@@ -21,14 +22,24 @@ namespace POSLibrary
             throw new NotImplementedException();
         }
 
-        private List<Product> GetProductsByCategory()
+        public List<TProduct> GetProductByBrands(string brandName)
         {
-            throw new NotImplementedException();
+            using (var context = new DataContext(Helper.GetConnectionString()))
+            {
+                var filteredBrand = context.GetTable<TBrand>().Where(brand => brand.Name == brandName).ToList();
+                var products = context.GetTable<TProduct>();
+                return products.Where(product => product.BrandID == filteredBrand[0].BrandID).ToList();
+            }
         }
 
-        private List<Product> GetProductsByBrands()
+        public List<TProduct> GetProductByCategory(string categoryName)
         {
-            throw new NotImplementedException();
+            using (var context = new DataContext(Helper.GetConnectionString()))
+            {
+                var filteredCategory = context.GetTable<TCategory>().Where(category => category.Name == categoryName).ToList();
+                var products = context.GetTable<TProduct>();
+                return products.Where(product => product.CategoryID == filteredCategory[0].CategoryID).ToList();
+            }
         }
     }
 }
