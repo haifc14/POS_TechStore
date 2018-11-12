@@ -44,29 +44,13 @@ namespace POSApp
                 MessageBox.Show("Invalid BarCode! Please enter again");
             }
 
-            // Get List of Products from DB
+            // Get  Product matching Barcode from DB
+
+            TProduct foundProduct = Helper.GetProducts(validBarcode);
+
+            Product product = new Product(foundProduct.Name, foundProduct.Barcode, foundProduct.Price, (decimal)foundProduct.Discount);
 
             
-
-            
-
-            
-            //var context = new ObjectContext();
-            //context.DefaultContainerName = "Products";
-            //ObjectSet<PProduct> products = context.CreateObjectSet<PProduct>();
-
-            //MessageBox.Show(products.Count().ToString());
-
-
-            
-
-
-
-            // Retrieve a list of Product that match the barcode
-
-            // Return one of the Product from that list
-
-            // Display that product to Order list
 
         }
     }
