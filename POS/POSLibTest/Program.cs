@@ -11,13 +11,7 @@ namespace POSLibTest
     {
         static void Main(string[] args)
         {
-            int barcode = 2;
-           var productFound =  Helper.GetProducts(barcode);
-
-            Console.WriteLine(productFound.Name);
-            Console.WriteLine(productFound.Quantity);
-
-            Console.ReadKey();
+            
         }
     }
 }

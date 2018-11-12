@@ -35,22 +35,18 @@ namespace POSApp
         /// <param name="e"></param>
         private void SubmitBarcodeBtn_Click(object sender, EventArgs e)
         {
-            // Get input of Barcode
 
-            bool isBarcodeValid = int.TryParse(BarcodeTextBox.Text, out int validBarcode);
+            string barcodeFromInput = BarcodeTextBox.Text;
 
-            if (!isBarcodeValid)
+            try
             {
-                MessageBox.Show("Invalid BarCode! Please enter again");
+                Product product = new Product(barcodeFromInput);
             }
-
-            // Get  Product matching Barcode from DB
-
-            TProduct foundProduct = Helper.GetProducts(validBarcode);
-
-            Product product = new Product(foundProduct.Name, foundProduct.Barcode, foundProduct.Price, (decimal)foundProduct.Discount);
-
-            
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);              
+            }
+            BarcodeTextBox.Text = "";
 
         }
     }
