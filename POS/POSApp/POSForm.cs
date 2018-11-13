@@ -56,9 +56,9 @@ namespace POSApp
 
                 OrderView_Panel.Controls.Add(productInfoLabel);
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                MessageBox.Show(err.Message);              
+                MessageBox.Show("The item is not exists!!!");              
             }
             BarcodeTextBox.Text = "";
 
