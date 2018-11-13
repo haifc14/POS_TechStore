@@ -14,6 +14,13 @@ namespace POSLibrary
         public decimal Price { get; private set; }
         public decimal Discount { get; private set; }
          
+        public Product(string name, int barcode, decimal price, decimal discount)
+        {
+            Name = name;
+            Barcode = barcode;
+            Price = price;
+            Discount = discount;
+        }
 
         public Product(string barcode)
         {
@@ -27,12 +34,12 @@ namespace POSLibrary
 
         public override string ToString()
         {
-            return base.ToString();
+            return Name + " " + Barcode + " " + Price + " " + Discount;
         }
 
         private static TProduct GetProducts(int barcode)
         {
-            var context = new DataContext(Helper.GetConnectionString("199.103.60.77"));
+            var context = new DataContext(Helper.GetConnectionString());
             var products = context.GetTable<TProduct>();
             var filteredProduct = products.Where(product => product.Barcode == barcode).ToList();
             context.Dispose();

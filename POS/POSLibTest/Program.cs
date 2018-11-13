@@ -11,7 +11,13 @@ namespace POSLibTest
     {
         static void Main(string[] args)
         {
-            
+            ProductCollection collection = new ProductCollection("5", "");
+            foreach (var product in collection.Products)
+            {
+                Console.WriteLine(product.ToString());
+            }
+
+            Console.ReadKey();
         }
     }
 }
