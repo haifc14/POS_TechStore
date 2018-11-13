@@ -40,7 +40,21 @@ namespace POSApp
 
             try
             {
+                // Get Scanned Product info 
                 Product product = new Product(barcodeFromInput);
+
+                // display that product on Left Product Panel
+                Label productInfoLabel = new Label();
+
+                string productBarcode = product.Barcode.ToString();
+                string productName = product.Name;
+                string productPrice = product.Price.ToString();
+
+                productInfoLabel.Width = OrderView_Panel.Width;
+
+                productInfoLabel.Text = productBarcode.PadRight(6) + productName.Replace(" ","") + "  " + productPrice.PadLeft(6);
+
+                OrderView_Panel.Controls.Add(productInfoLabel);
             }
             catch (Exception err)
             {
