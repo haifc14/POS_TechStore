@@ -9,20 +9,43 @@ namespace POSLibrary
 {
     public class ProductCollection
     {
-        public string Name { get; set; }
-        public List<Product> products;
+        public List<Product> Products { get; private set; }
 
-        public List<Product> GetProducts(string keyWords, string filterType)
+        public ProductCollection(string keywords, string filterType = "")
         {
-            throw new NotImplementedException();
+            var TProducts = new List<TProduct>();
+            Products = new List<Product>();
+            //filtering type 
+            if (filterType == "brand")
+            {
+                TProducts = GetProductByBrands(keywords);
+            }
+            else if (filterType == "category")
+            {
+                TProducts = GetProductByCategory(keywords);
+            }
+            else
+            {
+                TProducts = GetProductsBySearch(keywords);
+            }
+            //converting Tproduct to product object
+            foreach (var TProduct in TProducts)
+            {
+                var product = new Product(TProduct.Name, TProduct.Barcode, TProduct.Price, (decimal)TProduct.Discount);
+                Products.Add(product);
+            }
         }
 
-        private List<Product> GetProductsBySearch()
+        private List<TProduct> GetProductsBySearch(string keywords)
         {
-            throw new NotImplementedException();
+            using (var context = new DataContext(Helper.GetConnectionString()))
+            {
+                var filteredProduct = context.GetTable<TProduct>().Where(product => product.Name.Contains(keywords) || product.Barcode.ToString() == keywords);
+                return filteredProduct.ToList();
+            }
         }
 
-        public List<TProduct> GetProductByBrands(string brandName)
+        private List<TProduct> GetProductByBrands(string brandName)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
@@ -32,7 +55,7 @@ namespace POSLibrary
             }
         }
 
-        public List<TProduct> GetProductByCategory(string categoryName)
+        private List<TProduct> GetProductByCategory(string categoryName)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {

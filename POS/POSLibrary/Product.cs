@@ -23,7 +23,7 @@ namespace POSLibrary
 
         public override string ToString()
         {
-            return base.ToString();
+            return Name + " " + Barcode + " " + Price + " " + Discount;
         }
 
     }
