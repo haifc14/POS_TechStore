@@ -47,11 +47,15 @@ namespace POSApp
                 else
                 {
                     MessageBox.Show("Wrong credentials. Try again...");
+                    UserNameTextbox.Text = "";
+                    PasswordTextbox.Text = "";
                 }
             }
             else
             {
                 MessageBox.Show("Invalid username / password input. Try again...");
+                UserNameTextbox.Text = "";
+                PasswordTextbox.Text = "";
             }
             
         }
