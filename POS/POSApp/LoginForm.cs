@@ -12,14 +12,14 @@ using POSLibrary;
 
 namespace POSApp
 {
-    public partial class SingInForm : Form
+    public partial class LoginForm : Form
     {
         public int UserName { get; private set; }
         public int Password { get; private set; }
         public bool IsAuthenticated { get; private set; }
         Employee employee;
 
-        public SingInForm()
+        public LoginForm()
         {
             InitializeComponent();
         }

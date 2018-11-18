@@ -142,6 +142,7 @@
             this.SignOff_Button.TabIndex = 9;
             this.SignOff_Button.Text = "Sign Off";
             this.SignOff_Button.UseVisualStyleBackColor = true;
+            this.SignOff_Button.Click += new System.EventHandler(this.SignOff_Button_Click);
             // 
             // AbortTrans_Button
             // 

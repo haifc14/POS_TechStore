@@ -63,5 +63,12 @@ namespace POSApp
             BarcodeTextBox.Text = "";
 
         }
+
+        private void SignOff_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+        }
     }
 }
