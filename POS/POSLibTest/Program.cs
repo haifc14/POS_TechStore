@@ -14,6 +14,7 @@ namespace POSLibTest
             ProductCollection collection = new ProductCollection("5", "");
             foreach (var product in collection.Products)
             {
+                Console.WriteLine("a");
                 Console.WriteLine(product.ToString());
             }
 
