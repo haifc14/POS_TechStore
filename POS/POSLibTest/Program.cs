@@ -11,12 +11,12 @@ namespace POSLibTest
     {
         static void Main(string[] args)
         {
-            ProductCollection collection = new ProductCollection("5", "");
-            foreach (var product in collection.Products)
+            foreach (var product in new ProductCollection("","Apple", "Laptop").Products)
             {
                 Console.WriteLine(product.ToString());
             }
-
+            Console.WriteLine("\n");
+            Console.WriteLine("Press any key to close the program!");
             Console.ReadKey();
         }
     }

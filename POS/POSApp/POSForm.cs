@@ -24,7 +24,12 @@ namespace POSApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            var brands = Helper.GetBrands();
+            brands.Insert(0, "Select by Brand");
+            var category = Helper.GetCategories();
+            category.Insert(0, "Select by Category");
+            BrandComboBox.DataSource = brands;
+            CategoryComboBox.DataSource = category;
         }
 
         /// <summary>
@@ -52,15 +57,20 @@ namespace POSApp
 
                 productInfoLabel.Width = OrderView_Panel.Width;
 
-                productInfoLabel.Text = productBarcode.PadRight(6) + productName.Replace(" ","") + "  " + productPrice.PadLeft(6);
+                productInfoLabel.Text = productBarcode.PadRight(6) + productName.Replace(" ", "") + "  " + productPrice.PadLeft(6);
 
                 OrderView_Panel.Controls.Add(productInfoLabel);
             }
             catch (Exception)
             {
-                MessageBox.Show("The item is not exists!!!");              
+                MessageBox.Show("The item is not exists!!!");
             }
             BarcodeTextBox.Text = "";
+
+        }
+
+        private void SubmitBtn_Click(object sender, EventArgs e)
+        {
 
         }
     }
