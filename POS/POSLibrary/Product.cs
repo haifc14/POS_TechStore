@@ -37,10 +37,10 @@ namespace POSLibrary
             return Name + " " + Barcode + " " + Price + " " + Discount;
         }
 
-        private static TProduct GetProducts(int barcode)
+        private static TProductGroup GetProducts(int barcode)
         {
             var context = new DataContext(Helper.GetConnectionString());
-            var products = context.GetTable<TProduct>();
+            var products = context.GetTable<TProductGroup>();
             var filteredProduct = products.Where(product => product.Barcode == barcode).ToList();
             context.Dispose();
             return filteredProduct[0];

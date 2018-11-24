@@ -4,6 +4,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 namespace POSLibrary
@@ -12,21 +13,26 @@ namespace POSLibrary
     {
         public int UserName { get; private set; }
         public int Password { get; private set; }
-        public List<TEmployee> MatchedUserCredentials { get; private set; } 
+        public List<TUserLogin> MatchedUserCredentials { get; private set; } 
 
         public Employee(int username, int password)
         {
             UserName = username;
             Password = password;
-            MatchedUserCredentials = new List<TEmployee>();
+            MatchedUserCredentials = new List<TUserLogin>();
         }
 
         public bool IsAuthenticated()
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
-                IEnumerable<TEmployee> matchedUserCredential = context.GetTable<TEmployee>().Where(employee => employee.Username == UserName && employee.Pwd == Password);
+                IEnumerable<TUserLogin> matchedUserCredential = context.GetTable<TUserLogin>().Where(employee => employee.UserName.Equals(UserName) && employee.Password.Equals(Password));
                 MatchedUserCredentials = matchedUserCredential.ToList();
+
+                foreach (var user in MatchedUserCredentials)
+                {
+                    MessageBox.Show(user.UserName + ' ' + user.Password);
+                }
             }
 
             if (MatchedUserCredentials.Count > 0)
