@@ -29,21 +29,21 @@ namespace POSLibrary
             }
         }
 
-        private List<TProduct> GetProductsBySearch(string keywords)
+        private List<TProductGroup> GetProductsBySearch(string keywords)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
-                var filteredProduct = context.GetTable<TProduct>().Where(product => product.Name.Contains(keywords) || product.Barcode.ToString() == keywords);
+                var filteredProduct = context.GetTable<TProductGroup>().Where(product => product.Name.Contains(keywords) || product.Barcode.ToString() == keywords);
                 return filteredProduct.ToList();
             }
         }
 
-        private List<TProduct> GetProductByBrands(string brandName)
+        private List<TProductGroup> GetProductByBrands(string brandName)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
                 var filteredBrand = context.GetTable<TBrand>().Where(brand => brand.Name == brandName).ToList();
-                var products = context.GetTable<TProduct>();
+                var products = context.GetTable<TProductGroup>();
                 if (filteredBrand.Count > 0)
                 {
                     return products.Where(product => product.BrandID == filteredBrand[0].BrandID).ToList();
@@ -52,12 +52,12 @@ namespace POSLibrary
             }
         }
 
-        private List<TProduct> GetProductByCategory(string categoryName)
+        private List<TProductGroup> GetProductByCategory(string categoryName)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
                 var filteredCategory = context.GetTable<TCategory>().Where(category => category.Name == categoryName).ToList();
-                var products = context.GetTable<TProduct>();
+                var products = context.GetTable<TProductGroup>();
                 if (filteredCategory.Count() > 0)
                 {
                     return products.Where(product => product.CategoryID == filteredCategory[0].CategoryID).ToList();
