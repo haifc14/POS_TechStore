@@ -39,18 +39,12 @@ namespace POSLibrary
     partial void InsertTCustomer(TCustomer instance);
     partial void UpdateTCustomer(TCustomer instance);
     partial void DeleteTCustomer(TCustomer instance);
-    partial void InsertTEmployee(TEmployee instance);
-    partial void UpdateTEmployee(TEmployee instance);
-    partial void DeleteTEmployee(TEmployee instance);
-    partial void InsertTLocation(TLocation instance);
-    partial void UpdateTLocation(TLocation instance);
-    partial void DeleteTLocation(TLocation instance);
-    partial void InsertTProduct(TProduct instance);
-    partial void UpdateTProduct(TProduct instance);
-    partial void DeleteTProduct(TProduct instance);
     partial void InsertTProductGroup(TProductGroup instance);
     partial void UpdateTProductGroup(TProductGroup instance);
     partial void DeleteTProductGroup(TProductGroup instance);
+    partial void InsertTPurchaseLog(TPurchaseLog instance);
+    partial void UpdateTPurchaseLog(TPurchaseLog instance);
+    partial void DeleteTPurchaseLog(TPurchaseLog instance);
     partial void InsertTUserLogin(TUserLogin instance);
     partial void UpdateTUserLogin(TUserLogin instance);
     partial void DeleteTUserLogin(TUserLogin instance);
@@ -110,43 +104,11 @@ namespace POSLibrary
 			}
 		}
 		
-		public System.Data.Linq.Table<TEmployee> TEmployees
-		{
-			get
-			{
-				return this.GetTable<TEmployee>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TInStock> TInStocks
-		{
-			get
-			{
-				return this.GetTable<TInStock>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TLocation> TLocations
-		{
-			get
-			{
-				return this.GetTable<TLocation>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TOrderItem> TOrderItems
 		{
 			get
 			{
 				return this.GetTable<TOrderItem>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TProduct> TProducts
-		{
-			get
-			{
-				return this.GetTable<TProduct>();
 			}
 		}
 		
@@ -158,11 +120,11 @@ namespace POSLibrary
 			}
 		}
 		
-		public System.Data.Linq.Table<TReturned> TReturneds
+		public System.Data.Linq.Table<TPurchaseLog> TPurchaseLogs
 		{
 			get
 			{
-				return this.GetTable<TReturned>();
+				return this.GetTable<TPurchaseLog>();
 			}
 		}
 		
@@ -513,461 +475,6 @@ namespace POSLibrary
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TEmployee")]
-	public partial class TEmployee : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _EmployeeId;
-		
-		private string _FirstName;
-		
-		private string _LastName;
-		
-		private System.DateTime _DOB;
-		
-		private System.DateTime _DateHired;
-		
-		private string _Position;
-		
-		private decimal _HourlyRate;
-		
-		private EntitySet<TUserLogin> _TUserLogins;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnEmployeeIdChanging(int value);
-    partial void OnEmployeeIdChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnDOBChanging(System.DateTime value);
-    partial void OnDOBChanged();
-    partial void OnDateHiredChanging(System.DateTime value);
-    partial void OnDateHiredChanged();
-    partial void OnPositionChanging(string value);
-    partial void OnPositionChanged();
-    partial void OnHourlyRateChanging(decimal value);
-    partial void OnHourlyRateChanged();
-    #endregion
-		
-		public TEmployee()
-		{
-			this._TUserLogins = new EntitySet<TUserLogin>(new Action<TUserLogin>(this.attach_TUserLogins), new Action<TUserLogin>(this.detach_TUserLogins));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployeeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int EmployeeId
-		{
-			get
-			{
-				return this._EmployeeId;
-			}
-			set
-			{
-				if ((this._EmployeeId != value))
-				{
-					this.OnEmployeeIdChanging(value);
-					this.SendPropertyChanging();
-					this._EmployeeId = value;
-					this.SendPropertyChanged("EmployeeId");
-					this.OnEmployeeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string LastName
-		{
-			get
-			{
-				return this._LastName;
-			}
-			set
-			{
-				if ((this._LastName != value))
-				{
-					this.OnLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOB", DbType="Date NOT NULL")]
-		public System.DateTime DOB
-		{
-			get
-			{
-				return this._DOB;
-			}
-			set
-			{
-				if ((this._DOB != value))
-				{
-					this.OnDOBChanging(value);
-					this.SendPropertyChanging();
-					this._DOB = value;
-					this.SendPropertyChanged("DOB");
-					this.OnDOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateHired", DbType="Date NOT NULL")]
-		public System.DateTime DateHired
-		{
-			get
-			{
-				return this._DateHired;
-			}
-			set
-			{
-				if ((this._DateHired != value))
-				{
-					this.OnDateHiredChanging(value);
-					this.SendPropertyChanging();
-					this._DateHired = value;
-					this.SendPropertyChanged("DateHired");
-					this.OnDateHiredChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Position", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Position
-		{
-			get
-			{
-				return this._Position;
-			}
-			set
-			{
-				if ((this._Position != value))
-				{
-					this.OnPositionChanging(value);
-					this.SendPropertyChanging();
-					this._Position = value;
-					this.SendPropertyChanged("Position");
-					this.OnPositionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HourlyRate", DbType="Money NOT NULL")]
-		public decimal HourlyRate
-		{
-			get
-			{
-				return this._HourlyRate;
-			}
-			set
-			{
-				if ((this._HourlyRate != value))
-				{
-					this.OnHourlyRateChanging(value);
-					this.SendPropertyChanging();
-					this._HourlyRate = value;
-					this.SendPropertyChanged("HourlyRate");
-					this.OnHourlyRateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TEmployee_TUserLogin", Storage="_TUserLogins", ThisKey="EmployeeId", OtherKey="EmployeeId")]
-		public EntitySet<TUserLogin> TUserLogins
-		{
-			get
-			{
-				return this._TUserLogins;
-			}
-			set
-			{
-				this._TUserLogins.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TUserLogins(TUserLogin entity)
-		{
-			this.SendPropertyChanging();
-			entity.TEmployee = this;
-		}
-		
-		private void detach_TUserLogins(TUserLogin entity)
-		{
-			this.SendPropertyChanging();
-			entity.TEmployee = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TInStock")]
-	public partial class TInStock
-	{
-		
-		private int _BarcodeID;
-		
-		private int _LocationID;
-		
-		private int _Quantity;
-		
-		public TInStock()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", DbType="Int NOT NULL")]
-		public int BarcodeID
-		{
-			get
-			{
-				return this._BarcodeID;
-			}
-			set
-			{
-				if ((this._BarcodeID != value))
-				{
-					this._BarcodeID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="Int NOT NULL")]
-		public int LocationID
-		{
-			get
-			{
-				return this._LocationID;
-			}
-			set
-			{
-				if ((this._LocationID != value))
-				{
-					this._LocationID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
-		public int Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this._Quantity = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TLocation")]
-	public partial class TLocation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _LocationID;
-		
-		private string _Name;
-		
-		private string _Address;
-		
-		private string _City;
-		
-		private int _Phone;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnLocationIDChanging(int value);
-    partial void OnLocationIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnPhoneChanging(int value);
-    partial void OnPhoneChanged();
-    #endregion
-		
-		public TLocation()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int LocationID
-		{
-			get
-			{
-				return this._LocationID;
-			}
-			set
-			{
-				if ((this._LocationID != value))
-				{
-					this.OnLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._LocationID = value;
-					this.SendPropertyChanged("LocationID");
-					this.OnLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(40) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(70) NOT NULL", CanBeNull=false)]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(40) NOT NULL", CanBeNull=false)]
-		public string City
-		{
-			get
-			{
-				return this._City;
-			}
-			set
-			{
-				if ((this._City != value))
-				{
-					this.OnCityChanging(value);
-					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="Int NOT NULL")]
-		public int Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this.OnPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Phone = value;
-					this.SendPropertyChanged("Phone");
-					this.OnPhoneChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TOrderItems")]
 	public partial class TOrderItem
 	{
@@ -1031,133 +538,6 @@ namespace POSLibrary
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TProduct")]
-	public partial class TProduct : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _SerialNumber;
-		
-		private System.Nullable<int> _BarcodeID;
-		
-		private EntityRef<TProductGroup> _TProductGroup;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSerialNumberChanging(int value);
-    partial void OnSerialNumberChanged();
-    partial void OnBarcodeIDChanging(System.Nullable<int> value);
-    partial void OnBarcodeIDChanged();
-    #endregion
-		
-		public TProduct()
-		{
-			this._TProductGroup = default(EntityRef<TProductGroup>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SerialNumber", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int SerialNumber
-		{
-			get
-			{
-				return this._SerialNumber;
-			}
-			set
-			{
-				if ((this._SerialNumber != value))
-				{
-					this.OnSerialNumberChanging(value);
-					this.SendPropertyChanging();
-					this._SerialNumber = value;
-					this.SendPropertyChanged("SerialNumber");
-					this.OnSerialNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", DbType="Int")]
-		public System.Nullable<int> BarcodeID
-		{
-			get
-			{
-				return this._BarcodeID;
-			}
-			set
-			{
-				if ((this._BarcodeID != value))
-				{
-					if (this._TProductGroup.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBarcodeIDChanging(value);
-					this.SendPropertyChanging();
-					this._BarcodeID = value;
-					this.SendPropertyChanged("BarcodeID");
-					this.OnBarcodeIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TProduct", Storage="_TProductGroup", ThisKey="BarcodeID", OtherKey="BarcodeID", IsForeignKey=true)]
-		public TProductGroup TProductGroup
-		{
-			get
-			{
-				return this._TProductGroup.Entity;
-			}
-			set
-			{
-				TProductGroup previousValue = this._TProductGroup.Entity;
-				if (((previousValue != value) 
-							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TProductGroup.Entity = null;
-						previousValue.TProducts.Remove(this);
-					}
-					this._TProductGroup.Entity = value;
-					if ((value != null))
-					{
-						value.TProducts.Add(this);
-						this._BarcodeID = value.BarcodeID;
-					}
-					else
-					{
-						this._BarcodeID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TProductGroup");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TProductGroup")]
 	public partial class TProductGroup : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1186,7 +566,7 @@ namespace POSLibrary
 		
 		private string _ShortProductName;
 		
-		private EntitySet<TProduct> _TProducts;
+		private EntitySet<TPurchaseLog> _TPurchaseLogs;
 		
 		private EntityRef<TBrand> _TBrand;
 		
@@ -1222,7 +602,7 @@ namespace POSLibrary
 		
 		public TProductGroup()
 		{
-			this._TProducts = new EntitySet<TProduct>(new Action<TProduct>(this.attach_TProducts), new Action<TProduct>(this.detach_TProducts));
+			this._TPurchaseLogs = new EntitySet<TPurchaseLog>(new Action<TPurchaseLog>(this.attach_TPurchaseLogs), new Action<TPurchaseLog>(this.detach_TPurchaseLogs));
 			this._TBrand = default(EntityRef<TBrand>);
 			this._TCategory = default(EntityRef<TCategory>);
 			OnCreated();
@@ -1456,16 +836,16 @@ namespace POSLibrary
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TProduct", Storage="_TProducts", ThisKey="BarcodeID", OtherKey="BarcodeID")]
-		public EntitySet<TProduct> TProducts
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TPurchaseLogs", ThisKey="BarcodeID", OtherKey="BarcodeID")]
+		public EntitySet<TPurchaseLog> TPurchaseLogs
 		{
 			get
 			{
-				return this._TProducts;
+				return this._TPurchaseLogs;
 			}
 			set
 			{
-				this._TProducts.Assign(value);
+				this._TPurchaseLogs.Assign(value);
 			}
 		}
 		
@@ -1557,31 +937,81 @@ namespace POSLibrary
 			}
 		}
 		
-		private void attach_TProducts(TProduct entity)
+		private void attach_TPurchaseLogs(TPurchaseLog entity)
 		{
 			this.SendPropertyChanging();
 			entity.TProductGroup = this;
 		}
 		
-		private void detach_TProducts(TProduct entity)
+		private void detach_TPurchaseLogs(TPurchaseLog entity)
 		{
 			this.SendPropertyChanging();
 			entity.TProductGroup = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TReturned")]
-	public partial class TReturned
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TPurchaseLog")]
+	public partial class TPurchaseLog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TransactionID;
 		
 		private System.Nullable<int> _BarcodeID;
 		
 		private System.Nullable<int> _LocationID;
 		
+		private System.DateTime _Date;
+		
 		private int _Quantity;
 		
-		public TReturned()
+		private int _TotalCost;
+		
+		private EntityRef<TProductGroup> _TProductGroup;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTransactionIDChanging(int value);
+    partial void OnTransactionIDChanged();
+    partial void OnBarcodeIDChanging(System.Nullable<int> value);
+    partial void OnBarcodeIDChanged();
+    partial void OnLocationIDChanging(System.Nullable<int> value);
+    partial void OnLocationIDChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    partial void OnTotalCostChanging(int value);
+    partial void OnTotalCostChanged();
+    #endregion
+		
+		public TPurchaseLog()
 		{
+			this._TProductGroup = default(EntityRef<TProductGroup>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TransactionID
+		{
+			get
+			{
+				return this._TransactionID;
+			}
+			set
+			{
+				if ((this._TransactionID != value))
+				{
+					this.OnTransactionIDChanging(value);
+					this.SendPropertyChanging();
+					this._TransactionID = value;
+					this.SendPropertyChanged("TransactionID");
+					this.OnTransactionIDChanged();
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", DbType="Int")]
@@ -1595,7 +1025,15 @@ namespace POSLibrary
 			{
 				if ((this._BarcodeID != value))
 				{
+					if (this._TProductGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBarcodeIDChanging(value);
+					this.SendPropertyChanging();
 					this._BarcodeID = value;
+					this.SendPropertyChanged("BarcodeID");
+					this.OnBarcodeIDChanged();
 				}
 			}
 		}
@@ -1611,7 +1049,31 @@ namespace POSLibrary
 			{
 				if ((this._LocationID != value))
 				{
+					this.OnLocationIDChanging(value);
+					this.SendPropertyChanging();
 					this._LocationID = value;
+					this.SendPropertyChanged("LocationID");
+					this.OnLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime2 NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
 				}
 			}
 		}
@@ -1627,8 +1089,86 @@ namespace POSLibrary
 			{
 				if ((this._Quantity != value))
 				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
 					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalCost", DbType="Int NOT NULL")]
+		public int TotalCost
+		{
+			get
+			{
+				return this._TotalCost;
+			}
+			set
+			{
+				if ((this._TotalCost != value))
+				{
+					this.OnTotalCostChanging(value);
+					this.SendPropertyChanging();
+					this._TotalCost = value;
+					this.SendPropertyChanged("TotalCost");
+					this.OnTotalCostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TProductGroup", ThisKey="BarcodeID", OtherKey="BarcodeID", IsForeignKey=true)]
+		public TProductGroup TProductGroup
+		{
+			get
+			{
+				return this._TProductGroup.Entity;
+			}
+			set
+			{
+				TProductGroup previousValue = this._TProductGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TProductGroup.Entity = null;
+						previousValue.TPurchaseLogs.Remove(this);
+					}
+					this._TProductGroup.Entity = value;
+					if ((value != null))
+					{
+						value.TPurchaseLogs.Add(this);
+						this._BarcodeID = value.BarcodeID;
+					}
+					else
+					{
+						this._BarcodeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TProductGroup");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1647,8 +1187,6 @@ namespace POSLibrary
 		
 		private string _Password;
 		
-		private EntityRef<TEmployee> _TEmployee;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1665,7 +1203,6 @@ namespace POSLibrary
 		
 		public TUserLogin()
 		{
-			this._TEmployee = default(EntityRef<TEmployee>);
 			OnCreated();
 		}
 		
@@ -1700,10 +1237,6 @@ namespace POSLibrary
 			{
 				if ((this._EmployeeId != value))
 				{
-					if (this._TEmployee.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnEmployeeIdChanging(value);
 					this.SendPropertyChanging();
 					this._EmployeeId = value;
@@ -1749,40 +1282,6 @@ namespace POSLibrary
 					this._Password = value;
 					this.SendPropertyChanged("Password");
 					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TEmployee_TUserLogin", Storage="_TEmployee", ThisKey="EmployeeId", OtherKey="EmployeeId", IsForeignKey=true)]
-		public TEmployee TEmployee
-		{
-			get
-			{
-				return this._TEmployee.Entity;
-			}
-			set
-			{
-				TEmployee previousValue = this._TEmployee.Entity;
-				if (((previousValue != value) 
-							|| (this._TEmployee.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TEmployee.Entity = null;
-						previousValue.TUserLogins.Remove(this);
-					}
-					this._TEmployee.Entity = value;
-					if ((value != null))
-					{
-						value.TUserLogins.Add(this);
-						this._EmployeeId = value.EmployeeId;
-					}
-					else
-					{
-						this._EmployeeId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TEmployee");
 				}
 			}
 		}
