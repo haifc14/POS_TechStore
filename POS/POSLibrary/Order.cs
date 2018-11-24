@@ -8,20 +8,32 @@ namespace POSLibrary
 {
     public class Order
     {
+        #region Properties
         public List<Product> ListOfItems { get; private set; } = new List<Product>();
-        public decimal TotalDiscount { get; private set; }
-        public decimal Total { get; private set; }
-        public decimal SubTotal { get; private set; }
+        public decimal TotalDiscount { get; private set; } = 0;
+        public decimal Total { get; private set; } = 0;
+        public decimal SubTotal { get; private set; } = 0;
         public decimal Tax { get; private set; }
+        public decimal Discount { get; private set; } = 0;
         public bool IsReturn { get; private set; } = false;
-        public int EmployeeID;
+        public int EmployeeID { get; }
+        #endregion
 
-        public Order(List<Product> listOfProducts, int employId)
+        #region Constructor
+        public Order(List<Product> listOfProducts, int employId, bool isReturn)
         {
             ListOfItems = listOfProducts;
-            EmployeeID = employId;
+            EmployeeID = employId;           
+            CalculateSubTotal();
+            CalculateTax();
+            CalculateDiscount();
+            CalculateTotal();
+            IsReturn = isReturn;
+            UpdateOrderStatus();
         }
+        #endregion
 
+        #region Methods
         public void AddItem(Product productToAdd)
         {
             ListOfItems.Add(productToAdd);
@@ -47,20 +59,49 @@ namespace POSLibrary
             SubTotal += newSubTotal;
         }
 
+        private void CalculateSubTotal()
+        {
+            foreach (var item in ListOfItems)
+            {
+                SubTotal += item.Price;
+            }
+        }
+
+        private void CalculateTax()
+        {
+            foreach (var item in ListOfItems)
+            {
+                Tax += item.Tax;
+            }
+        }
+
+        private void CalculateDiscount()
+        {
+            foreach (var item in ListOfItems)
+            {
+                Discount += item.Discount;
+            }
+        }
+
+        private void CalculateTotal()
+        {
+            Total = (SubTotal + Tax) - Discount;
+        }
+
         public override string ToString()
         {
             return base.ToString();
-        }
+        }       
 
-        public void CompleteOrder()
+        public void UpdateOrderStatus()
         {
+            if (!IsReturn) return;
 
+            Total = -Total;       
         }
 
-        public void ReturnOrderComplete()
-        {
+        #endregion
 
-        }
 
     }
 }

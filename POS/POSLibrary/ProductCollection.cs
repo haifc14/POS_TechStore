@@ -24,7 +24,7 @@ namespace POSLibrary
             //converting Tproduct to product object
             foreach (var TProduct in TProducts)
             {
-                var product = new Product(TProduct.Name, TProduct.Barcode, TProduct.Price, (decimal)TProduct.Discount);
+                var product = new Product(TProduct.Name, TProduct.Barcode, TProduct.Price, (decimal)TProduct.Discount, TProduct.Tax);
                 Products.Add(product);
             }
         }

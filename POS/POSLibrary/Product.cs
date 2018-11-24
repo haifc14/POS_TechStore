@@ -13,13 +13,15 @@ namespace POSLibrary
         public int Barcode { get; private set; }
         public decimal Price { get; private set; }
         public decimal Discount { get; private set; }
+        public decimal Tax { get; private set; }
          
-        public Product(string name, int barcode, decimal price, decimal discount)
+        public Product(string name, int barcode, decimal price, decimal discount, decimal tax)
         {
             Name = name;
             Barcode = barcode;
             Price = price;
             Discount = discount;
+            Tax = tax;
         }
 
         public Product(string barcode)
@@ -30,6 +32,7 @@ namespace POSLibrary
             Barcode = TProduct.Barcode;
             Price = TProduct.Price;
             Discount = (decimal)TProduct.Discount;
+            Tax = TProduct.Tax;
         }
 
         public override string ToString()

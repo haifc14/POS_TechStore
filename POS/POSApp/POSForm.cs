@@ -61,6 +61,8 @@ namespace POSApp
 
                 productInfoLabel.Width = OrderView_Panel.Width;
 
+                productInfoLabel.Font = new Font(new FontFamily("Arial"), 14, FontStyle.Bold);
+
                 productInfoLabel.Text = productBarcode.PadRight(6) + productName.Replace(" ","") + "  " + productPrice.PadLeft(6);
 
                 OrderView_Panel.Controls.Add(productInfoLabel);
