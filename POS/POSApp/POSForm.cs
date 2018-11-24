@@ -18,6 +18,7 @@ namespace POSApp
     public partial class POSForm : Form
     {
         readonly int EmployeeID;
+        public List<Product> ScannedItemsList { get; private set; } = new List<Product>();
 
         public POSForm(int employeeId)
         {
@@ -43,16 +44,28 @@ namespace POSApp
             {
                 string barcodeFromInput = BarcodeTextBox.Text;
                 // Get Scanned Product info 
-                Product product = new Product(barcodeFromInput);
+                Product scannedItem = new Product(barcodeFromInput);
+                
+                // Adding scanned item to a list
+                // Then create an order containing all scanned items
+                ScannedItemsList.Add(scannedItem);
 
-                // 
+                Order tempOrder = new Order(ScannedItemsList, EmployeeID, false);              
+
+                // Binding data of Temporary Order To OrderSummaryControl
+                OrderSummaryControl orderSummaryView = new OrderSummaryControl();
+                BindingOrderDataToOrderView(tempOrder, orderSummaryView);
+
+                // Display Order Info to form
+                OrderSummaryFlowPanel.Controls.Clear();
+                OrderSummaryFlowPanel.Controls.Add(orderSummaryView);
                 
                 // display that product on Left Product Panel
                 Label productInfoLabel = new Label();
 
-                string productBarcode = product.Barcode.ToString();
-                string productName = product.Name;
-                string productPrice = product.Price.ToString();
+                string productBarcode = scannedItem.Barcode.ToString();
+                string productName = scannedItem.Name;
+                string productPrice = scannedItem.Price.ToString();
 
                 productInfoLabel.Width = OrderView_Panel.Width;
 
@@ -75,6 +88,21 @@ namespace POSApp
             this.Close();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
+        }
+
+        private void BindingOrderDataToOrderView(Order orderData, OrderSummaryControl orderUI)
+        {
+            Binding bindingOrderSubTotal = new Binding("SubTotal", orderData, "SubTotal", true, DataSourceUpdateMode.Never);
+            orderUI.DataBindings.Add(bindingOrderSubTotal);
+
+            Binding bindingOrderTax = new Binding("Tax", orderData, "Tax", true, DataSourceUpdateMode.Never);
+            orderUI.DataBindings.Add(bindingOrderTax);
+
+            Binding bindingOrderDiscount = new Binding("Discount", orderData, "Discount", true, DataSourceUpdateMode.Never);
+            orderUI.DataBindings.Add(bindingOrderDiscount);
+
+            Binding bindingOrderTotal = new Binding("Total", orderData, "Total", true, DataSourceUpdateMode.Never);
+            orderUI.DataBindings.Add(bindingOrderTotal);
         }
 
     }

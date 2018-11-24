@@ -55,6 +55,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderSummaryControl.designer.cs">
+      <DependentUpon>OrderSummaryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="POSForm.cs">
       <SubType>Form</SubType>
     </Compile>
