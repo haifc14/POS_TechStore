@@ -28,11 +28,6 @@ namespace POSLibrary
             {
                 IEnumerable<TUserLogin> matchedUserCredential = context.GetTable<TUserLogin>().Where(employee => employee.UserName.Equals(UserName) && employee.Password.Equals(Password));
                 MatchedUserCredentials = matchedUserCredential.ToList();
-
-                foreach (var user in MatchedUserCredentials)
-                {
-                    MessageBox.Show(user.UserName + ' ' + user.Password);
-                }
             }
 
             if (MatchedUserCredentials.Count > 0)

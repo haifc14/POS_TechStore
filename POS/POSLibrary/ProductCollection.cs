@@ -43,9 +43,13 @@ namespace POSLibrary
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
                 var filteredBrand = context.GetTable<TBrand>().Where(brand => brand.Name == brandName).ToList();
-                var products = context.GetTable<TProductGroup>();
+                var products = context.GetTable<TProductGroup>().ToList();
                 if (filteredBrand.Count > 0)
                 {
+                    foreach (var item in products)
+                    {
+                        Console.WriteLine(products.ToString());
+                    }
                     return products.Where(product => product.BrandID == filteredBrand[0].BrandID).ToList();
                 }
                 return products.ToList();

@@ -11,9 +11,9 @@ namespace POSLibTest
     {
         static void Main(string[] args)
         {
-            foreach (var product in new ProductCollection("","Apple", "Laptop").Products)
+            Console.WriteLine("__________________");
+            foreach (var product in new ProductCollection("","Apple", "").Products)
             {
-                Console.WriteLine("a");
                 Console.WriteLine(product.ToString());
             }
             Console.WriteLine("\n");
