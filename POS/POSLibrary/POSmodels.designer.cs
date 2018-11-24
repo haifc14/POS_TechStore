@@ -576,8 +576,8 @@ namespace POSLibrary
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnBarcodeIDChanging(int value);
-    partial void OnBarcodeIDChanged();
+    partial void OnBarcodeChanging(int value);
+    partial void OnBarcodeChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     partial void OnPriceChanging(decimal value);
@@ -608,8 +608,8 @@ namespace POSLibrary
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int BarcodeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="BarcodeID", Storage="_BarcodeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Barcode
 		{
 			get
 			{
@@ -619,11 +619,11 @@ namespace POSLibrary
 			{
 				if ((this._BarcodeID != value))
 				{
-					this.OnBarcodeIDChanging(value);
+					this.OnBarcodeChanging(value);
 					this.SendPropertyChanging();
 					this._BarcodeID = value;
-					this.SendPropertyChanged("BarcodeID");
-					this.OnBarcodeIDChanged();
+					this.SendPropertyChanged("Barcode");
+					this.OnBarcodeChanged();
 				}
 			}
 		}
@@ -836,7 +836,7 @@ namespace POSLibrary
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TPurchaseLogs", ThisKey="BarcodeID", OtherKey="BarcodeID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TPurchaseLogs", ThisKey="Barcode", OtherKey="Barcode")]
 		public EntitySet<TPurchaseLog> TPurchaseLogs
 		{
 			get
@@ -976,8 +976,8 @@ namespace POSLibrary
     partial void OnCreated();
     partial void OnTransactionIDChanging(int value);
     partial void OnTransactionIDChanged();
-    partial void OnBarcodeIDChanging(System.Nullable<int> value);
-    partial void OnBarcodeIDChanged();
+    partial void OnBarcodeChanging(System.Nullable<int> value);
+    partial void OnBarcodeChanged();
     partial void OnLocationIDChanging(System.Nullable<int> value);
     partial void OnLocationIDChanged();
     partial void OnDateChanging(System.DateTime value);
@@ -1014,8 +1014,8 @@ namespace POSLibrary
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", DbType="Int")]
-		public System.Nullable<int> BarcodeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="BarcodeID", Storage="_BarcodeID", DbType="Int")]
+		public System.Nullable<int> Barcode
 		{
 			get
 			{
@@ -1025,15 +1025,11 @@ namespace POSLibrary
 			{
 				if ((this._BarcodeID != value))
 				{
-					if (this._TProductGroup.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBarcodeIDChanging(value);
+					this.OnBarcodeChanging(value);
 					this.SendPropertyChanging();
 					this._BarcodeID = value;
-					this.SendPropertyChanged("BarcodeID");
-					this.OnBarcodeIDChanged();
+					this.SendPropertyChanged("Barcode");
+					this.OnBarcodeChanged();
 				}
 			}
 		}
@@ -1118,7 +1114,7 @@ namespace POSLibrary
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TProductGroup", ThisKey="BarcodeID", OtherKey="BarcodeID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TProductGroup", ThisKey="Barcode", OtherKey="Barcode", IsForeignKey=true)]
 		public TProductGroup TProductGroup
 		{
 			get
@@ -1141,7 +1137,7 @@ namespace POSLibrary
 					if ((value != null))
 					{
 						value.TPurchaseLogs.Add(this);
-						this._BarcodeID = value.BarcodeID;
+						this._BarcodeID = value.Barcode;
 					}
 					else
 					{
