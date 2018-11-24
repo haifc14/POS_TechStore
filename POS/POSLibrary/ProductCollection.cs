@@ -11,7 +11,6 @@ namespace POSLibrary
     {
         public List<Product> Products { get; private set; }
 
-
         public ProductCollection(string keywords, string brandName = "", string categoryName = "")
         {
             Products = new List<Product>();
