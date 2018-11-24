@@ -55,22 +55,18 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginViewControl.cs" />
-    <Compile Include="OrderSummaryControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="OrderSummaryControl.Designer.cs">
-      <DependentUpon>OrderSummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OrderViewControl.cs" />
-    <Compile Include="POSContainer.cs" />
     <Compile Include="POSForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="POSForm.Designer.cs">
       <DependentUpon>POSForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductViewControl.cs" />
+    <Compile Include="ProductViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductViewControl.Designer.cs">
+      <DependentUpon>ProductViewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LoginForm.resx">
@@ -81,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="POSForm.resx">
       <DependentUpon>POSForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductViewControl.resx">
+      <DependentUpon>ProductViewControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

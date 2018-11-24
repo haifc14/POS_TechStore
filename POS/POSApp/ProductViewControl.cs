@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,29 +11,69 @@ using POSLibrary;
 
 namespace POSApp
 {
-    public class ProductViewControl
+    public partial class ProductViewControl : UserControl
     {
-        public TextBox SearchBar { get; set; }
-        public ComboBox CategoryCombobox { get; set; }
-        public ComboBox BrandCombobox { get; set; }
-        
+        private string[] _categories;
+        private string[] _brands;
+        private string _selectedBrand = "";
+        private string _selectedCategory = "";
 
-        public void SearchBarOnChange()
+        public ProductViewControl()
         {
-            //event
-            //execute on change of search bar text
+            InitializeComponent();
+            _categories = Helper.GetCategories().ToArray();
+            _brands = Helper.GetBrands().ToArray();
+            CategoryComboBox.Items.Add("Select Category");
+            CategoryComboBox.Items.AddRange(_categories);
+            BrandComboBox.Items.Add("Select Brand");
+            BrandComboBox.Items.AddRange(_brands);
         }
 
-        public void CategoryComboboxOnChange()
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //event 
-            // execute on change of category combobox selectindex
+            if (CategoryComboBox.SelectedIndex == 0)
+            {
+                _selectedCategory = "";
+            }
+            else
+            {
+                _selectedCategory = CategoryComboBox.Items[CategoryComboBox.SelectedIndex].ToString();
+            }
         }
 
-        public void BrandComboboxOnChange()
+        private void BrandComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //event
-            //execute on change of brand combobox selectedindex
+            if (BrandComboBox.SelectedIndex == 0)
+            {
+                _selectedBrand = "";
+            }
+            else
+            {
+                _selectedBrand = BrandComboBox.Items[BrandComboBox.SelectedIndex].ToString();
+            }
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var keywords = SearchTextbox.Text;
+                var filteredProducts = new ProductCollection(keywords, _selectedBrand, _selectedCategory);
+                var bindingSource = new BindingSource();
+                bindingSource.DataSource = filteredProducts.Products;
+                ProductDataGradeView.DataSource = bindingSource;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while collecting information to search. Please try agin!");
+            }
+            finally {
+                BrandComboBox.SelectedIndex = 0;
+                _selectedBrand = "";
+                CategoryComboBox.SelectedIndex = 0;
+                _selectedCategory = "";
+                SearchTextbox.Text = "";
+            }
         }
     }
 }

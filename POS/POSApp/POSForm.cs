@@ -27,13 +27,8 @@ namespace POSApp
         }
         
         private void PosForm_Load(object sender, EventArgs e)
-        {          
-            var brands = Helper.GetBrands();
-            brands.Insert(0, "Select by Brand");
-            var category = Helper.GetCategories();
-            category.Insert(0, "Select by Category");
-            BrandComboBox.DataSource = brands;
-            CategoryComboBox.DataSource = category;
+        {
+            
         }
 
         /// <summary>
@@ -81,12 +76,6 @@ namespace POSApp
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
         }
-        private void FilterSubmitBtn_Click(object sender, EventArgs e)
-        {
-            var keywords = SearchTextBox.Text;
-            var brandName = BrandComboBox.Items[BrandComboBox.SelectedIndex].ToString();
-            var categoryName = CategoryComboBox.Items[CategoryComboBox.SelectedIndex].ToString();
-            var productCollection = new ProductCollection(keywords, brandName, categoryName);
-        }
+
     }
 }
