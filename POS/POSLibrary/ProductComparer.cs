@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace POSLibrary
 {
-    internal class ProductComparer : IEqualityComparer<TProduct>
+    internal class ProductComparer : IEqualityComparer<TProductGroup>
     {
-        public bool Equals(TProduct x, TProduct y)
+        public bool Equals(TProductGroup x, TProductGroup y)
         {
             return int.Equals(x.Barcode, y.Barcode);
         }
 
-        public int GetHashCode(TProduct obj)
+        public int GetHashCode(TProductGroup obj)
         {
             return obj.Barcode.GetHashCode();
         }
