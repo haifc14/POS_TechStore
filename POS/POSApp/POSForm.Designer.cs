@@ -46,8 +46,8 @@
             this.PayCash_Button = new System.Windows.Forms.Button();
             this.OrderView_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.InputBarcodePanel = new System.Windows.Forms.Panel();
-            this.productViewControl1 = new POSApp.ProductViewControl();
             this.OrderSummaryFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.productViewControl1 = new POSApp.ProductViewControl();
             this.OrderControl_Panel.SuspendLayout();
             this.InputBarcodePanel.SuspendLayout();
             this.SuspendLayout();
@@ -221,6 +221,7 @@
             // 
             // OrderView_Panel
             // 
+            this.OrderView_Panel.AutoScroll = true;
             this.OrderView_Panel.Location = new System.Drawing.Point(12, 15);
             this.OrderView_Panel.Margin = new System.Windows.Forms.Padding(50, 50, 50, 50);
             this.OrderView_Panel.Name = "OrderView_Panel";
@@ -236,19 +237,19 @@
             this.InputBarcodePanel.Size = new System.Drawing.Size(796, 154);
             this.InputBarcodePanel.TabIndex = 5;
             // 
-            // productViewControl1
-            // 
-            this.productViewControl1.Location = new System.Drawing.Point(849, 15);
-            this.productViewControl1.Name = "productViewControl1";
-            this.productViewControl1.Size = new System.Drawing.Size(1126, 726);
-            this.productViewControl1.TabIndex = 6;
-            // 
             // OrderSummaryFlowPanel
             // 
             this.OrderSummaryFlowPanel.Location = new System.Drawing.Point(12, 588);
             this.OrderSummaryFlowPanel.Name = "OrderSummaryFlowPanel";
             this.OrderSummaryFlowPanel.Size = new System.Drawing.Size(796, 378);
             this.OrderSummaryFlowPanel.TabIndex = 7;
+            // 
+            // productViewControl1
+            // 
+            this.productViewControl1.Location = new System.Drawing.Point(849, 15);
+            this.productViewControl1.Name = "productViewControl1";
+            this.productViewControl1.Size = new System.Drawing.Size(1126, 726);
+            this.productViewControl1.TabIndex = 6;
             // 
             // POSForm
             // 

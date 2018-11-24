@@ -54,5 +54,9 @@ namespace POSApp
             InitializeComponent();
         }
 
+        private void OrderSummaryControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
