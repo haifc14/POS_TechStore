@@ -31,11 +31,11 @@ namespace POSApp
 
             employee = new Employee(usernameInput, passwordInput);
 
-            IsAuthenticated = employee.IsAuthenticated();         
+            int returnedEmployeeID = employee.GetEmployeeID(); 
 
-            if (IsAuthenticated)
+            if (returnedEmployeeID > 0)
             {
-                POSForm posForm = new POSForm();
+                POSForm posForm = new POSForm(returnedEmployeeID);
                 this.Close();
                 posForm.Show();
             }

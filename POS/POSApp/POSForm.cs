@@ -17,13 +17,17 @@ namespace POSApp
 {
     public partial class POSForm : Form
     {
-        public POSForm()
+        readonly int EmployeeID;
+
+        public POSForm(int employeeId)
         {
             InitializeComponent();
+
+            EmployeeID = employeeId;
         }
         
         private void PosForm_Load(object sender, EventArgs e)
-        {
+        {          
             var brands = Helper.GetBrands();
             brands.Insert(0, "Select by Brand");
             var category = Helper.GetCategories();
@@ -40,12 +44,13 @@ namespace POSApp
         /// <param name="e"></param>
         private void SubmitBarcodeBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("knkn");
             try
             {
                 string barcodeFromInput = BarcodeTextBox.Text;
                 // Get Scanned Product info 
                 Product product = new Product(barcodeFromInput);
+
+                // 
                 
                 // display that product on Left Product Panel
                 Label productInfoLabel = new Label();

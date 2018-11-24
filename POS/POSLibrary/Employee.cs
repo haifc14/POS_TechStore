@@ -22,20 +22,15 @@ namespace POSLibrary
             MatchedUserCredentials = new List<TUserLogin>();
         }
 
-        public bool IsAuthenticated()
+        public int GetEmployeeID()
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
                 IEnumerable<TUserLogin> matchedUserCredential = context.GetTable<TUserLogin>().Where(employee => employee.UserName.Equals(UserName) && employee.Password.Equals(Password));
-                MatchedUserCredentials = matchedUserCredential.ToList();            
-            }
+                MatchedUserCredentials = matchedUserCredential.ToList();
 
-            if (MatchedUserCredentials.Count > 0)
-            {
-                return true;
-            }
-
-            return false;
+                return (int)MatchedUserCredentials[0].EmployeeId;
+            }     
         }
     }
 }

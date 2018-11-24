@@ -16,15 +16,10 @@ namespace POSLibrary
         public bool IsReturn { get; private set; } = false;
         public int EmployeeID;
 
-        public Order(List<Product> listOfProducts, decimal totalDiscount, decimal total, decimal subTotal, decimal tax, bool isReturn, int employeeID)
+        public Order(List<Product> listOfProducts, int employId)
         {
             ListOfItems = listOfProducts;
-            TotalDiscount = totalDiscount;
-            Total = total;
-            SubTotal = subTotal;
-            Tax = tax;
-            IsReturn = isReturn;
-            EmployeeID = employeeID;
+            EmployeeID = employId;
         }
 
         public void AddItem(Product productToAdd)
