@@ -56,6 +56,12 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginViewControl.cs" />
+    <Compile Include="OrderSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderSummaryControl.Designer.cs">
+      <DependentUpon>OrderSummaryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderViewControl.cs" />
     <Compile Include="POSContainer.cs" />
     <Compile Include="POSForm.cs">
@@ -69,6 +75,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderSummaryControl.resx">
+      <DependentUpon>OrderSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POSForm.resx">
       <DependentUpon>POSForm.cs</DependentUpon>
