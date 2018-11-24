@@ -14,8 +14,8 @@ namespace POSApp
 {
     public partial class LoginForm : Form
     {
-        public int UserName { get; private set; }
-        public int Password { get; private set; }
+        public string UserName { get; private set; }
+        public string Password { get; private set; }
         public bool IsAuthenticated { get; private set; }
         Employee employee;
 
@@ -29,52 +29,23 @@ namespace POSApp
             string usernameInput = UserNameTextbox.Text;
             string passwordInput = PasswordTextbox.Text;
 
-            if (IsValidInput(usernameInput) && IsValidInput(passwordInput))
+            employee = new Employee(usernameInput, passwordInput);
+
+            IsAuthenticated = employee.IsAuthenticated();         
+
+            if (IsAuthenticated)
             {
-                UserName = int.Parse(usernameInput);
-                Password = int.Parse(passwordInput);
-
-                employee = new Employee(UserName, Password);
-
-                IsAuthenticated = employee.IsAuthenticated();         
-
-                if (IsAuthenticated)
-                {
-                    POSForm posForm = new POSForm();
-                    this.Close();
-                    posForm.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Wrong credentials. Try again...");
-                    UserNameTextbox.Text = "";
-                    PasswordTextbox.Text = "";
-                }
+                POSForm posForm = new POSForm();
+                this.Close();
+                posForm.Show();
             }
             else
             {
-                MessageBox.Show("Invalid username / password input. Try again...");
+                MessageBox.Show("Wrong credentials. Try again...");
                 UserNameTextbox.Text = "";
                 PasswordTextbox.Text = "";
             }
-            
         }
-
-        /// <summary>
-        /// This method is to check if user input a number or not.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        private bool IsValidInput(string input)
-        {
-            bool isInputValid = int.TryParse(input, out int validInput);
-
-            if (isInputValid)
-            {
-                return true;
-            }
-
-            return false;
-        }
+        
     }
 }

@@ -40,14 +40,13 @@ namespace POSApp
         /// <param name="e"></param>
         private void SubmitBarcodeBtn_Click(object sender, EventArgs e)
         {
-
-            string barcodeFromInput = BarcodeTextBox.Text;
-
+            MessageBox.Show("knkn");
             try
             {
+                string barcodeFromInput = BarcodeTextBox.Text;
                 // Get Scanned Product info 
                 Product product = new Product(barcodeFromInput);
-
+                
                 // display that product on Left Product Panel
                 Label productInfoLabel = new Label();
 
