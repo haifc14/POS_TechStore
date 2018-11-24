@@ -1,34 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Linq;
+using System.Linq;
 
 namespace POSLibrary
 {
     public class ProductCollection
     {
- 
         public List<Product> Products { get; private set; }
 
-        public ProductCollection(string keywords, string filterType = "")
+
+        public ProductCollection(string keywords, string brandName = "", string categoryName = "")
         {
-            var TProducts = new List<TProduct>();
             Products = new List<Product>();
-            //filtering type 
-            if (filterType == "brand")
-            {
-                TProducts = GetProductByBrands(keywords);
-            }
-            else if (filterType == "category")
-            {
-                TProducts = GetProductByCategory(keywords);
-            }
-            else
-            {
-                TProducts = GetProductsBySearch(keywords);
-            }
+            var productsFilteredByBrand = GetProductByBrands(brandName);
+            var productsFilteredByCategory = GetProductByCategory(categoryName);
+            var productsFilteredBySearch = GetProductsBySearch(keywords);
+            var TProducts = productsFilteredByBrand
+                                .Intersect(productsFilteredByCategory, new ProductComparer())
+                                .Intersect(productsFilteredBySearch, new ProductComparer());
             //converting Tproduct to product object
             foreach (var TProduct in TProducts)
             {
@@ -52,7 +44,11 @@ namespace POSLibrary
             {
                 var filteredBrand = context.GetTable<TBrand>().Where(brand => brand.Name == brandName).ToList();
                 var products = context.GetTable<TProduct>();
-                return products.Where(product => product.BrandID == filteredBrand[0].BrandID).ToList();
+                if (filteredBrand.Count > 0)
+                {
+                    return products.Where(product => product.BrandID == filteredBrand[0].BrandID).ToList();
+                }
+                return products.ToList();
             }
         }
 
@@ -62,7 +58,11 @@ namespace POSLibrary
             {
                 var filteredCategory = context.GetTable<TCategory>().Where(category => category.Name == categoryName).ToList();
                 var products = context.GetTable<TProduct>();
-                return products.Where(product => product.CategoryID == filteredCategory[0].CategoryID).ToList();
+                if (filteredCategory.Count() > 0)
+                {
+                    return products.Where(product => product.CategoryID == filteredCategory[0].CategoryID).ToList();
+                }
+                return products.ToList();
             }
         }
     }

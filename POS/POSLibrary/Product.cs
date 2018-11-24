@@ -57,6 +57,5 @@ namespace POSLibrary
 
             return validBarcode;
         }
-
     }
 }
