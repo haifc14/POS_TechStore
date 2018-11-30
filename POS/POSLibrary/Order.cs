@@ -39,6 +39,11 @@ namespace POSLibrary
             CalculateTotal();          
         }
 
+        public void AddDiscount()
+        {
+
+        }
+
         public void RemoveItem(Product productToRemove)
         {
             ListOfItems.Remove(productToRemove);

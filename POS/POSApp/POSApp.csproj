@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FinalizeOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinalizeOrderForm.Designer.cs">
+      <DependentUpon>FinalizeOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,12 @@
     </Compile>
     <Compile Include="OrderControl.Designer.cs">
       <DependentUpon>OrderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderPaymentOptionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderPaymentOptionControl.Designer.cs">
+      <DependentUpon>OrderPaymentOptionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderSummaryControl.cs">
       <SubType>UserControl</SubType>
@@ -81,11 +93,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FinalizeOrderForm.resx">
+      <DependentUpon>FinalizeOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderControl.resx">
       <DependentUpon>OrderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderPaymentOptionControl.resx">
+      <DependentUpon>OrderPaymentOptionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderSummaryControl.resx">
       <DependentUpon>OrderSummaryControl.cs</DependentUpon>
