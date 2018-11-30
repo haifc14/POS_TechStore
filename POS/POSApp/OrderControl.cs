@@ -45,29 +45,51 @@ namespace POSApp
             try
             {
                 string barcodeFromInput = BarcodeTextBox.Text;
-                // Get Scanned Product info 
-                Product scannedItem = new Product(barcodeFromInput);
 
-                // Adding scanned item to a list
-                // Then create an order containing all scanned items
-                CurrentOrder.AddItem(scannedItem);
+                // Check if ItemBarcode was scanned or customer barcode was scanned
+
+                bool canConvertToNumber = int.TryParse(barcodeFromInput, out int itemBarcode);
+
+                if(canConvertToNumber) // is item barcode since item barcode is always a int number
+                {
+                    // Get Scanned Product info 
+                    Product scannedItem = new Product(barcodeFromInput);
+
+                    // Adding scanned item to a list
+                    // Then create an order containing all scanned items
+                    CurrentOrder.AddItem(scannedItem);
 
 
-                // Binding data of Temporary Order To OrderSummaryControl
-                OrderSummaryControl orderSummaryView = new OrderSummaryControl();
-                BindingOrderDataToOrderView(CurrentOrder, orderSummaryView);
+                    // Binding data of Temporary Order To OrderSummaryControl
+                    OrderSummaryControl orderSummaryView = new OrderSummaryControl();
+                    BindingOrderDataToOrderView(CurrentOrder, orderSummaryView);
 
-                // Display Order Info to form
-                OrderSummaryFlowPanel.Controls.Clear();
-                OrderSummaryFlowPanel.Controls.Add(orderSummaryView);
+                    // Display Order Info to form
+                    OrderSummaryFlowPanel.Controls.Clear();
+                    OrderSummaryFlowPanel.Controls.Add(orderSummaryView);
 
-                // display that product on Left Product Panel            
-                OrderItemControl ItemControl = new OrderItemControl();
+                    // display that product on Left Product Panel            
+                    OrderItemControl ItemControl = new OrderItemControl();
 
-                ItemControl.ItemBarcode = scannedItem.Barcode.ToString();
-                ItemControl.ItemName = scannedItem.Name;
-                ItemControl.ItemPrice = scannedItem.Price.ToString();        
-                OrderView_Panel.Controls.Add(ItemControl);
+                    ItemControl.ItemBarcode = scannedItem.Barcode.ToString();
+                    ItemControl.ItemName = scannedItem.Name;
+                    ItemControl.ItemPrice = scannedItem.Price.ToString();
+                    OrderView_Panel.Controls.Add(ItemControl);
+                }
+                else
+                {
+                    // is Customer code since customer barcode contain 'C' letter befor number
+                    // so that it cannot be parsed to int number
+                    Customer customer = new Customer(barcodeFromInput);
+
+                    string customerName = customer.GetCustomerName();
+                    int customerPoints = customer.GetCustomerPoints();
+
+                    CustomerNameLabel.Text = customerName;
+                    CustomerPointsLabel.Text = customerPoints.ToString();
+
+                }
+                
             }
             catch (Exception)
             {

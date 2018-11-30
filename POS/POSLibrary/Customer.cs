@@ -1,61 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Linq;
 
 namespace POSLibrary
 {
     public class Customer
     {
-        public int CustomerID { get; private set; }
-        public string CustomerName { get; private set; }
-        public int TotalPoints { get; private set; }
+        private string CustomerName;
+        private string CustomerId;
+        private int CustomerPoints;
 
-        public Customer(int id, string name, int points)
+        public Customer(string customerId)
         {
-            CustomerID = id;
-            CustomerName = name;
-            TotalPoints = points;
+            CustomerId = customerId;
+            var TCustomer = GetCustomerInfoFromDB();
+            CustomerName = TCustomer.Name;
+            CustomerPoints = TCustomer.TotalPoints;
         }
 
-        public void AddPoint(int pointToAdd)
+        private TCustomer GetCustomerInfoFromDB()
         {
-            TotalPoints += pointToAdd;
-            UpdatePointsToDB();
+            var context = new DataContext(Helper.GetConnectionString());
+            var customers = context.GetTable<TCustomer>();
+            var filteredCustomers = customers.Where(customer => customer.CustomerID == CustomerId).ToList();
+            var currentCustomer = filteredCustomers[0];
+            return currentCustomer;
         }
 
-        public void RedeemPoint(int pointToRedeem)
+        public string GetCustomerName()
         {
-            if (TotalPoints < pointToRedeem)
-            {
-                throw new ArgumentException("Not enough points in the account");
-            }
-
-            TotalPoints -= pointToRedeem;
-            UpdatePointsToDB();
+            return CustomerName;
         }
 
-        public int GetToTalPoints()
+        public int GetCustomerPoints()
         {
-            return TotalPoints;
-        }
-
-        private void UpdatePointsToDB()
-        {
-            // update points to DB
-            using (var context = new DataContext(Helper.GetConnectionString()))
-            {
-                var TCustomer = context.GetTable<TCustomer>();
-
-                var currentCustomerInfo = TCustomer.Where(customer => customer.CustomerID == this.CustomerID).ToList();
-
-                currentCustomerInfo[0].TotalPoints = this.TotalPoints;
-
-                context.SubmitChanges();
-            }
-             
+            return CustomerPoints;
         }
     }
 }

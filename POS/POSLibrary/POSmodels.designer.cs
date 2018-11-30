@@ -48,9 +48,6 @@ namespace POSLibrary
     partial void InsertTEmployee(TEmployee instance);
     partial void UpdateTEmployee(TEmployee instance);
     partial void DeleteTEmployee(TEmployee instance);
-    partial void InsertTCustomer(TCustomer instance);
-    partial void UpdateTCustomer(TCustomer instance);
-    partial void DeleteTCustomer(TCustomer instance);
     partial void InsertTCategory(TCategory instance);
     partial void UpdateTCategory(TCategory instance);
     partial void DeleteTCategory(TCategory instance);
@@ -145,14 +142,6 @@ namespace POSLibrary
 			}
 		}
 		
-		public System.Data.Linq.Table<TCustomer> TCustomers
-		{
-			get
-			{
-				return this.GetTable<TCustomer>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TCategory> TCategories
 		{
 			get
@@ -166,6 +155,14 @@ namespace POSLibrary
 			get
 			{
 				return this.GetTable<TBrand>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TCustomer> TCustomers
+		{
+			get
+			{
+				return this.GetTable<TCustomer>();
 			}
 		}
 	}
@@ -1590,116 +1587,6 @@ namespace POSLibrary
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCustomer")]
-	public partial class TCustomer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CustomerID;
-		
-		private string _Name;
-		
-		private int _TotalPoints;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCustomerIDChanging(int value);
-    partial void OnCustomerIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnTotalPointsChanging(int value);
-    partial void OnTotalPointsChanged();
-    #endregion
-		
-		public TCustomer()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int CustomerID
-		{
-			get
-			{
-				return this._CustomerID;
-			}
-			set
-			{
-				if ((this._CustomerID != value))
-				{
-					this.OnCustomerIDChanging(value);
-					this.SendPropertyChanging();
-					this._CustomerID = value;
-					this.SendPropertyChanged("CustomerID");
-					this.OnCustomerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(80)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPoints", DbType="Int NOT NULL")]
-		public int TotalPoints
-		{
-			get
-			{
-				return this._TotalPoints;
-			}
-			set
-			{
-				if ((this._TotalPoints != value))
-				{
-					this.OnTotalPointsChanging(value);
-					this.SendPropertyChanging();
-					this._TotalPoints = value;
-					this.SendPropertyChanged("TotalPoints");
-					this.OnTotalPointsChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCategory")]
 	public partial class TCategory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1925,6 +1812,69 @@ namespace POSLibrary
 		{
 			this.SendPropertyChanging();
 			entity.TBrand = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCustomer")]
+	public partial class TCustomer
+	{
+		
+		private string _CustomerID;
+		
+		private string _Name;
+		
+		private int _TotalPoints;
+		
+		public TCustomer()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="NVarChar(80)")]
+		public string CustomerID
+		{
+			get
+			{
+				return this._CustomerID;
+			}
+			set
+			{
+				if ((this._CustomerID != value))
+				{
+					this._CustomerID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(80)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPoints", DbType="Int NOT NULL")]
+		public int TotalPoints
+		{
+			get
+			{
+				return this._TotalPoints;
+			}
+			set
+			{
+				if ((this._TotalPoints != value))
+				{
+					this._TotalPoints = value;
+				}
+			}
 		}
 	}
 }

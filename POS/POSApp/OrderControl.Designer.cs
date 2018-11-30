@@ -34,8 +34,9 @@
             this.SubmitBarcodeBtn = new System.Windows.Forms.Button();
             this.OrderView_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.EmployeeIDLabel = new System.Windows.Forms.Label();
-            this.ClearOrderBtn = new System.Windows.Forms.Button();
             this.EmployeeIDTitleLabel = new System.Windows.Forms.Label();
+            this.CustomerNameLabel = new System.Windows.Forms.Label();
+            this.CustomerPointsLabel = new System.Windows.Forms.Label();
             this.InputBarcodePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,17 +93,6 @@
             this.EmployeeIDLabel.TabIndex = 14;
             this.EmployeeIDLabel.Text = "1001";
             // 
-            // ClearOrderBtn
-            // 
-            this.ClearOrderBtn.BackColor = System.Drawing.Color.DarkRed;
-            this.ClearOrderBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClearOrderBtn.Location = new System.Drawing.Point(633, 15);
-            this.ClearOrderBtn.Name = "ClearOrderBtn";
-            this.ClearOrderBtn.Size = new System.Drawing.Size(127, 51);
-            this.ClearOrderBtn.TabIndex = 15;
-            this.ClearOrderBtn.Text = "Clear";
-            this.ClearOrderBtn.UseVisualStyleBackColor = false;
-            // 
             // EmployeeIDTitleLabel
             // 
             this.EmployeeIDTitleLabel.AutoSize = true;
@@ -113,12 +103,33 @@
             this.EmployeeIDTitleLabel.TabIndex = 16;
             this.EmployeeIDTitleLabel.Text = "EmployeeID:";
             // 
+            // CustomerNameLabel
+            // 
+            this.CustomerNameLabel.AutoSize = true;
+            this.CustomerNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerNameLabel.Location = new System.Drawing.Point(471, 16);
+            this.CustomerNameLabel.Name = "CustomerNameLabel";
+            this.CustomerNameLabel.Size = new System.Drawing.Size(0, 37);
+            this.CustomerNameLabel.TabIndex = 17;
+            // 
+            // CustomerPointsLabel
+            // 
+            this.CustomerPointsLabel.AutoSize = true;
+            this.CustomerPointsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerPointsLabel.ForeColor = System.Drawing.Color.DarkViolet;
+            this.CustomerPointsLabel.Location = new System.Drawing.Point(659, 15);
+            this.CustomerPointsLabel.Name = "CustomerPointsLabel";
+            this.CustomerPointsLabel.Size = new System.Drawing.Size(0, 42);
+            this.CustomerPointsLabel.TabIndex = 18;
+            this.CustomerPointsLabel.Tag = "";
+            // 
             // OrderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CustomerPointsLabel);
+            this.Controls.Add(this.CustomerNameLabel);
             this.Controls.Add(this.EmployeeIDTitleLabel);
-            this.Controls.Add(this.ClearOrderBtn);
             this.Controls.Add(this.EmployeeIDLabel);
             this.Controls.Add(this.OrderSummaryFlowPanel);
             this.Controls.Add(this.InputBarcodePanel);
@@ -140,7 +151,8 @@
         private System.Windows.Forms.Button SubmitBarcodeBtn;
         private System.Windows.Forms.FlowLayoutPanel OrderView_Panel;
         private System.Windows.Forms.Label EmployeeIDLabel;
-        private System.Windows.Forms.Button ClearOrderBtn;
         private System.Windows.Forms.Label EmployeeIDTitleLabel;
+        private System.Windows.Forms.Label CustomerNameLabel;
+        private System.Windows.Forms.Label CustomerPointsLabel;
     }
 }
