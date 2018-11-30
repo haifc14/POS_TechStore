@@ -16,20 +16,16 @@ namespace POSLibrary
         public decimal Tax { get; private set; }
         public decimal Discount { get; private set; } = 0;
         public bool IsReturn { get; private set; } = false;
-        public int EmployeeID { get; }
+        public int EmployeeID { get; set; }
         #endregion
 
         #region Constructor
         public Order(List<Product> listOfProducts, int employId, bool isReturn)
         {
             ListOfItems = listOfProducts;
-            EmployeeID = employId;           
-            CalculateSubTotal();
-            CalculateTax();
-            CalculateDiscount();
-            CalculateTotal();
+            EmployeeID = employId;
             IsReturn = isReturn;
-            UpdateOrderStatus();
+
         }
         #endregion
 
@@ -37,6 +33,10 @@ namespace POSLibrary
         public void AddItem(Product productToAdd)
         {
             ListOfItems.Add(productToAdd);
+            CalculateSubTotal();
+            CalculateTax();
+            CalculateDiscount();
+            CalculateTotal();          
         }
 
         public void RemoveItem(Product productToRemove)

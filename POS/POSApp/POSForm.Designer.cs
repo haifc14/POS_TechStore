@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SubmitBarcodeBtn = new System.Windows.Forms.Button();
-            this.BarcodeTextBox = new System.Windows.Forms.TextBox();
             this.OrderControl_Panel = new System.Windows.Forms.Panel();
             this.DayReport_Button = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -44,31 +42,10 @@
             this.RedeemPoint_Button = new System.Windows.Forms.Button();
             this.PayCard_Button = new System.Windows.Forms.Button();
             this.PayCash_Button = new System.Windows.Forms.Button();
-            this.OrderView_Panel = new System.Windows.Forms.FlowLayoutPanel();
-            this.InputBarcodePanel = new System.Windows.Forms.Panel();
-            this.OrderSummaryFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.OrderControl = new POSApp.OrderControl();
             this.productViewControl1 = new POSApp.ProductViewControl();
             this.OrderControl_Panel.SuspendLayout();
-            this.InputBarcodePanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // SubmitBarcodeBtn
-            // 
-            this.SubmitBarcodeBtn.Location = new System.Drawing.Point(515, 66);
-            this.SubmitBarcodeBtn.Name = "SubmitBarcodeBtn";
-            this.SubmitBarcodeBtn.Size = new System.Drawing.Size(146, 50);
-            this.SubmitBarcodeBtn.TabIndex = 14;
-            this.SubmitBarcodeBtn.Text = "Submit";
-            this.SubmitBarcodeBtn.UseVisualStyleBackColor = true;
-            this.SubmitBarcodeBtn.Click += new System.EventHandler(this.SubmitBarcodeBtn_Click);
-            // 
-            // BarcodeTextBox
-            // 
-            this.BarcodeTextBox.Location = new System.Drawing.Point(96, 69);
-            this.BarcodeTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.BarcodeTextBox.Name = "BarcodeTextBox";
-            this.BarcodeTextBox.Size = new System.Drawing.Size(410, 31);
-            this.BarcodeTextBox.TabIndex = 13;
             // 
             // OrderControl_Panel
             // 
@@ -86,7 +63,7 @@
             this.OrderControl_Panel.Controls.Add(this.PayCard_Button);
             this.OrderControl_Panel.Controls.Add(this.PayCash_Button);
             this.OrderControl_Panel.Location = new System.Drawing.Point(849, 773);
-            this.OrderControl_Panel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.OrderControl_Panel.Margin = new System.Windows.Forms.Padding(6);
             this.OrderControl_Panel.Name = "OrderControl_Panel";
             this.OrderControl_Panel.Size = new System.Drawing.Size(1126, 369);
             this.OrderControl_Panel.TabIndex = 2;
@@ -94,7 +71,7 @@
             // DayReport_Button
             // 
             this.DayReport_Button.Location = new System.Drawing.Point(965, 210);
-            this.DayReport_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DayReport_Button.Margin = new System.Windows.Forms.Padding(6);
             this.DayReport_Button.Name = "DayReport_Button";
             this.DayReport_Button.Size = new System.Drawing.Size(150, 135);
             this.DayReport_Button.TabIndex = 37;
@@ -104,7 +81,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(22, 16);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(470, 31);
             this.textBox1.TabIndex = 38;
@@ -112,7 +89,7 @@
             // DayEnd_Button
             // 
             this.DayEnd_Button.Location = new System.Drawing.Point(965, 65);
-            this.DayEnd_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DayEnd_Button.Margin = new System.Windows.Forms.Padding(6);
             this.DayEnd_Button.Name = "DayEnd_Button";
             this.DayEnd_Button.Size = new System.Drawing.Size(150, 135);
             this.DayEnd_Button.TabIndex = 36;
@@ -122,7 +99,7 @@
             // SignOff_Button
             // 
             this.SignOff_Button.Location = new System.Drawing.Point(781, 210);
-            this.SignOff_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SignOff_Button.Margin = new System.Windows.Forms.Padding(6);
             this.SignOff_Button.Name = "SignOff_Button";
             this.SignOff_Button.Size = new System.Drawing.Size(150, 135);
             this.SignOff_Button.TabIndex = 35;
@@ -132,7 +109,7 @@
             // AbortTrans_Button
             // 
             this.AbortTrans_Button.Location = new System.Drawing.Point(781, 63);
-            this.AbortTrans_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AbortTrans_Button.Margin = new System.Windows.Forms.Padding(6);
             this.AbortTrans_Button.Name = "AbortTrans_Button";
             this.AbortTrans_Button.Size = new System.Drawing.Size(150, 135);
             this.AbortTrans_Button.TabIndex = 34;
@@ -142,7 +119,7 @@
             // ItemVoid_Button
             // 
             this.ItemVoid_Button.Location = new System.Drawing.Point(597, 65);
-            this.ItemVoid_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ItemVoid_Button.Margin = new System.Windows.Forms.Padding(6);
             this.ItemVoid_Button.Name = "ItemVoid_Button";
             this.ItemVoid_Button.Size = new System.Drawing.Size(150, 135);
             this.ItemVoid_Button.TabIndex = 33;
@@ -152,7 +129,7 @@
             // Receipt_Button
             // 
             this.Receipt_Button.Location = new System.Drawing.Point(597, 212);
-            this.Receipt_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Receipt_Button.Margin = new System.Windows.Forms.Padding(6);
             this.Receipt_Button.Name = "Receipt_Button";
             this.Receipt_Button.Size = new System.Drawing.Size(150, 135);
             this.Receipt_Button.TabIndex = 32;
@@ -162,7 +139,7 @@
             // ScanLoyalty_Button
             // 
             this.ScanLoyalty_Button.Location = new System.Drawing.Point(22, 210);
-            this.ScanLoyalty_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ScanLoyalty_Button.Margin = new System.Windows.Forms.Padding(6);
             this.ScanLoyalty_Button.Name = "ScanLoyalty_Button";
             this.ScanLoyalty_Button.Size = new System.Drawing.Size(150, 135);
             this.ScanLoyalty_Button.TabIndex = 31;
@@ -172,7 +149,7 @@
             // Return_Button
             // 
             this.Return_Button.Location = new System.Drawing.Point(405, 212);
-            this.Return_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Return_Button.Margin = new System.Windows.Forms.Padding(6);
             this.Return_Button.Name = "Return_Button";
             this.Return_Button.Size = new System.Drawing.Size(150, 135);
             this.Return_Button.TabIndex = 30;
@@ -182,7 +159,7 @@
             // Discount_Button
             // 
             this.Discount_Button.Location = new System.Drawing.Point(22, 58);
-            this.Discount_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Discount_Button.Margin = new System.Windows.Forms.Padding(6);
             this.Discount_Button.Name = "Discount_Button";
             this.Discount_Button.Size = new System.Drawing.Size(150, 135);
             this.Discount_Button.TabIndex = 29;
@@ -192,7 +169,7 @@
             // RedeemPoint_Button
             // 
             this.RedeemPoint_Button.Location = new System.Drawing.Point(405, 65);
-            this.RedeemPoint_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.RedeemPoint_Button.Margin = new System.Windows.Forms.Padding(6);
             this.RedeemPoint_Button.Name = "RedeemPoint_Button";
             this.RedeemPoint_Button.Size = new System.Drawing.Size(150, 135);
             this.RedeemPoint_Button.TabIndex = 28;
@@ -202,7 +179,7 @@
             // PayCard_Button
             // 
             this.PayCard_Button.Location = new System.Drawing.Point(217, 58);
-            this.PayCard_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PayCard_Button.Margin = new System.Windows.Forms.Padding(6);
             this.PayCard_Button.Name = "PayCard_Button";
             this.PayCard_Button.Size = new System.Drawing.Size(150, 135);
             this.PayCard_Button.TabIndex = 27;
@@ -212,37 +189,20 @@
             // PayCash_Button
             // 
             this.PayCash_Button.Location = new System.Drawing.Point(217, 210);
-            this.PayCash_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PayCash_Button.Margin = new System.Windows.Forms.Padding(6);
             this.PayCash_Button.Name = "PayCash_Button";
             this.PayCash_Button.Size = new System.Drawing.Size(150, 135);
             this.PayCash_Button.TabIndex = 26;
             this.PayCash_Button.Text = "Pay Cash";
             this.PayCash_Button.UseVisualStyleBackColor = true;
             // 
-            // OrderView_Panel
+            // OrderControl
             // 
-            this.OrderView_Panel.AutoScroll = true;
-            this.OrderView_Panel.Location = new System.Drawing.Point(12, 15);
-            this.OrderView_Panel.Margin = new System.Windows.Forms.Padding(50, 50, 50, 50);
-            this.OrderView_Panel.Name = "OrderView_Panel";
-            this.OrderView_Panel.Size = new System.Drawing.Size(796, 555);
-            this.OrderView_Panel.TabIndex = 4;
-            // 
-            // InputBarcodePanel
-            // 
-            this.InputBarcodePanel.Controls.Add(this.BarcodeTextBox);
-            this.InputBarcodePanel.Controls.Add(this.SubmitBarcodeBtn);
-            this.InputBarcodePanel.Location = new System.Drawing.Point(12, 980);
-            this.InputBarcodePanel.Name = "InputBarcodePanel";
-            this.InputBarcodePanel.Size = new System.Drawing.Size(796, 154);
-            this.InputBarcodePanel.TabIndex = 5;
-            // 
-            // OrderSummaryFlowPanel
-            // 
-            this.OrderSummaryFlowPanel.Location = new System.Drawing.Point(12, 588);
-            this.OrderSummaryFlowPanel.Name = "OrderSummaryFlowPanel";
-            this.OrderSummaryFlowPanel.Size = new System.Drawing.Size(796, 378);
-            this.OrderSummaryFlowPanel.TabIndex = 7;
+            this.OrderControl.EmployeeId = 0;
+            this.OrderControl.Location = new System.Drawing.Point(12, 17);
+            this.OrderControl.Name = "OrderControl";
+            this.OrderControl.Size = new System.Drawing.Size(805, 1125);
+            this.OrderControl.TabIndex = 7;
             // 
             // productViewControl1
             // 
@@ -256,29 +216,21 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1989, 1156);
-            this.Controls.Add(this.OrderSummaryFlowPanel);
+            this.Controls.Add(this.OrderControl);
             this.Controls.Add(this.productViewControl1);
-            this.Controls.Add(this.InputBarcodePanel);
-            this.Controls.Add(this.OrderView_Panel);
             this.Controls.Add(this.OrderControl_Panel);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "POSForm";
             this.Text = "POS";
             this.Load += new System.EventHandler(this.PosForm_Load);
             this.OrderControl_Panel.ResumeLayout(false);
             this.OrderControl_Panel.PerformLayout();
-            this.InputBarcodePanel.ResumeLayout(false);
-            this.InputBarcodePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel OrderControl_Panel;
-        private System.Windows.Forms.TextBox BarcodeTextBox;
-        private System.Windows.Forms.Button SubmitBarcodeBtn;
-        private System.Windows.Forms.FlowLayoutPanel OrderView_Panel;
-        private System.Windows.Forms.Panel InputBarcodePanel;
         private System.Windows.Forms.Button DayReport_Button;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button DayEnd_Button;
@@ -293,6 +245,6 @@
         private System.Windows.Forms.Button PayCard_Button;
         private System.Windows.Forms.Button PayCash_Button;
         private ProductViewControl productViewControl1;
-        private System.Windows.Forms.FlowLayoutPanel OrderSummaryFlowPanel;
+        private OrderControl OrderControl;
     }
 }
