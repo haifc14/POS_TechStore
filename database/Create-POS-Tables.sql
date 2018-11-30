@@ -192,3 +192,56 @@ VALUES
     (3, 3),
     (2, 3),
     (1, 4)
+
+------------- UPDATE TCustomer table 
+DROP SEQUENCE IF EXISTS dbo.Sequence_CustomerId
+GO
+CREATE SEQUENCE dbo.Sequence_CustomerId
+    START WITH 500
+    INCREMENT BY 1
+    MINVALUE 500
+    CYCLE;
+GO
+
+IF OBJECT_ID('spCreateCustomerTable') IS NOT NULL
+	DROP PROC spCreateCustomerTable
+GO
+CREATE PROC spCreateCustomerTable
+    @CustomerName NVARCHAR(100),
+    @Points INT
+AS
+BEGIN TRY
+			--input validation
+			IF @CustomerName IS NULL
+				THROW 50001, 'Receiver Id cannot be null',1;
+			IF @Points IS NULL
+				THROW 50001, 'Post body cannot be empty',1;
+			
+			DECLARE @CustomerID NVARCHAR(80);
+			(SELECT @CustomerID = ('C' + Cast(NEXT VALUE FOR dbo.Sequence_CustomerId AS NVARCHAR(79))));
+						
+			INSERT INTO TCustomer
+    (CustomerID, [Name], TotalPoints)
+VALUES
+    (@CustomerID, @CustomerName, @Points)
+		END TRY
+		BEGIN CATCH
+			PRINT 'Error!';
+			PRINT 'Error Number: ' + CONVERT(VARCHAR, ERROR_NUMBER());
+			PRINT 'Error Message: ' + ERROR_MESSAGE();
+		END CATCH
+GO
+
+EXEC spCreateCustomerTable
+	@CustomerName ='hai',
+	@Points = 1200
+
+EXEC spCreateCustomerTable
+	@CustomerName ='khush',
+	@Points = 767
+
+SELECT *
+FROM TCustomer
+
+
+

@@ -39,10 +39,14 @@ namespace POSApp
             loginForm.Show();
         }
 
+<<<<<<< HEAD
         private void FinalizeOrderButton_Click(object sender, EventArgs e)
         {
             FinalizeOrderForm finalizeForm = new FinalizeOrderForm(this.OrderControl.CurrentOrder);
             finalizeForm.ShowDialog();
         }
+=======
+        
+>>>>>>> master
     }
 }

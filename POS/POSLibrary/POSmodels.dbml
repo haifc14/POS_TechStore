@@ -74,13 +74,6 @@
       <Association Name="TEmployee_TUserLogin" Member="TUserLogins" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="TUserLogin" />
     </Type>
   </Table>
-  <Table Name="dbo.TCustomer" Member="TCustomers">
-    <Type Name="TCustomer">
-      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="TotalPoints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TCategory" Member="TCategories">
     <Type Name="TCategory">
       <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -93,6 +86,13 @@
       <Column Name="BrandID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="TBrand_TProductGroup" Member="TProductGroups" ThisKey="BrandID" OtherKey="BrandID" Type="TProductGroup" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCustomer" Member="TCustomers">
+    <Type Name="TCustomer">
+      <Column Name="CustomerID" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="TotalPoints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
