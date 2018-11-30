@@ -61,20 +61,13 @@ namespace POSApp
                 OrderSummaryFlowPanel.Controls.Clear();
                 OrderSummaryFlowPanel.Controls.Add(orderSummaryView);
 
-                // display that product on Left Product Panel
-                Label productInfoLabel = new Label();
+                // display that product on Left Product Panel            
+                OrderItemControl ItemControl = new OrderItemControl();
 
-                string productBarcode = scannedItem.Barcode.ToString();
-                string productName = scannedItem.Name;
-                string productPrice = scannedItem.Price.ToString();
-
-                productInfoLabel.Width = OrderView_Panel.Width;
-
-                productInfoLabel.Font = new Font(new FontFamily("Arial"), 14, FontStyle.Bold);
-
-                productInfoLabel.Text = productBarcode.PadRight(6) + productName.Replace(" ", "") + "  " + productPrice.PadLeft(6);
-
-                OrderView_Panel.Controls.Add(productInfoLabel);
+                ItemControl.ItemBarcode = scannedItem.Barcode.ToString();
+                ItemControl.ItemName = scannedItem.Name;
+                ItemControl.ItemPrice = scannedItem.Price.ToString();        
+                OrderView_Panel.Controls.Add(ItemControl);
             }
             catch (Exception)
             {
