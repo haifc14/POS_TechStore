@@ -18,7 +18,7 @@ namespace POSApp
     public partial class POSForm : Form
     {
         readonly int EmployeeID;
-        public List<Product> ScannedItemsList { get; private set; } = new List<Product>();
+       
 
         public POSForm(int employeeId)
         {
@@ -37,8 +37,6 @@ namespace POSApp
             this.Close();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-        }
-
-        
+        }       
     }
 }

@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using POSLibrary;
 
 namespace POSApp
 {
     public partial class OrderItemControl : UserControl
     {
+
+        public event Action<Product, OrderItemControl> RemoveItemEvent;
+
+        private Product product;
 
         public string ItemBarcode
         {
@@ -40,9 +45,18 @@ namespace POSApp
             }
         }
 
-        public OrderItemControl()
+        public OrderItemControl(Product scannedItem)
         {
             InitializeComponent();
+            product = scannedItem;
+            this.ItemBarcodeLabel.Text = product.Barcode.ToString();
+            this.ItemNameLabel.Text = product.Name;
+            this.ItemPriceLabel.Text = product.Price.ToString();
+        }
+
+        private void RemoveItemBtn_Click(object sender, EventArgs e)
+        {
+            RemoveItemEvent(product, this);
         }
     }
 }

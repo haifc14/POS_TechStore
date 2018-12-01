@@ -24,10 +24,9 @@ namespace POSLibrary
             Tax = tax;
         }
 
-        public Product(string barcode)
+        public Product(int barcode)
         {
-            int validBarcode = GetValidBarcode(barcode);
-            var TProduct  = GetProducts(validBarcode);
+            var TProduct  = GetProducts(barcode);
             Name = TProduct.Name;
             Barcode = TProduct.Barcode;
             Price = TProduct.Price;
@@ -47,18 +46,6 @@ namespace POSLibrary
             var filteredProduct = products.Where(product => product.Barcode == barcode).ToList();
             context.Dispose();
             return filteredProduct[0];
-        }
-
-        private int GetValidBarcode(string barcode)
-        {
-            bool isValidBarcode = int.TryParse(barcode, out int validBarcode);
-
-            if (!isValidBarcode)
-            {
-                throw new ArgumentException("Invalid Barcode supplied");
-            }
-
-            return validBarcode;
-        }
+        }       
     }
 }

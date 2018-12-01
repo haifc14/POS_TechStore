@@ -14,6 +14,8 @@ namespace POSApp
     public partial class OrderControl : UserControl
     {
         public Order CurrentOrder { get; set; }
+        public OrderSummaryControl OrderSummaryView { get; private set; }
+
         public int EmployeeId
         {
             get
@@ -21,7 +23,7 @@ namespace POSApp
                 return int.Parse(EmployeeIDLabel.Text);
             }
             set
-            {
+            {              
                 EmployeeIDLabel.Text = value.ToString();
                 CurrentOrder.EmployeeID = value;
             }
@@ -30,7 +32,8 @@ namespace POSApp
         public OrderControl()
         {
             InitializeComponent();
-            CurrentOrder = new Order(new List<Product>(), 0 , false);
+            CurrentOrder = new Order();
+            OrderSummaryView = new OrderSummaryControl();
         }
 
 
@@ -50,31 +53,26 @@ namespace POSApp
 
                 bool canConvertToNumber = int.TryParse(barcodeFromInput, out int itemBarcode);
 
-                if(canConvertToNumber) // is item barcode since item barcode is always a int number
+                if(canConvertToNumber == true) // is item barcode since item barcode is always a int number
                 {
                     // Get Scanned Product info 
-                    Product scannedItem = new Product(barcodeFromInput);
+                    Product scannedItem = new Product(itemBarcode);
 
-                    // Adding scanned item to a list
-                    // Then create an order containing all scanned items
+                    // display the scanned item on Left Product Panel            
+                    OrderItemControl ItemControl = new OrderItemControl(scannedItem);
+                    ItemControl.RemoveItemEvent += RemoveItem();
+                    OrderView_Panel.Controls.Add(ItemControl);
+
+                    // Adding scanned item to a order                 
                     CurrentOrder.AddItem(scannedItem);
 
-
-                    // Binding data of Temporary Order To OrderSummaryControl
-                    OrderSummaryControl orderSummaryView = new OrderSummaryControl();
-                    BindingOrderDataToOrderView(CurrentOrder, orderSummaryView);
+                    // Binding data of Temporary Order To OrderSummaryControl                 
+                    BindingOrderDataToOrderView(CurrentOrder, OrderSummaryView);
 
                     // Display Order Info to form
-                    OrderSummaryFlowPanel.Controls.Clear();
-                    OrderSummaryFlowPanel.Controls.Add(orderSummaryView);
-
-                    // display that product on Left Product Panel            
-                    OrderItemControl ItemControl = new OrderItemControl();
-
-                    ItemControl.ItemBarcode = scannedItem.Barcode.ToString();
-                    ItemControl.ItemName = scannedItem.Name;
-                    ItemControl.ItemPrice = scannedItem.Price.ToString();
-                    OrderView_Panel.Controls.Add(ItemControl);
+                    // OrderSummaryFlowPanel.Controls.Clear();
+                    OrderSummaryFlowPanel.Controls.Add(OrderSummaryView);
+                    
                 }
                 else
                 {
@@ -85,33 +83,42 @@ namespace POSApp
                     string customerName = customer.GetCustomerName();
                     int customerPoints = customer.GetCustomerPoints();
 
+                    // display customer name and points to the view
                     CustomerNameLabel.Text = customerName;
                     CustomerPointsLabel.Text = customerPoints.ToString();
-
                 }
                 
             }
             catch (Exception)
             {
-                MessageBox.Show("The item is not exists!!!");
+                //MessageBox.Show("Invalid barcode!!! Try again...");
+                BarcodeTextBox.Text = "";
             }
-            BarcodeTextBox.Text = "";
-
+            
         }
 
         private void BindingOrderDataToOrderView(Order orderData, OrderSummaryControl orderUI)
         {
-            Binding bindingOrderSubTotal = new Binding("SubTotal", orderData, "SubTotal", true, DataSourceUpdateMode.Never);
+            Binding bindingOrderSubTotal = new Binding("SubTotal", orderData, "SubTotal", true, DataSourceUpdateMode.OnPropertyChanged);
             orderUI.DataBindings.Add(bindingOrderSubTotal);
 
-            Binding bindingOrderTax = new Binding("Tax", orderData, "Tax", true, DataSourceUpdateMode.Never);
+            Binding bindingOrderTax = new Binding("Tax", orderData, "Tax", true, DataSourceUpdateMode.OnPropertyChanged);
             orderUI.DataBindings.Add(bindingOrderTax);
 
-            Binding bindingOrderDiscount = new Binding("Discount", orderData, "Discount", true, DataSourceUpdateMode.Never);
+            Binding bindingOrderDiscount = new Binding("Discount", orderData, "Discount", true, DataSourceUpdateMode.OnPropertyChanged);
             orderUI.DataBindings.Add(bindingOrderDiscount);
 
-            Binding bindingOrderTotal = new Binding("Total", orderData, "Total", true, DataSourceUpdateMode.Never);
+            Binding bindingOrderTotal = new Binding("Total", orderData, "Total", true, DataSourceUpdateMode.OnPropertyChanged);
             orderUI.DataBindings.Add(bindingOrderTotal);
+        }
+
+        private Action<Product, OrderItemControl> RemoveItem()
+        {           
+            return (product, orderItemControl) =>
+            {
+                CurrentOrder.RemoveItem(product);
+                this.OrderView_Panel.Controls.Remove(orderItemControl);
+            };         
         }
     }
 }
