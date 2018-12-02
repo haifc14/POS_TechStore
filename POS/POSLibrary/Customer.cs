@@ -13,6 +13,11 @@ namespace POSLibrary
         private string CustomerId;
         private int CustomerPoints;
 
+        public Customer()
+        {
+
+        }
+
         public Customer(string customerId)
         {
             CustomerId = customerId;

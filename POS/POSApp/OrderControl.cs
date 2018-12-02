@@ -32,7 +32,7 @@ namespace POSApp
         public OrderControl()
         {
             InitializeComponent();
-            CurrentOrder = new Order();
+            CurrentOrder = new Order(new Customer());
             OrderSummaryView = new OrderSummaryControl();
         }
 

@@ -44,5 +44,20 @@ namespace POSApp
             FinalizeOrderForm finalizeForm = new FinalizeOrderForm(this.OrderControl.CurrentOrder);
             finalizeForm.ShowDialog();
         }
+
+        private void ScanLoyaltyButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DayEndButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DayReportButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
