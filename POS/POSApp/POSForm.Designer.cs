@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            POSLibrary.Order order1 = new POSLibrary.Order();
             this.OrderControl_Panel = new System.Windows.Forms.Panel();
             this.DayReport_Button = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -105,6 +106,7 @@
             this.SignOff_Button.TabIndex = 35;
             this.SignOff_Button.Text = "Sign Off";
             this.SignOff_Button.UseVisualStyleBackColor = true;
+            this.SignOff_Button.Click += new System.EventHandler(this.SignOff_Button_Click_1);
             // 
             // AbortTrans_Button
             // 
@@ -198,6 +200,34 @@
             // 
             // OrderControl
             // 
+            order1.Discount = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            order1.EmployeeID = 0;
+            order1.IsReturn = false;
+            order1.SubTotal = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            order1.Tax = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            order1.Total = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            order1.TotalDiscount = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.OrderControl.CurrentOrder = order1;
             this.OrderControl.EmployeeId = 0;
             this.OrderControl.Location = new System.Drawing.Point(12, 17);
             this.OrderControl.Name = "OrderControl";

@@ -31,12 +31,12 @@ namespace POSApp
         {
             this.OrderControl.EmployeeId = this.EmployeeID;
         }
-
-        private void SignOff_Button_Click(object sender, EventArgs e)
+      
+        private void SignOff_Button_Click_1(object sender, EventArgs e)
         {
             this.Close();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-        }       
+        }
     }
 }
