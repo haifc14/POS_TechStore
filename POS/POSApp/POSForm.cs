@@ -18,7 +18,7 @@ namespace POSApp
     public partial class POSForm : Form
     {
         readonly int EmployeeID;
-        public List<Product> ScannedItemsList { get; private set; } = new List<Product>();
+       
 
         public POSForm(int employeeId)
         {
@@ -31,18 +31,21 @@ namespace POSApp
         {
             this.OrderControl.EmployeeId = this.EmployeeID;
         }
-
-        private void SignOff_Button_Click(object sender, EventArgs e)
+      
+        private void SignOff_Button_Click_1(object sender, EventArgs e)
         {
             this.Close();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
         }
+<<<<<<< HEAD
 
         private void FinalizeOrderButton_Click(object sender, EventArgs e)
         {
             FinalizeOrderForm finalizeForm = new FinalizeOrderForm(this.OrderControl.CurrentOrder);
             finalizeForm.ShowDialog();
         }
+=======
+>>>>>>> master
     }
 }

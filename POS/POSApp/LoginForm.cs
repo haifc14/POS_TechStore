@@ -16,8 +16,7 @@ namespace POSApp
     {
         public string UserName { get; private set; }
         public string Password { get; private set; }
-        public bool IsAuthenticated { get; private set; }
-        Employee employee;
+        private Employee employee;
 
         public LoginForm()
         {
@@ -29,22 +28,25 @@ namespace POSApp
             string usernameInput = UserNameTextbox.Text;
             string passwordInput = PasswordTextbox.Text;
 
-            employee = new Employee(usernameInput, passwordInput);
-
-            int returnedEmployeeID = employee.GetEmployeeID(); 
-
-            if (returnedEmployeeID > 0)
+            try
             {
-                POSForm posForm = new POSForm(returnedEmployeeID);
-                this.Close();
-                posForm.Show();
+                employee = new Employee(usernameInput, passwordInput);
+
+                int returnedEmployeeID = employee.GetEmployeeID();
+
+                if (returnedEmployeeID > 0)
+                {
+                    POSForm posForm = new POSForm(returnedEmployeeID);
+                    this.Close();
+                    posForm.Show();
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Wrong credentials. Try again...");
+                MessageBox.Show("Invalid username and password. Try again...");
                 UserNameTextbox.Text = "";
                 PasswordTextbox.Text = "";
-            }
+            }                    
         }
         
     }
