@@ -80,8 +80,8 @@ namespace POSApp
                     // so that it cannot be parsed to int number
                     Customer customer = new Customer(barcodeFromInput);
 
-                    string customerName = customer.GetCustomerName();
-                    int customerPoints = customer.GetCustomerPoints();
+                    string customerName = customer.GetName();
+                    int customerPoints = customer.GetPoints();
 
                     // display customer name and points to the view
                     CustomerNameLabel.Text = customerName;

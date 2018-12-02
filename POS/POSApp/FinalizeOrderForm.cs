@@ -42,9 +42,22 @@ namespace POSApp
 
         private void CompleteOrderButton_Click(object sender, EventArgs e)
         {
-            //CurruntOrder.Discount
+            CompleteOrderTransaction();
         }
 
-
+        private void CompleteOrderTransaction()
+        {
+            decimal employeeDiscount = 0;
+            decimal.TryParse(OrderDiscountControl.UserInput, out employeeDiscount);
+            decimal TotalMoneyPaidByCash = 0;
+            decimal.TryParse(CashPaymentControl.UserInput, out TotalMoneyPaidByCash);
+            decimal TotalMoneyPaidByCard = 0;
+            decimal.TryParse(CardPaymentControl.UserInput, out TotalMoneyPaidByCard);
+            int TotalRedeemPoints = 0;
+            int.TryParse(RedeemPointControl.UserInput, out TotalRedeemPoints);
+            this.CurruntOrder.EarnPoints();
+            
+            this.CurruntOrder = null;
+        }
     }
 }

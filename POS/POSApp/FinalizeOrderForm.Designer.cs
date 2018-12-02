@@ -65,6 +65,7 @@
             // 
             // OrderDiscountControl
             // 
+            this.OrderDiscountControl.CurrencySign = "$";
             this.OrderDiscountControl.LabelName = "Discount";
             this.OrderDiscountControl.Location = new System.Drawing.Point(3, 3);
             this.OrderDiscountControl.Name = "OrderDiscountControl";
@@ -74,6 +75,7 @@
             // 
             // CashPaymentControl
             // 
+            this.CashPaymentControl.CurrencySign = "$";
             this.CashPaymentControl.LabelName = "Cash";
             this.CashPaymentControl.Location = new System.Drawing.Point(3, 39);
             this.CashPaymentControl.Name = "CashPaymentControl";
@@ -83,6 +85,7 @@
             // 
             // CardPaymentControl
             // 
+            this.CardPaymentControl.CurrencySign = "$";
             this.CardPaymentControl.LabelName = "Card";
             this.CardPaymentControl.Location = new System.Drawing.Point(3, 75);
             this.CardPaymentControl.Name = "CardPaymentControl";
@@ -92,6 +95,7 @@
             // 
             // RedeemPointControl
             // 
+            this.RedeemPointControl.CurrencySign = "";
             this.RedeemPointControl.LabelName = "Redeem Points";
             this.RedeemPointControl.Location = new System.Drawing.Point(3, 111);
             this.RedeemPointControl.Name = "RedeemPointControl";

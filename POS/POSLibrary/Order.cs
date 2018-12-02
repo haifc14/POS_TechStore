@@ -71,10 +71,11 @@ namespace POSLibrary
             get { return _employeeDiscount; }
             set { _employeeDiscount = value; }
         }
-
+        public Customer Customer { get; private set; }
         public decimal TotalPaidByCash { get; private set; }
         public decimal TotalPaidByCard { get; private set; }
-        public int TotalReedemPoints { get; private set; }
+        public int TotalRedeemPoints { get; private set; }
+        public decimal BalanceDue { get; private set; }
 
         public bool IsReturn { get; set; } = false;
         public int EmployeeID { get; set; } = 0;
@@ -83,14 +84,15 @@ namespace POSLibrary
         #endregion
 
         #region Constructor
-        public Order(bool isReturn)
+        public Order(bool isReturn, Customer customer)
         {
             IsReturn = isReturn;
+            this.Customer = customer;
         }
 
-        public Order()
+        public Order(Customer customer)
         {
-
+            this.Customer = customer;
         }
 
         #endregion
@@ -108,7 +110,20 @@ namespace POSLibrary
 
         public void ReedemPoints(int points)
         {
-            this.TotalReedemPoints = points;
+            if (points <= this.Customer.GetPoints())
+            {
+                this.TotalRedeemPoints = points;
+            }
+            else
+            {
+                throw new Exception("Not enough points available to redeem!");
+            }
+        }
+
+        public void EarnPoints()
+        {
+            UpdateOrderInfo();
+            this.Customer.EarnPoints((int) this.Total);
         }
 
         public void AddItem(Product productToAdd)

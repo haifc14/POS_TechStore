@@ -30,14 +30,21 @@ namespace POSLibrary
             return currentCustomer;
         }
 
-        public string GetCustomerName()
+        public string GetName()
         {
             return CustomerName;
         }
 
-        public int GetCustomerPoints()
+        public int GetPoints()
         {
             return CustomerPoints;
         }
+
+        public void EarnPoints(int points)
+        {
+            this.CustomerPoints = points;
+        }
+
+
     }
 }
