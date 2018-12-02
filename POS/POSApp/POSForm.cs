@@ -52,7 +52,7 @@ namespace POSApp
 
         private void DayEndButton_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void DayReportButton_Click(object sender, EventArgs e)
