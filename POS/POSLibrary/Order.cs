@@ -11,8 +11,10 @@ namespace POSLibrary
     public class Order : INotifyPropertyChanged
     {
         #region Properties
-        private List<Product> ListOfItems { get; set; } = new List<Product>();
+        public List<Product> ListOfItems { get; set; } = new List<Product>();
         public decimal TotalDiscount { get; set; } = 0;
+        public const decimal PointsWorthTo1Dollar = 1000; 
+        public const decimal PointsGainFactorFrom1Dollar = 1;
 
         private decimal _total;
 
@@ -61,7 +63,19 @@ namespace POSLibrary
                 OnPropertyChanged("Discount");
             }
         }
-        
+
+        private decimal _employeeDiscount = 0;
+
+        public decimal EmployeeDiscount
+        {
+            get { return _employeeDiscount; }
+            set { _employeeDiscount = value; }
+        }
+
+        public decimal TotalPaidByCash { get; private set; }
+        public decimal TotalPaidByCard { get; private set; }
+        public int TotalReedemPoints { get; private set; }
+
         public bool IsReturn { get; set; } = false;
         public int EmployeeID { get; set; } = 0;
 
@@ -82,15 +96,31 @@ namespace POSLibrary
         #endregion
 
         #region Methods
+        public void PayByCash(decimal moneyPaid)
+        {
+            this.TotalPaidByCash = moneyPaid;
+        }
+
+        public void PayByCard(decimal moneyPaid)
+        {
+            this.TotalPaidByCard = moneyPaid;
+        }
+
+        public void ReedemPoints(int points)
+        {
+            this.TotalReedemPoints = points;
+        }
+
         public void AddItem(Product productToAdd)
         {
             ListOfItems.Add(productToAdd);
             UpdateOrderInfo();         
         }
 
-        public void AddDiscount()
+        public void AddEmployeeDiscount(decimal discount)
         {
-
+            EmployeeDiscount += discount;
+            UpdateOrderInfo();
         }
 
         public void RemoveItem(Product productToRemove)
@@ -118,7 +148,7 @@ namespace POSLibrary
                 Tax += product.Tax;
                 Discount += product.Discount;              
             }
-            Total = (SubTotal + Tax) - Discount;
+            Total = (SubTotal + Tax) - Discount - EmployeeDiscount;
         }
 
         public void UpdateOrderStatus()
@@ -138,10 +168,7 @@ namespace POSLibrary
 
         protected virtual void OnPropertyChanged(string newName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(newName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(newName));
         }
 
         #endregion
