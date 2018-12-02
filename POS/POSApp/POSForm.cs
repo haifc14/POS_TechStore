@@ -52,6 +52,10 @@ namespace POSApp
 
         private void DayEndButton_Click(object sender, EventArgs e)
         {
+           // get data of all orders from TOrder
+
+           // write those data to txt file
+       
 
         }
 
