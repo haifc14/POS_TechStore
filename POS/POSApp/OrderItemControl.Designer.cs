@@ -28,27 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ItemBarcodeLabel = new System.Windows.Forms.Label();
             this.ItemNameLabel = new System.Windows.Forms.Label();
             this.ItemPriceLabel = new System.Windows.Forms.Label();
             this.RemoveItemBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ItemBarcodeLabel
-            // 
-            this.ItemBarcodeLabel.AutoSize = true;
-            this.ItemBarcodeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemBarcodeLabel.Location = new System.Drawing.Point(18, 19);
-            this.ItemBarcodeLabel.Name = "ItemBarcodeLabel";
-            this.ItemBarcodeLabel.Size = new System.Drawing.Size(40, 42);
-            this.ItemBarcodeLabel.TabIndex = 0;
-            this.ItemBarcodeLabel.Text = "1";
-            // 
             // ItemNameLabel
             // 
             this.ItemNameLabel.AutoSize = true;
             this.ItemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemNameLabel.Location = new System.Drawing.Point(88, 25);
+            this.ItemNameLabel.Location = new System.Drawing.Point(24, 24);
             this.ItemNameLabel.Name = "ItemNameLabel";
             this.ItemNameLabel.Size = new System.Drawing.Size(279, 37);
             this.ItemNameLabel.TabIndex = 1;
@@ -83,7 +72,6 @@
             this.Controls.Add(this.RemoveItemBtn);
             this.Controls.Add(this.ItemPriceLabel);
             this.Controls.Add(this.ItemNameLabel);
-            this.Controls.Add(this.ItemBarcodeLabel);
             this.Name = "OrderItemControl";
             this.Size = new System.Drawing.Size(746, 78);
             this.ResumeLayout(false);
@@ -92,8 +80,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label ItemBarcodeLabel;
         private System.Windows.Forms.Label ItemNameLabel;
         private System.Windows.Forms.Label ItemPriceLabel;
         private System.Windows.Forms.Button RemoveItemBtn;
