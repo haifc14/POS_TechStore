@@ -11,7 +11,7 @@ namespace POSLibrary
     public class Order : INotifyPropertyChanged
     {
         #region Properties
-        private List<Product> ListOfItems { get; set; } = new List<Product>();
+        public List<Product> ListOfItems { get; set; } = new List<Product>();
         public decimal TotalDiscount { get; set; } = 0;
 
         private decimal _total;

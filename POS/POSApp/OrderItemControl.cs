@@ -18,15 +18,6 @@ namespace POSApp
 
         private Product product;
 
-        public string ItemBarcode
-        {
-            get { return ItemBarcodeLabel.Text; }
-            set
-            {
-                ItemBarcodeLabel.Text = value.ToString();
-            }
-        }
-
         public string ItemName
         {
             get { return ItemNameLabel.Text; }
@@ -48,8 +39,7 @@ namespace POSApp
         public OrderItemControl(Product scannedItem)
         {
             InitializeComponent();
-            product = scannedItem;
-            this.ItemBarcodeLabel.Text = product.Barcode.ToString();
+            product = scannedItem;         
             this.ItemNameLabel.Text = product.Name;
             this.ItemPriceLabel.Text = product.Price.ToString();
         }
