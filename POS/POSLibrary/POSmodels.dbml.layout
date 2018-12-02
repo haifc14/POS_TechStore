@@ -20,7 +20,7 @@
         <elementListCompartment Id="bfd296f0-3a7d-40d3-978f-3ec7722b7aa6" absoluteBounds="2.14, 3.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.125 : 5.220400390625); (6.03125 : 5.220400390625); (6.03125 : 6)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.125 : 5.220400390625); (4.41666666666667 : 5.220400390625 : JumpStart); (4.58333333333333 : 5.220400390625 : JumpEnd); (5.04166666666667 : 5.220400390625 : JumpStart); (5.20833333333333 : 5.220400390625 : JumpEnd); (6.03125 : 5.220400390625); (6.03125 : 6)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/POSmodelsDataContext/TProductGroup/TProductGroup_TPurchaseLog" />
       <nodes>
         <classShapeMoniker Id="7d4e8e44-93f5-4009-ab75-868ae01f8f98" />
@@ -71,7 +71,7 @@
         <elementListCompartment Id="6cfde349-e8d3-4096-be3c-eef010c1c990" absoluteBounds="6.015, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.359375 : 1.81899251302083); (6.359375 : 4.83699538411458); (4.58333333333333 : 4.83699538411458 : JumpStart); (4.41666666666667 : 4.83699538411458 : JumpEnd); (4.125 : 4.83699538411458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.359375 : 1.81899251302083); (6.359375 : 4.83699538411458); (5.20833333333333 : 4.83699538411458 : JumpStart); (5.04166666666667 : 4.83699538411458 : JumpEnd); (4.58333333333333 : 4.83699538411458 : JumpStart); (4.41666666666667 : 4.83699538411458 : JumpEnd); (4.125 : 4.83699538411458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/POSmodelsDataContext/TCategory/TCategory_TProductGroup" />
       <nodes>
         <classShapeMoniker Id="1875858f-4c93-4ffe-b274-3b1b861d0e41" />
@@ -97,5 +97,25 @@
         <elementListCompartment Id="302e2321-f95f-4544-b8bc-673f4ae29993" absoluteBounds="1.1400000000000001, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="aa3eaa8e-cb54-425f-b45a-90d7b529651b" absoluteBounds="8.125, 2.125, 2, 3.1170068359375">
+      <DataClassMoniker Name="/POSmodelsDataContext/TOrder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c0bd63e3-9840-483b-b8ca-f36d9e6db044" absoluteBounds="8.14, 2.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.125 : 2.125); (9.125 : 1.875); (7.875 : 1.875); (7.875 : 2.06899251302083); (6.44270833333333 : 2.06899251302083 : JumpStart); (6.27604166666667 : 2.06899251302083 : JumpEnd); (5.375 : 2.06899251302083); (5.375 : 1.125); (0.9687505 : 1.125); (0.9687505 : 2)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/POSmodelsDataContext/TOrder/TOrder_TOrderItem" />
+      <nodes>
+        <classShapeMoniker Id="aa3eaa8e-cb54-425f-b45a-90d7b529651b" />
+        <classShapeMoniker Id="ee0ce396-810c-4e83-968c-5907f5092bd3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 3.52896021294071); (5.125 : 3.90396021294071); (5.125 : 5.6170068359375); (5.94791666666667 : 5.6170068359375 : JumpStart); (6.11458333333333 : 5.6170068359375 : JumpEnd); (7.75 : 5.6170068359375); (8.125 : 5.2420068359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POSmodelsDataContext/TEmployee/TEmployee_TOrder" />
+      <nodes>
+        <classShapeMoniker Id="2f4b0f84-2e60-42ae-9006-df682d8f60d6" />
+        <classShapeMoniker Id="aa3eaa8e-cb54-425f-b45a-90d7b529651b" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

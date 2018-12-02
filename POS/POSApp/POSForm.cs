@@ -52,7 +52,16 @@ namespace POSApp
 
         private void DayEndButton_Click(object sender, EventArgs e)
         {
-           
+            // get data from TOrder tabel
+
+            List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd();
+
+            foreach (var order in listOfOrdersWithinCurrentDay)
+            {
+                
+            }
+            
+            // write data to txt file
         }
 
         private void DayReportButton_Click(object sender, EventArgs e)
