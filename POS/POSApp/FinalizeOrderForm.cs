@@ -45,6 +45,8 @@ namespace POSApp
             CompleteOrderTransaction();
         }
 
+        
+
         private void CompleteOrderTransaction()
         {
             decimal employeeDiscount = 0;
@@ -56,8 +58,33 @@ namespace POSApp
             int TotalRedeemPoints = 0;
             int.TryParse(RedeemPointControl.UserInput, out TotalRedeemPoints);
             this.CurruntOrder.EarnPoints();
-            
-            this.CurruntOrder = null;
+
+            try
+            {
+                if (employeeDiscount != 0)
+                {
+                    CurruntOrder.AddEmployeeDiscount(employeeDiscount);
+                }
+                if (TotalMoneyPaidByCard != 0)
+                {
+                    CurruntOrder.PayByCard(TotalMoneyPaidByCard);
+                }
+                if (TotalMoneyPaidByCash != 0)
+                {
+                    CurruntOrder.PayByCard(TotalMoneyPaidByCash);
+                }
+                if (TotalRedeemPoints != 0)
+                {
+                    CurruntOrder.ReedemPoints(TotalRedeemPoints);
+                }
+                var change = CurruntOrder.CheckBalanceDue();
+                MessageBox.Show("Change : " + change.ToString());
+                this.CurruntOrder = null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
