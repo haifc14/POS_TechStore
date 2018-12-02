@@ -67,19 +67,17 @@
     <Compile Include="OrderControl.Designer.cs">
       <DependentUpon>OrderControl.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="OrderPaymentOptionControl.cs">
+	<Compile Include="OrderPaymentOptionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OrderPaymentOptionControl.Designer.cs">
       <DependentUpon>OrderPaymentOptionControl.cs</DependentUpon>
-=======
+	</Compile>
     <Compile Include="OrderItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OrderItemControl.Designer.cs">
       <DependentUpon>OrderItemControl.cs</DependentUpon>
->>>>>>> master
     </Compile>
     <Compile Include="OrderSummaryControl.cs">
       <SubType>UserControl</SubType>
@@ -110,13 +108,11 @@
     <EmbeddedResource Include="OrderControl.resx">
       <DependentUpon>OrderControl.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="OrderPaymentOptionControl.resx">
       <DependentUpon>OrderPaymentOptionControl.cs</DependentUpon>
-=======
+    </EmbeddedResource>
     <EmbeddedResource Include="OrderItemControl.resx">
       <DependentUpon>OrderItemControl.cs</DependentUpon>
->>>>>>> master
     </EmbeddedResource>
     <EmbeddedResource Include="OrderSummaryControl.resx">
       <DependentUpon>OrderSummaryControl.cs</DependentUpon>
