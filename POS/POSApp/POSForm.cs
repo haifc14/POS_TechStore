@@ -57,7 +57,7 @@ namespace POSApp
 
         private void DayReportButton_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("dasjlflkjadfk");
         }
     }
 }
