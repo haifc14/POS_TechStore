@@ -71,7 +71,7 @@ namespace POSLibrary
             get { return _employeeDiscount; }
             set { _employeeDiscount = value; }
         }
-        public Customer Customer { get; private set; }
+        public Customer Customer { get; set; }
         public decimal TotalPaidByCash { get; private set; }
         public decimal TotalPaidByCard { get; private set; }
         public int TotalRedeemPoints { get; private set; }
