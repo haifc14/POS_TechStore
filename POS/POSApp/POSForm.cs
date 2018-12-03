@@ -31,22 +31,7 @@ namespace POSApp
         {
             this.OrderControl.EmployeeId = this.EmployeeID;
         }
-      
-        private void SignOff_Button_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
-        }
 
-        private void FinalizeOrderButton_Click(object sender, EventArgs e)
-        {
-            if (this.OrderControl.CurrentOrder.ListOfItems.Count() != 0)
-            {
-                FinalizeOrderForm finalizeForm = new FinalizeOrderForm(this.OrderControl.CurrentOrder, ClearCurruntOrder());
-                finalizeForm.ShowDialog();
-            } 
-        }
 
         public Action<FinalizeOrderForm> ClearCurruntOrder()
         {
@@ -59,19 +44,30 @@ namespace POSApp
             };
         }
 
-        private void ScanLoyaltyButton_Click(object sender, EventArgs e)
+        private void FinalizeOrderButton_Click(object sender, EventArgs e)
+        {
+            if (this.OrderControl.CurrentOrder.ListOfItems.Count() != 0)
+            {
+                FinalizeOrderForm finalizeForm = new FinalizeOrderForm(this.OrderControl.CurrentOrder, ClearCurruntOrder());
+                finalizeForm.ShowDialog();
+            }
+        }
+
+        private void SignOff_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+        }
+
+        private void productViewControl1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void DayEndButton_Click(object sender, EventArgs e)
+        private void OrderControl_Load(object sender, EventArgs e)
         {
-           
-        }
 
-        private void DayReportButton_Click(object sender, EventArgs e)
-        {
-           
         }
     }
 }

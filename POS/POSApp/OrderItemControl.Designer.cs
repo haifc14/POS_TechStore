@@ -36,30 +36,33 @@
             // ItemNameLabel
             // 
             this.ItemNameLabel.AutoSize = true;
-            this.ItemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemNameLabel.Location = new System.Drawing.Point(24, 24);
+            this.ItemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItemNameLabel.Location = new System.Drawing.Point(16, 10);
+            this.ItemNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ItemNameLabel.Name = "ItemNameLabel";
-            this.ItemNameLabel.Size = new System.Drawing.Size(279, 37);
+            this.ItemNameLabel.Size = new System.Drawing.Size(138, 20);
             this.ItemNameLabel.TabIndex = 1;
             this.ItemNameLabel.Text = "Macbook Pro 15\'\'";
             // 
             // ItemPriceLabel
             // 
             this.ItemPriceLabel.AutoSize = true;
-            this.ItemPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemPriceLabel.Location = new System.Drawing.Point(436, 25);
+            this.ItemPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItemPriceLabel.Location = new System.Drawing.Point(291, 11);
+            this.ItemPriceLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ItemPriceLabel.Name = "ItemPriceLabel";
-            this.ItemPriceLabel.Size = new System.Drawing.Size(179, 37);
+            this.ItemPriceLabel.Size = new System.Drawing.Size(85, 20);
             this.ItemPriceLabel.TabIndex = 2;
             this.ItemPriceLabel.Text = "3333,0000";
             // 
             // RemoveItemBtn
             // 
-            this.RemoveItemBtn.BackColor = System.Drawing.Color.DarkRed;
-            this.RemoveItemBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.RemoveItemBtn.Location = new System.Drawing.Point(647, 19);
+            this.RemoveItemBtn.BackColor = System.Drawing.Color.Red;
+            this.RemoveItemBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.RemoveItemBtn.Location = new System.Drawing.Point(431, 6);
+            this.RemoveItemBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RemoveItemBtn.Name = "RemoveItemBtn";
-            this.RemoveItemBtn.Size = new System.Drawing.Size(74, 42);
+            this.RemoveItemBtn.Size = new System.Drawing.Size(49, 27);
             this.RemoveItemBtn.TabIndex = 3;
             this.RemoveItemBtn.Text = "X";
             this.RemoveItemBtn.UseVisualStyleBackColor = false;
@@ -67,13 +70,14 @@
             // 
             // OrderItemControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.RemoveItemBtn);
             this.Controls.Add(this.ItemPriceLabel);
             this.Controls.Add(this.ItemNameLabel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "OrderItemControl";
-            this.Size = new System.Drawing.Size(746, 78);
+            this.Size = new System.Drawing.Size(497, 40);
             this.ResumeLayout(false);
             this.PerformLayout();
 

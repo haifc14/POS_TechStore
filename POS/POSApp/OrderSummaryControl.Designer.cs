@@ -40,91 +40,95 @@
             // 
             // SubTotalTitleLabel
             // 
-            this.SubTotalTitleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SubTotalTitleLabel.AutoSize = true;
-            this.SubTotalTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubTotalTitleLabel.Location = new System.Drawing.Point(49, 60);
+            this.SubTotalTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SubTotalTitleLabel.Location = new System.Drawing.Point(33, 13);
+            this.SubTotalTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SubTotalTitleLabel.Name = "SubTotalTitleLabel";
-            this.SubTotalTitleLabel.Size = new System.Drawing.Size(187, 42);
+            this.SubTotalTitleLabel.Size = new System.Drawing.Size(106, 25);
             this.SubTotalTitleLabel.TabIndex = 0;
             this.SubTotalTitleLabel.Text = "Sub Total";
             // 
             // TaxTitleLabel
             // 
-            this.TaxTitleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TaxTitleLabel.AutoSize = true;
-            this.TaxTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TaxTitleLabel.Location = new System.Drawing.Point(49, 140);
+            this.TaxTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxTitleLabel.Location = new System.Drawing.Point(33, 49);
+            this.TaxTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TaxTitleLabel.Name = "TaxTitleLabel";
-            this.TaxTitleLabel.Size = new System.Drawing.Size(84, 42);
+            this.TaxTitleLabel.Size = new System.Drawing.Size(49, 25);
             this.TaxTitleLabel.TabIndex = 1;
             this.TaxTitleLabel.Text = "Tax";
             // 
             // DiscountTitleLabel
             // 
-            this.DiscountTitleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DiscountTitleLabel.AutoSize = true;
-            this.DiscountTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiscountTitleLabel.Location = new System.Drawing.Point(49, 232);
+            this.DiscountTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiscountTitleLabel.Location = new System.Drawing.Point(33, 84);
+            this.DiscountTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DiscountTitleLabel.Name = "DiscountTitleLabel";
-            this.DiscountTitleLabel.Size = new System.Drawing.Size(172, 42);
+            this.DiscountTitleLabel.Size = new System.Drawing.Size(96, 25);
             this.DiscountTitleLabel.TabIndex = 2;
             this.DiscountTitleLabel.Text = "Discount";
             // 
             // TotalTitleLabel
             // 
-            this.TotalTitleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalTitleLabel.AutoSize = true;
-            this.TotalTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalTitleLabel.Location = new System.Drawing.Point(49, 334);
+            this.TotalTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTitleLabel.Location = new System.Drawing.Point(33, 123);
+            this.TotalTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TotalTitleLabel.Name = "TotalTitleLabel";
-            this.TotalTitleLabel.Size = new System.Drawing.Size(106, 42);
+            this.TotalTitleLabel.Size = new System.Drawing.Size(73, 29);
             this.TotalTitleLabel.TabIndex = 3;
             this.TotalTitleLabel.Text = "Total";
             // 
             // SubTotalValueLabel
             // 
             this.SubTotalValueLabel.AutoSize = true;
-            this.SubTotalValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubTotalValueLabel.Location = new System.Drawing.Point(321, 56);
+            this.SubTotalValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SubTotalValueLabel.Location = new System.Drawing.Point(214, 13);
+            this.SubTotalValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SubTotalValueLabel.Name = "SubTotalValueLabel";
-            this.SubTotalValueLabel.Size = new System.Drawing.Size(40, 42);
+            this.SubTotalValueLabel.Size = new System.Drawing.Size(24, 25);
             this.SubTotalValueLabel.TabIndex = 4;
             this.SubTotalValueLabel.Text = "0";
             // 
             // TaxValueLabel
             // 
             this.TaxValueLabel.AutoSize = true;
-            this.TaxValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TaxValueLabel.Location = new System.Drawing.Point(321, 136);
+            this.TaxValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxValueLabel.Location = new System.Drawing.Point(214, 48);
+            this.TaxValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TaxValueLabel.Name = "TaxValueLabel";
-            this.TaxValueLabel.Size = new System.Drawing.Size(40, 42);
+            this.TaxValueLabel.Size = new System.Drawing.Size(24, 25);
             this.TaxValueLabel.TabIndex = 5;
             this.TaxValueLabel.Text = "0";
             // 
             // DiscountValueLabel
             // 
             this.DiscountValueLabel.AutoSize = true;
-            this.DiscountValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiscountValueLabel.Location = new System.Drawing.Point(321, 228);
+            this.DiscountValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiscountValueLabel.Location = new System.Drawing.Point(214, 84);
+            this.DiscountValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DiscountValueLabel.Name = "DiscountValueLabel";
-            this.DiscountValueLabel.Size = new System.Drawing.Size(40, 42);
+            this.DiscountValueLabel.Size = new System.Drawing.Size(24, 25);
             this.DiscountValueLabel.TabIndex = 6;
             this.DiscountValueLabel.Text = "0";
             // 
             // TotalValueLabel
             // 
             this.TotalValueLabel.AutoSize = true;
-            this.TotalValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalValueLabel.Location = new System.Drawing.Point(321, 330);
+            this.TotalValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalValueLabel.Location = new System.Drawing.Point(214, 122);
+            this.TotalValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TotalValueLabel.Name = "TotalValueLabel";
-            this.TotalValueLabel.Size = new System.Drawing.Size(47, 51);
+            this.TotalValueLabel.Size = new System.Drawing.Size(27, 29);
             this.TotalValueLabel.TabIndex = 7;
             this.TotalValueLabel.Text = "0";
             // 
             // OrderSummaryControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TotalValueLabel);
             this.Controls.Add(this.DiscountValueLabel);
@@ -134,8 +138,9 @@
             this.Controls.Add(this.DiscountTitleLabel);
             this.Controls.Add(this.TaxTitleLabel);
             this.Controls.Add(this.SubTotalTitleLabel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "OrderSummaryControl";
-            this.Size = new System.Drawing.Size(588, 410);
+            this.Size = new System.Drawing.Size(400, 165);
             this.Load += new System.EventHandler(this.OrderSummaryControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

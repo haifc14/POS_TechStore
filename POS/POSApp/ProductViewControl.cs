@@ -75,5 +75,20 @@ namespace POSApp
                 SearchTextbox.Text = "";
             }
         }
+
+        private void ProductDataGradeView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ProductFilterPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ProductViewControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
