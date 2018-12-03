@@ -15,11 +15,22 @@ namespace POSApp
     {
         private Order CurruntOrder;
 
+        public bool OrderComplete = false;
+
         public FinalizeOrderForm(Order curruntOrder)
         {
             InitializeComponent();
             this.CurruntOrder = curruntOrder;
             AddProductsToOrderSummaryPanel();
+        }
+
+        private void FinalizeOrderForm_Load(object sender, EventArgs e)
+        {
+            if (CurruntOrder.ListOfItems.Count == 0)
+            {
+                MessageBox.Show("No item added in Order!");
+                this.Close();
+            }
         }
 
         private void AddProductsToOrderSummaryPanel()
@@ -68,6 +79,9 @@ namespace POSApp
                 if (change >= 0)
                 {
                     CurruntOrder.EarnPoints();
+                    CurruntOrder = null;
+                    OrderComplete = true;
+                    this.Close();
                 }
             }
             catch (Exception e)

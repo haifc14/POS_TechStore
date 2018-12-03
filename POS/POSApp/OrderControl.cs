@@ -13,7 +13,19 @@ namespace POSApp
 {
     public partial class OrderControl : UserControl
     {
-        public Order CurrentOrder { get; set; }
+        private Order _currentOrder;
+
+        public Order CurrentOrder
+        {
+            get
+            {
+                return this._currentOrder;
+            }
+            set
+            {
+                this._currentOrder = value;
+            }
+        }
         public OrderSummaryControl OrderSummaryView { get; private set; }
 
         public int EmployeeId

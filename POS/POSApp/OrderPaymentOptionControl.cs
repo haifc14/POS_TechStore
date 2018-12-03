@@ -12,6 +12,8 @@ namespace POSApp
 {
     public partial class OrderPaymentOptionControl : UserControl
     {
+
+
         public string LabelName
         {
             get
