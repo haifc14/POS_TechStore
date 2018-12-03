@@ -54,6 +54,12 @@ namespace POSLibrary
     partial void InsertTBrand(TBrand instance);
     partial void UpdateTBrand(TBrand instance);
     partial void DeleteTBrand(TBrand instance);
+    partial void InsertTOrder(TOrder instance);
+    partial void UpdateTOrder(TOrder instance);
+    partial void DeleteTOrder(TOrder instance);
+    partial void InsertTOrderItem(TOrderItem instance);
+    partial void UpdateTOrderItem(TOrderItem instance);
+    partial void DeleteTOrderItem(TOrderItem instance);
     #endregion
 		
 		public POSmodelsDataContext() : 
@@ -118,14 +124,6 @@ namespace POSLibrary
 			}
 		}
 		
-		public System.Data.Linq.Table<TOrderItem> TOrderItems
-		{
-			get
-			{
-				return this.GetTable<TOrderItem>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TLocation> TLocations
 		{
 			get
@@ -155,6 +153,22 @@ namespace POSLibrary
 			get
 			{
 				return this.GetTable<TBrand>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TOrder> TOrders
+		{
+			get
+			{
+				return this.GetTable<TOrder>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TOrderItem> TOrderItems
+		{
+			get
+			{
+				return this.GetTable<TOrderItem>();
 			}
 		}
 		
@@ -636,6 +650,8 @@ namespace POSLibrary
 		
 		private EntitySet<TPurchaseLog> _TPurchaseLogs;
 		
+		private EntitySet<TOrderItem> _TOrderItems;
+		
 		private EntityRef<TCategory> _TCategory;
 		
 		private EntityRef<TBrand> _TBrand;
@@ -671,6 +687,7 @@ namespace POSLibrary
 		public TProductGroup()
 		{
 			this._TPurchaseLogs = new EntitySet<TPurchaseLog>(new Action<TPurchaseLog>(this.attach_TPurchaseLogs), new Action<TPurchaseLog>(this.detach_TPurchaseLogs));
+			this._TOrderItems = new EntitySet<TOrderItem>(new Action<TOrderItem>(this.attach_TOrderItems), new Action<TOrderItem>(this.detach_TOrderItems));
 			this._TCategory = default(EntityRef<TCategory>);
 			this._TBrand = default(EntityRef<TBrand>);
 			OnCreated();
@@ -917,6 +934,19 @@ namespace POSLibrary
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TOrderItem", Storage="_TOrderItems", ThisKey="Barcode", OtherKey="Barcode")]
+		public EntitySet<TOrderItem> TOrderItems
+		{
+			get
+			{
+				return this._TOrderItems;
+			}
+			set
+			{
+				this._TOrderItems.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCategory_TProductGroup", Storage="_TCategory", ThisKey="CategoryID", OtherKey="CategoryID", IsForeignKey=true)]
 		public TCategory TCategory
 		{
@@ -1016,6 +1046,18 @@ namespace POSLibrary
 			this.SendPropertyChanging();
 			entity.TProductGroup = null;
 		}
+		
+		private void attach_TOrderItems(TOrderItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = this;
+		}
+		
+		private void detach_TOrderItems(TOrderItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TProduct")]
@@ -1100,69 +1142,6 @@ namespace POSLibrary
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TOrderItems")]
-	public partial class TOrderItem
-	{
-		
-		private int _OrderItemsID;
-		
-		private System.Nullable<int> _Barcode;
-		
-		private System.Nullable<int> _OrderNumber;
-		
-		public TOrderItem()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderItemsID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int OrderItemsID
-		{
-			get
-			{
-				return this._OrderItemsID;
-			}
-			set
-			{
-				if ((this._OrderItemsID != value))
-				{
-					this._OrderItemsID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barcode", DbType="Int")]
-		public System.Nullable<int> Barcode
-		{
-			get
-			{
-				return this._Barcode;
-			}
-			set
-			{
-				if ((this._Barcode != value))
-				{
-					this._Barcode = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderNumber", DbType="Int")]
-		public System.Nullable<int> OrderNumber
-		{
-			get
-			{
-				return this._OrderNumber;
-			}
-			set
-			{
-				if ((this._OrderNumber != value))
-				{
-					this._OrderNumber = value;
-				}
 			}
 		}
 	}
@@ -1375,6 +1354,8 @@ namespace POSLibrary
 		
 		private EntitySet<TUserLogin> _TUserLogins;
 		
+		private EntitySet<TOrder> _TOrders;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1398,6 +1379,7 @@ namespace POSLibrary
 		public TEmployee()
 		{
 			this._TUserLogins = new EntitySet<TUserLogin>(new Action<TUserLogin>(this.attach_TUserLogins), new Action<TUserLogin>(this.detach_TUserLogins));
+			this._TOrders = new EntitySet<TOrder>(new Action<TOrder>(this.attach_TOrders), new Action<TOrder>(this.detach_TOrders));
 			OnCreated();
 		}
 		
@@ -1554,6 +1536,19 @@ namespace POSLibrary
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TEmployee_TOrder", Storage="_TOrders", ThisKey="EmployeeId", OtherKey="EmployeeId")]
+		public EntitySet<TOrder> TOrders
+		{
+			get
+			{
+				return this._TOrders;
+			}
+			set
+			{
+				this._TOrders.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1581,6 +1576,18 @@ namespace POSLibrary
 		}
 		
 		private void detach_TUserLogins(TUserLogin entity)
+		{
+			this.SendPropertyChanging();
+			entity.TEmployee = null;
+		}
+		
+		private void attach_TOrders(TOrder entity)
+		{
+			this.SendPropertyChanging();
+			entity.TEmployee = this;
+		}
+		
+		private void detach_TOrders(TOrder entity)
 		{
 			this.SendPropertyChanging();
 			entity.TEmployee = null;
@@ -1812,6 +1819,593 @@ namespace POSLibrary
 		{
 			this.SendPropertyChanging();
 			entity.TBrand = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TOrder")]
+	public partial class TOrder : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _OrderNumber;
+		
+		private decimal _TotalPrice;
+		
+		private decimal _TotalDiscount;
+		
+		private decimal _TotalTax;
+		
+		private decimal _CardPayment;
+		
+		private decimal _CashPayment;
+		
+		private System.Nullable<int> _PoitRedeem;
+		
+		private System.Nullable<int> _PointEarned;
+		
+		private System.DateTime _OrdeDate;
+		
+		private System.Nullable<int> _IsReturned;
+		
+		private string _CustomerID;
+		
+		private System.Nullable<int> _EmployeeId;
+		
+		private EntitySet<TOrderItem> _TOrderItems;
+		
+		private EntityRef<TEmployee> _TEmployee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOrderNumberChanging(int value);
+    partial void OnOrderNumberChanged();
+    partial void OnTotalPriceChanging(decimal value);
+    partial void OnTotalPriceChanged();
+    partial void OnTotalDiscountChanging(decimal value);
+    partial void OnTotalDiscountChanged();
+    partial void OnTotalTaxChanging(decimal value);
+    partial void OnTotalTaxChanged();
+    partial void OnCardPaymentChanging(decimal value);
+    partial void OnCardPaymentChanged();
+    partial void OnCashPaymentChanging(decimal value);
+    partial void OnCashPaymentChanged();
+    partial void OnPoitRedeemChanging(System.Nullable<int> value);
+    partial void OnPoitRedeemChanged();
+    partial void OnPointEarnedChanging(System.Nullable<int> value);
+    partial void OnPointEarnedChanged();
+    partial void OnOrdeDateChanging(System.DateTime value);
+    partial void OnOrdeDateChanged();
+    partial void OnIsReturnedChanging(System.Nullable<int> value);
+    partial void OnIsReturnedChanged();
+    partial void OnCustomerIDChanging(string value);
+    partial void OnCustomerIDChanged();
+    partial void OnEmployeeIdChanging(System.Nullable<int> value);
+    partial void OnEmployeeIdChanged();
+    #endregion
+		
+		public TOrder()
+		{
+			this._TOrderItems = new EntitySet<TOrderItem>(new Action<TOrderItem>(this.attach_TOrderItems), new Action<TOrderItem>(this.detach_TOrderItems));
+			this._TEmployee = default(EntityRef<TEmployee>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderNumber", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int OrderNumber
+		{
+			get
+			{
+				return this._OrderNumber;
+			}
+			set
+			{
+				if ((this._OrderNumber != value))
+				{
+					this.OnOrderNumberChanging(value);
+					this.SendPropertyChanging();
+					this._OrderNumber = value;
+					this.SendPropertyChanged("OrderNumber");
+					this.OnOrderNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPrice", DbType="Money NOT NULL")]
+		public decimal TotalPrice
+		{
+			get
+			{
+				return this._TotalPrice;
+			}
+			set
+			{
+				if ((this._TotalPrice != value))
+				{
+					this.OnTotalPriceChanging(value);
+					this.SendPropertyChanging();
+					this._TotalPrice = value;
+					this.SendPropertyChanged("TotalPrice");
+					this.OnTotalPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalDiscount", DbType="Money NOT NULL")]
+		public decimal TotalDiscount
+		{
+			get
+			{
+				return this._TotalDiscount;
+			}
+			set
+			{
+				if ((this._TotalDiscount != value))
+				{
+					this.OnTotalDiscountChanging(value);
+					this.SendPropertyChanging();
+					this._TotalDiscount = value;
+					this.SendPropertyChanged("TotalDiscount");
+					this.OnTotalDiscountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalTax", DbType="Money NOT NULL")]
+		public decimal TotalTax
+		{
+			get
+			{
+				return this._TotalTax;
+			}
+			set
+			{
+				if ((this._TotalTax != value))
+				{
+					this.OnTotalTaxChanging(value);
+					this.SendPropertyChanging();
+					this._TotalTax = value;
+					this.SendPropertyChanged("TotalTax");
+					this.OnTotalTaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CardPayment", DbType="Money NOT NULL")]
+		public decimal CardPayment
+		{
+			get
+			{
+				return this._CardPayment;
+			}
+			set
+			{
+				if ((this._CardPayment != value))
+				{
+					this.OnCardPaymentChanging(value);
+					this.SendPropertyChanging();
+					this._CardPayment = value;
+					this.SendPropertyChanged("CardPayment");
+					this.OnCardPaymentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CashPayment", DbType="Money NOT NULL")]
+		public decimal CashPayment
+		{
+			get
+			{
+				return this._CashPayment;
+			}
+			set
+			{
+				if ((this._CashPayment != value))
+				{
+					this.OnCashPaymentChanging(value);
+					this.SendPropertyChanging();
+					this._CashPayment = value;
+					this.SendPropertyChanged("CashPayment");
+					this.OnCashPaymentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PoitRedeem", DbType="Int")]
+		public System.Nullable<int> PoitRedeem
+		{
+			get
+			{
+				return this._PoitRedeem;
+			}
+			set
+			{
+				if ((this._PoitRedeem != value))
+				{
+					this.OnPoitRedeemChanging(value);
+					this.SendPropertyChanging();
+					this._PoitRedeem = value;
+					this.SendPropertyChanged("PoitRedeem");
+					this.OnPoitRedeemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PointEarned", DbType="Int")]
+		public System.Nullable<int> PointEarned
+		{
+			get
+			{
+				return this._PointEarned;
+			}
+			set
+			{
+				if ((this._PointEarned != value))
+				{
+					this.OnPointEarnedChanging(value);
+					this.SendPropertyChanging();
+					this._PointEarned = value;
+					this.SendPropertyChanged("PointEarned");
+					this.OnPointEarnedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrdeDate", DbType="DateTime2 NOT NULL")]
+		public System.DateTime OrdeDate
+		{
+			get
+			{
+				return this._OrdeDate;
+			}
+			set
+			{
+				if ((this._OrdeDate != value))
+				{
+					this.OnOrdeDateChanging(value);
+					this.SendPropertyChanging();
+					this._OrdeDate = value;
+					this.SendPropertyChanged("OrdeDate");
+					this.OnOrdeDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsReturned", DbType="Int")]
+		public System.Nullable<int> IsReturned
+		{
+			get
+			{
+				return this._IsReturned;
+			}
+			set
+			{
+				if ((this._IsReturned != value))
+				{
+					this.OnIsReturnedChanging(value);
+					this.SendPropertyChanging();
+					this._IsReturned = value;
+					this.SendPropertyChanged("IsReturned");
+					this.OnIsReturnedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="NVarChar(80) NOT NULL", CanBeNull=false)]
+		public string CustomerID
+		{
+			get
+			{
+				return this._CustomerID;
+			}
+			set
+			{
+				if ((this._CustomerID != value))
+				{
+					this.OnCustomerIDChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerID = value;
+					this.SendPropertyChanged("CustomerID");
+					this.OnCustomerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployeeId", DbType="Int")]
+		public System.Nullable<int> EmployeeId
+		{
+			get
+			{
+				return this._EmployeeId;
+			}
+			set
+			{
+				if ((this._EmployeeId != value))
+				{
+					if (this._TEmployee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEmployeeIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmployeeId = value;
+					this.SendPropertyChanged("EmployeeId");
+					this.OnEmployeeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TOrder_TOrderItem", Storage="_TOrderItems", ThisKey="OrderNumber", OtherKey="OrderNumber")]
+		public EntitySet<TOrderItem> TOrderItems
+		{
+			get
+			{
+				return this._TOrderItems;
+			}
+			set
+			{
+				this._TOrderItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TEmployee_TOrder", Storage="_TEmployee", ThisKey="EmployeeId", OtherKey="EmployeeId", IsForeignKey=true)]
+		public TEmployee TEmployee
+		{
+			get
+			{
+				return this._TEmployee.Entity;
+			}
+			set
+			{
+				TEmployee previousValue = this._TEmployee.Entity;
+				if (((previousValue != value) 
+							|| (this._TEmployee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TEmployee.Entity = null;
+						previousValue.TOrders.Remove(this);
+					}
+					this._TEmployee.Entity = value;
+					if ((value != null))
+					{
+						value.TOrders.Add(this);
+						this._EmployeeId = value.EmployeeId;
+					}
+					else
+					{
+						this._EmployeeId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TEmployee");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TOrderItems(TOrderItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TOrder = this;
+		}
+		
+		private void detach_TOrderItems(TOrderItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TOrder = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TOrderItems")]
+	public partial class TOrderItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _OrderItemsID;
+		
+		private System.Nullable<int> _Barcode;
+		
+		private System.Nullable<int> _OrderNumber;
+		
+		private EntityRef<TProductGroup> _TProductGroup;
+		
+		private EntityRef<TOrder> _TOrder;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOrderItemsIDChanging(int value);
+    partial void OnOrderItemsIDChanged();
+    partial void OnBarcodeChanging(System.Nullable<int> value);
+    partial void OnBarcodeChanged();
+    partial void OnOrderNumberChanging(System.Nullable<int> value);
+    partial void OnOrderNumberChanged();
+    #endregion
+		
+		public TOrderItem()
+		{
+			this._TProductGroup = default(EntityRef<TProductGroup>);
+			this._TOrder = default(EntityRef<TOrder>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderItemsID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int OrderItemsID
+		{
+			get
+			{
+				return this._OrderItemsID;
+			}
+			set
+			{
+				if ((this._OrderItemsID != value))
+				{
+					this.OnOrderItemsIDChanging(value);
+					this.SendPropertyChanging();
+					this._OrderItemsID = value;
+					this.SendPropertyChanged("OrderItemsID");
+					this.OnOrderItemsIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barcode", DbType="Int")]
+		public System.Nullable<int> Barcode
+		{
+			get
+			{
+				return this._Barcode;
+			}
+			set
+			{
+				if ((this._Barcode != value))
+				{
+					if (this._TProductGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBarcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Barcode = value;
+					this.SendPropertyChanged("Barcode");
+					this.OnBarcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderNumber", DbType="Int")]
+		public System.Nullable<int> OrderNumber
+		{
+			get
+			{
+				return this._OrderNumber;
+			}
+			set
+			{
+				if ((this._OrderNumber != value))
+				{
+					if (this._TOrder.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOrderNumberChanging(value);
+					this.SendPropertyChanging();
+					this._OrderNumber = value;
+					this.SendPropertyChanged("OrderNumber");
+					this.OnOrderNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TOrderItem", Storage="_TProductGroup", ThisKey="Barcode", OtherKey="Barcode", IsForeignKey=true)]
+		public TProductGroup TProductGroup
+		{
+			get
+			{
+				return this._TProductGroup.Entity;
+			}
+			set
+			{
+				TProductGroup previousValue = this._TProductGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TProductGroup.Entity = null;
+						previousValue.TOrderItems.Remove(this);
+					}
+					this._TProductGroup.Entity = value;
+					if ((value != null))
+					{
+						value.TOrderItems.Add(this);
+						this._Barcode = value.Barcode;
+					}
+					else
+					{
+						this._Barcode = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TProductGroup");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TOrder_TOrderItem", Storage="_TOrder", ThisKey="OrderNumber", OtherKey="OrderNumber", IsForeignKey=true)]
+		public TOrder TOrder
+		{
+			get
+			{
+				return this._TOrder.Entity;
+			}
+			set
+			{
+				TOrder previousValue = this._TOrder.Entity;
+				if (((previousValue != value) 
+							|| (this._TOrder.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TOrder.Entity = null;
+						previousValue.TOrderItems.Remove(this);
+					}
+					this._TOrder.Entity = value;
+					if ((value != null))
+					{
+						value.TOrderItems.Add(this);
+						this._OrderNumber = value.OrderNumber;
+					}
+					else
+					{
+						this._OrderNumber = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TOrder");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Linq;
+using System.Transactions;
 
 namespace POSLibrary
 {
@@ -103,6 +105,10 @@ namespace POSLibrary
             if (balanceDue > 0)
             {
                 throw new Exception("Not sufficient money paid by customer. Balance due " + balanceDue);
+            }
+            if (balanceDue < 0)
+            {
+                TotalPaidByCash += balanceDue; //giving change back to customer
             }
             return -balanceDue;
         }
@@ -212,6 +218,67 @@ namespace POSLibrary
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(newName));
         }
+
+        public void SaveOrderToDatabase()
+        {
+            try
+            {
+                using (var contex = new DataContext(Helper.GetConnectionString()))
+                {
+                    //updating order
+                    var TOrder = new TOrder()
+                    {
+                        TotalPrice = this.Total,
+                        TotalDiscount = this.TotalDiscount + EmployeeDiscount,
+                        TotalTax = this.Tax,
+                        CardPayment = this.TotalPaidByCard,
+                        CashPayment = this.TotalPaidByCash,
+                        PoitRedeem = this.TotalRedeemPoints,
+                        PointEarned = this.Customer.GetPoints(),
+                        IsReturned = this.IsReturn ? 1 : 0,
+                        CustomerID = this.Customer.CustomerId,
+                        EmployeeId = this.EmployeeID,
+                    };
+                    contex.GetTable<TOrder>().InsertOnSubmit(TOrder);
+                    contex.SubmitChanges();
+                    //updating orderitem
+                    List<TOrderItem> TorderItemsList = new List<TOrderItem>();
+                    foreach (var item in this.ListOfItems)
+                    {
+                        var TOrderItem = new TOrderItem()
+                        {
+                            Barcode = item.Barcode,
+                            OrderNumber = TOrder.OrderNumber
+                        };
+                        TorderItemsList.Add(TOrderItem);
+                    }
+                    contex.GetTable<TOrderItem>().InsertAllOnSubmit(TorderItemsList);
+                    contex.SubmitChanges();
+
+                    ////updating customer
+                    //var customerContex = contex.GetTable<TCustomer>();
+                    //var customers = customerContex.Where(customer => customer.CustomerID == this.Customer.CustomerId).ToList();
+                    //if (customers.Count != 0)
+                    //{
+                    //    customers[0].Name = this.Customer.GetName();
+                    //    customers[0].TotalPoints = this.Customer.GetPoints();
+
+                    //}
+                    //else
+                    //{
+                    //    customerContex.InsertOnSubmit(new TCustomer()
+                    //    {
+                    //        Name = this.Customer.GetName(),
+                    //        TotalPoints = this.Customer.GetPoints(),
+                    //    });
+                    //}
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while making transaction. Please try again!");
+            }
+        }   
 
         #endregion
 

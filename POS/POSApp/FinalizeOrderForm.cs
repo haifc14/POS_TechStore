@@ -79,15 +79,17 @@ namespace POSApp
                 if (change >= 0)
                 {
                     CurruntOrder.EarnPoints();
+                    CurruntOrder.SaveOrderToDatabase();
+                    CurruntOrder.SaveOrderToDatabase();
                     CurruntOrder = null;
-                    OrderComplete = true;
+                    OrderComplete = true;                   
                     this.Close();
                 }
-            }
+        }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-        }
+}
     }
 }
