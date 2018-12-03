@@ -62,7 +62,16 @@ namespace POSApp
 
         private void productViewControl1_Load(object sender, EventArgs e)
         {
+            // get data from TOrder tabel
 
+            //List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd();
+
+            //foreach (var order in listOfOrdersWithinCurrentDay)
+            //{
+                
+            //}
+            
+            // write data to txt file
         }
 
         private void OrderControl_Load(object sender, EventArgs e)

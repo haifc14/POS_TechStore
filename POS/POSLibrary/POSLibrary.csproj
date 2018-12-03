@@ -60,6 +60,9 @@
     <Compile Include="Employee.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Order.cs" />
+    <Compile Include="POSmodels.cs">
+      <DependentUpon>POSmodels.dbml</DependentUpon>
+    </Compile>
     <Compile Include="POSmodels.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
