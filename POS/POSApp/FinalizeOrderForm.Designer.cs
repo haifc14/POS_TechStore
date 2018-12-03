@@ -45,6 +45,7 @@
             // 
             // OrderSummaryPanel
             // 
+            this.OrderSummaryPanel.AutoScroll = true;
             this.OrderSummaryPanel.Location = new System.Drawing.Point(27, 12);
             this.OrderSummaryPanel.Name = "OrderSummaryPanel";
             this.OrderSummaryPanel.Size = new System.Drawing.Size(484, 416);
@@ -99,8 +100,9 @@
             this.CancelOrderButton.Name = "CancelOrderButton";
             this.CancelOrderButton.Size = new System.Drawing.Size(265, 40);
             this.CancelOrderButton.TabIndex = 5;
-            this.CancelOrderButton.Text = "Cancel Order";
+            this.CancelOrderButton.Text = "Abort Transaction";
             this.CancelOrderButton.UseVisualStyleBackColor = false;
+            this.CancelOrderButton.Click += new System.EventHandler(this.CancelOrderButton_Click);
             // 
             // OrderDiscountControl
             // 

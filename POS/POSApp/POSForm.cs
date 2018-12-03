@@ -43,15 +43,20 @@ namespace POSApp
         {
             if (this.OrderControl.CurrentOrder.ListOfItems.Count() != 0)
             {
-                FinalizeOrderForm finalizeForm = new FinalizeOrderForm(this.OrderControl.CurrentOrder);
+                FinalizeOrderForm finalizeForm = new FinalizeOrderForm(this.OrderControl.CurrentOrder, ClearCurruntOrder());
                 finalizeForm.ShowDialog();
-                if (finalizeForm.OrderComplete)
-                {
-                    this.Controls.Remove(this.OrderControl);
-                    this.OrderControl = new OrderControl();
-                    this.Controls.Add(this.OrderControl);
-                }
             } 
+        }
+
+        public Action<FinalizeOrderForm> ClearCurruntOrder()
+        {
+            return finalizeForm => 
+            {
+                this.Controls.Remove(this.OrderControl);
+                this.OrderControl = new OrderControl();
+                this.Controls.Add(this.OrderControl);
+                finalizeForm.Close();
+            };
         }
 
         private void ScanLoyaltyButton_Click(object sender, EventArgs e)
@@ -66,7 +71,7 @@ namespace POSApp
 
         private void DayReportButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("dasjlflkjadfk");
+           
         }
     }
 }

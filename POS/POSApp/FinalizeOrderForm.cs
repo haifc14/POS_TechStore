@@ -13,20 +13,22 @@ namespace POSApp
 {
     public partial class FinalizeOrderForm : Form
     {
-        private Order CurruntOrder;
+        private Order CurrentOrder;
+        
+        private event Action<FinalizeOrderForm> CloseCurrentOrder;
 
-        public bool OrderComplete = false;
-
-        public FinalizeOrderForm(Order curruntOrder)
+        public FinalizeOrderForm(Order curruntOrder, Action<FinalizeOrderForm> closeCurrentOrder)
         {
             InitializeComponent();
-            this.CurruntOrder = curruntOrder;
+            this.CurrentOrder = curruntOrder;
+            this.CloseCurrentOrder = closeCurrentOrder;
             AddProductsToOrderSummaryPanel();
+            AddOrderSummaryInfoToSummaryPanel();
         }
 
         private void FinalizeOrderForm_Load(object sender, EventArgs e)
         {
-            if (CurruntOrder.ListOfItems.Count == 0)
+            if (CurrentOrder.ListOfItems.Count == 0)
             {
                 MessageBox.Show("No item added in Order!");
                 this.Close();
@@ -35,7 +37,7 @@ namespace POSApp
 
         private void AddProductsToOrderSummaryPanel()
         {
-            foreach (var item in CurruntOrder.ListOfItems)
+            foreach (var item in CurrentOrder.ListOfItems)
             {
                 Label label = new Label()
                 {
@@ -44,6 +46,39 @@ namespace POSApp
                 };
                 this.OrderSummaryPanel.Controls.Add(label);
             }
+        }
+
+        private void AddOrderSummaryInfoToSummaryPanel()
+        {
+            Label label = new Label()
+            {
+                Width = this.OrderSummaryPanel.Width,
+            };
+            this.OrderSummaryPanel.Controls.Add(label);
+            label = new Label()
+            {
+                Width = this.OrderSummaryPanel.Width,
+                Text = "Subtotal " + CurrentOrder.SubTotal.ToString()
+            };
+            this.OrderSummaryPanel.Controls.Add(label);
+            label = new Label()
+            {
+                Width = this.OrderSummaryPanel.Width,
+                Text = "Discount " + CurrentOrder.Discount.ToString()
+            };
+            this.OrderSummaryPanel.Controls.Add(label);
+            label = new Label()
+            {
+                Width = this.OrderSummaryPanel.Width,
+                Text = "Tax "+ CurrentOrder.Tax.ToString()
+            };
+            this.OrderSummaryPanel.Controls.Add(label);
+            label = new Label()
+            {
+                Width = this.OrderSummaryPanel.Width,
+                Text = "Total " + CurrentOrder.Total.ToString()
+            };
+            this.OrderSummaryPanel.Controls.Add(label);
         }
 
         private void FinalizeOrderForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -55,8 +90,6 @@ namespace POSApp
         {
             CompleteOrderTransaction();
         }
-
-        
 
         private void CompleteOrderTransaction()
         {
@@ -70,26 +103,28 @@ namespace POSApp
             int.TryParse(RedeemPointControl.UserInput, out TotalRedeemPoints);
             try
             {
-                CurruntOrder.AddEmployeeDiscount(employeeDiscount);
-                CurruntOrder.PayByCard(TotalMoneyPaidByCard);
-                CurruntOrder.PayByCash(TotalMoneyPaidByCash);
-                CurruntOrder.ReedemPoints(TotalRedeemPoints);
-                var change = CurruntOrder.GetBalanceDue();
+                CurrentOrder.AddEmployeeDiscount(employeeDiscount);
+                CurrentOrder.PayByCard(TotalMoneyPaidByCard);
+                CurrentOrder.PayByCash(TotalMoneyPaidByCash);
+                CurrentOrder.ReedemPoints(TotalRedeemPoints);
+                var change = CurrentOrder.GetBalanceDue();
                 MessageBox.Show("Change : " + change.ToString());
                 if (change >= 0)
                 {
-                    CurruntOrder.EarnPoints();
-                    CurruntOrder.SaveOrderToDatabase();
-                    CurruntOrder.SaveOrderToDatabase();
-                    CurruntOrder = null;
-                    OrderComplete = true;                   
-                    this.Close();
+                    CurrentOrder.EarnPoints();
+                    CurrentOrder.SaveOrderToDatabase();
+                    this.CloseCurrentOrder(this);
                 }
-        }
+            }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
 }
+
+        private void CancelOrderButton_Click(object sender, EventArgs e)
+        {
+            CloseCurrentOrder(this);
+        }
     }
 }
