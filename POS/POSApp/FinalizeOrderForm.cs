@@ -57,33 +57,22 @@ namespace POSApp
             decimal.TryParse(CardPaymentControl.UserInput, out TotalMoneyPaidByCard);
             int TotalRedeemPoints = 0;
             int.TryParse(RedeemPointControl.UserInput, out TotalRedeemPoints);
-            this.CurruntOrder.EarnPoints();
-
             try
             {
-                if (employeeDiscount != 0)
-                {
-                    CurruntOrder.AddEmployeeDiscount(employeeDiscount);
-                }
-                if (TotalMoneyPaidByCard != 0)
-                {
-                    CurruntOrder.PayByCard(TotalMoneyPaidByCard);
-                }
-                if (TotalMoneyPaidByCash != 0)
-                {
-                    CurruntOrder.PayByCard(TotalMoneyPaidByCash);
-                }
-                if (TotalRedeemPoints != 0)
-                {
-                    CurruntOrder.ReedemPoints(TotalRedeemPoints);
-                }
-                var change = CurruntOrder.CheckBalanceDue();
+                CurruntOrder.AddEmployeeDiscount(employeeDiscount);
+                CurruntOrder.PayByCard(TotalMoneyPaidByCard);
+                CurruntOrder.PayByCash(TotalMoneyPaidByCash);
+                CurruntOrder.ReedemPoints(TotalRedeemPoints);
+                var change = CurruntOrder.GetBalanceDue();
                 MessageBox.Show("Change : " + change.ToString());
-                this.CurruntOrder = null;
+                if (change >= 0)
+                {
+                    CurruntOrder.EarnPoints();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show(e.Message);
             }
         }
     }

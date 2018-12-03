@@ -9,6 +9,9 @@ namespace POSLibrary
 {
     public static class Helper
     {
+        internal const decimal PointsWorthTo1Dollar = 1000;
+        internal const decimal PointsGainFactorFrom1Dollar = 1;
+
         internal static string GetConnectionString()
         {
             System.Data.SqlClient.SqlConnectionStringBuilder builder =

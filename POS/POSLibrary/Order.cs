@@ -13,8 +13,6 @@ namespace POSLibrary
         #region Properties
         public List<Product> ListOfItems { get; set; } = new List<Product>();
         public decimal TotalDiscount { get; set; } = 0;
-        public const decimal PointsWorthTo1Dollar = 1000; 
-        public const decimal PointsGainFactorFrom1Dollar = 1;
 
         private decimal _total;
 
@@ -98,44 +96,73 @@ namespace POSLibrary
         #endregion
 
         #region Methods
+        public decimal GetBalanceDue()
+        {
+            UpdateOrderInfo();
+            decimal balanceDue = Total - TotalPaidByCard - TotalPaidByCash - EmployeeDiscount - (TotalRedeemPoints / Helper.PointsWorthTo1Dollar);
+            if (balanceDue > 0)
+            {
+                throw new Exception("Not sufficient money paid by customer. Balance due " + balanceDue);
+            }
+            return -balanceDue;
+        }
+
         public void PayByCash(decimal moneyPaid)
         {
+            if (moneyPaid < 0)
+            {
+                throw new Exception("Invalid Payment amount supplied!");
+            }
             this.TotalPaidByCash = moneyPaid;
         }
 
         public void PayByCard(decimal moneyPaid)
         {
+            if (moneyPaid < 0)
+            {
+                throw new Exception("Invalid Payment amount supplied!");
+            }
             this.TotalPaidByCard = moneyPaid;
         }
 
         public void ReedemPoints(int points)
         {
+            if (Customer.CustomerId == "-1" && points != 0)
+            {
+                throw new Exception("Please scan loyality card first to redeem points!");
+            }
+            if (points < 0)
+            {
+                throw new Exception("Invalid Points amount supplied!");
+            }
+            if (points > this.Customer.GetPoints())
+            {
+                throw new Exception("Not enough points available to redeem!");
+            }
             if (points <= this.Customer.GetPoints())
             {
                 this.TotalRedeemPoints = points;
             }
-            else
+        }
+
+        public void AddEmployeeDiscount(decimal discount)
+        {
+            if (discount < 0)
             {
-                throw new Exception("Not enough points available to redeem!");
+                throw new Exception("Invalid discount amount supplied!");
             }
+            EmployeeDiscount = discount;
         }
 
         public void EarnPoints()
         {
-            UpdateOrderInfo();
-            this.Customer.EarnPoints((int) this.Total);
+            this.Customer.EarnPoints((int) (this.Total * Helper.PointsGainFactorFrom1Dollar));
         }
 
         public void AddItem(Product productToAdd)
         {
             ListOfItems.Add(productToAdd);
             UpdateOrderInfo();         
-        }
-
-        public void AddEmployeeDiscount(decimal discount)
-        {
-            EmployeeDiscount += discount;
-            UpdateOrderInfo();
         }
 
         public void RemoveItem(Product productToRemove)
@@ -163,7 +190,7 @@ namespace POSLibrary
                 Tax += product.Tax;
                 Discount += product.Discount;              
             }
-            Total = (SubTotal + Tax) - Discount - EmployeeDiscount;
+            Total = (SubTotal + Tax) - Discount;
         }
 
         public void UpdateOrderStatus()

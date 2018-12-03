@@ -10,12 +10,14 @@ namespace POSLibrary
     public class Customer
     {
         private string CustomerName;
-        private string CustomerId;
+        internal string CustomerId;
         private int CustomerPoints;
 
         public Customer()
         {
-
+            CustomerId = "-1";
+            CustomerName = "";
+            CustomerPoints = 0;
         }
 
         public Customer(string customerId)
@@ -31,8 +33,15 @@ namespace POSLibrary
             var context = new DataContext(Helper.GetConnectionString());
             var customers = context.GetTable<TCustomer>();
             var filteredCustomers = customers.Where(customer => customer.CustomerID == CustomerId).ToList();
-            var currentCustomer = filteredCustomers[0];
-            return currentCustomer;
+            if (filteredCustomers.Count > 0)
+            {
+                return filteredCustomers[0];
+            }        
+            else
+            {
+                throw new Exception("Invalid data provided for customer!");
+            }
+
         }
 
         public string GetName()

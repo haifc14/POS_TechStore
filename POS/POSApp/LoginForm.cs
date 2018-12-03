@@ -33,7 +33,6 @@ namespace POSApp
                 employee = new Employee(usernameInput, passwordInput);
 
                 int returnedEmployeeID = employee.GetEmployeeID();
-
                 if (returnedEmployeeID > 0)
                 {
                     POSForm posForm = new POSForm(returnedEmployeeID);
@@ -41,8 +40,9 @@ namespace POSApp
                     posForm.Show();
                 }
             }
-            catch (Exception)
+            catch (Exception egf) 
             {
+                MessageBox.Show(egf.Message);
                 MessageBox.Show("Invalid username and password. Try again...");
                 UserNameTextbox.Text = "";
                 PasswordTextbox.Text = "";
