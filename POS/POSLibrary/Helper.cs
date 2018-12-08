@@ -67,5 +67,41 @@ namespace POSLibrary
                 return "no name";
             }
         }
+
+        public static decimal GetTotalIncomeOfCurrentDay(DateTime currentDate)
+        {
+            var currentDay = currentDate.Day;
+
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var totalIncome = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day == currentDay).Select(order => order.TotalPrice).Sum();
+
+                return totalIncome;                                                               
+            }
+        }
+
+        public static decimal GetTotalIncomeByCardOfCurrentDay(DateTime currentDate)
+        {
+            var currentDay = currentDate.Day;
+
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var totalIncomeByCard = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day == currentDay).Select(order => order.CardPayment).Sum();
+
+                return totalIncomeByCard;
+            }
+        }
+
+        public static decimal GetTotalIncomeByCashOfCurrentDay(DateTime currentDate)
+        {
+            var currentDay = currentDate.Day;
+
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var totalIncomeByCash = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day == currentDay).Select(order => order.CashPayment).Sum();
+
+                return totalIncomeByCash;
+            }
+        }
     }
 }

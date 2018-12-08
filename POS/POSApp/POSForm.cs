@@ -56,7 +56,7 @@ namespace POSApp
             // get data from TOrder tabel
 
             //DateTime currentDate = DateTime.UtcNow.Date;
-            DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333");
+            DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333"); // for testing 
            
             List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd(currentDate);
 
@@ -99,7 +99,20 @@ namespace POSApp
 
         private void DayReportButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("dasjlflkjadfk");
+            //DateTime currentDate = DateTime.UtcNow.Date;
+            DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333"); // for testing
+
+            // Get summary of total income from all orders from system including card and cash for a day
+            decimal totalIncomeOfCurrentDayFromSystem = Helper.GetTotalIncomeOfCurrentDay(currentDate);
+
+            decimal totalIncomeOfCurrentDayByCard = Helper.GetTotalIncomeByCardOfCurrentDay(currentDate);
+           
+            decimal totalIncomeOfCurrentDayByCash = Helper.GetTotalIncomeByCashOfCurrentDay(currentDate);
+            
+            // Open a report form to let cashier input the actual money when the end of day
+            // then export the differnece between income from system versus actual inconme of current day
+
+            
         }
 
         private void POSForm_FormClosing(object sender, FormClosingEventArgs e)
