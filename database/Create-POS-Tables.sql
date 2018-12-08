@@ -213,9 +213,9 @@ AS
 BEGIN TRY
 			--input validation
 			IF @CustomerName IS NULL
-				THROW 50001, 'Receiver Id cannot be null',1;
+				THROW 50001, 'Customer Name cannot be null',1;
 			IF @Points IS NULL
-				THROW 50001, 'Post body cannot be empty',1;
+				THROW 50001, 'Points cannot be empty',1;
 			
 			DECLARE @CustomerID NVARCHAR(80);
 			(SELECT @CustomerID = ('C' + Cast(NEXT VALUE FOR dbo.Sequence_CustomerId AS NVARCHAR(79))));

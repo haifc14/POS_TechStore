@@ -1,0 +1,54 @@
+				------------ DAY END REPORT-------------
+
+
+Date: December 2, 2018
+
+
+	Hai Do
+		 Order Number: 1
+		 Total Price: 10897.0000
+		 Total Discount: 200.0000
+		 Total Tax: 500.0000
+		 Total CardPayment: 10897.0000
+		 Total CashPayment: 0.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 10897
+		 CustomerID: c500
+
+
+	Khushveen Smagh
+		 Order Number: 2
+		 Total Price: 5067.0000
+		 Total Discount: 0.0000
+		 Total Tax: 250.0000
+		 Total CardPayment: 3000.0000
+		 Total CashPayment: 2067.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 5067
+		 CustomerID: c501
+
+
+	Khushveen Smagh
+		 Order Number: 3
+		 Total Price: 2000.0000
+		 Total Discount: 120.0000
+		 Total Tax: 100.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 2000.0000
+		 Total Points Redeem: 3000
+		 Total Points Earned: 2000
+		 CustomerID: c504
+
+
+	Brijesh Patel
+		 Order Number: 4
+		 Total Price: 10897.0000
+		 Total Discount: 200.0000
+		 Total Tax: 500.0000
+		 Total CardPayment: 10897.0000
+		 Total CashPayment: 0.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 10897
+		 CustomerID: c500
+
+

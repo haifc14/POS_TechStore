@@ -9,6 +9,9 @@ namespace POSLibrary
 {
     public static class Helper
     {
+
+        public static string FILE_PATH_DAYEND = @"../../../ReportDataFiles/dayend.txt";
+
         internal static string GetConnectionString()
         {
             System.Data.SqlClient.SqlConnectionStringBuilder builder =
@@ -38,16 +41,30 @@ namespace POSLibrary
             }
         }
 
-        public static List<TOrder> GetAllOrdersForDayEnd()
-        {
-            DateTime currentDate = DateTime.UtcNow.Date;
-
-            var day = currentDate.Day;
+        public static List<TOrder> GetAllOrdersForDayEnd(DateTime currentDay)
+        {            
+            var day = currentDay.Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
                 var listOfOrderWithinADay = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day.Equals(day)).ToList();
                 return listOfOrderWithinADay;
+            }
+        }
+
+        public static string GetEmployeeNameFromOrderReport(int employeeId)
+        {
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var employees = context.GetTable<TEmployee>().Where(employee => employee.EmployeeId == employeeId).ToList();
+
+                if (employees.Count > 0)
+                {
+                    var employeeFullNameFound = employees[0].FirstName + ' ' + employees[0].LastName;
+                    return employeeFullNameFound;
+                }
+
+                return "no name";
             }
         }
     }

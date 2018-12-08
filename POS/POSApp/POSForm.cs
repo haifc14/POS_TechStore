@@ -12,6 +12,7 @@ using POSLibrary;
 using System.Configuration;
 using System.Data.Objects;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace POSApp
 {
@@ -54,14 +55,46 @@ namespace POSApp
         {
             // get data from TOrder tabel
 
-            List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd();
+            //DateTime currentDate = DateTime.UtcNow.Date;
+            DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333");
+           
+            List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd(currentDate);
 
-            foreach (var order in listOfOrdersWithinCurrentDay)
+            try
             {
-                
+                // write data to dayend txt file
+                using (StreamWriter sw = new StreamWriter(Helper.FILE_PATH_DAYEND))
+                {
+                    sw.WriteLine("\t\t\t\t" + "------------ DAY END REPORT-------------");
+                    sw.WriteLine("\n");
+                    sw.WriteLine("Date: " + currentDate.ToLongDateString());
+                    sw.WriteLine("\n");
+
+                    foreach (var order in listOfOrdersWithinCurrentDay)
+                    {
+
+                        int employeeIdForEachOrder = (int)order.EmployeeId;
+                        sw.WriteLine("\t" + Helper.GetEmployeeNameFromOrderReport(employeeIdForEachOrder));
+                        sw.WriteLine("\t\t Order Number: " + order.OrderNumber.ToString());
+                        sw.WriteLine("\t\t Total Price: " + order.TotalPrice.ToString());
+                        sw.WriteLine("\t\t Total Discount: " + order.TotalDiscount.ToString());
+                        sw.WriteLine("\t\t Total Tax: " + order.TotalTax.ToString());
+                        sw.WriteLine("\t\t Total CardPayment: " + order.CardPayment.ToString());
+                        sw.WriteLine("\t\t Total CashPayment: " + order.CashPayment.ToString());
+                        sw.WriteLine("\t\t Total Points Redeem: " + order.PoitRedeem.ToString());
+                        sw.WriteLine("\t\t Total Points Earned: " + order.PointEarned.ToString());
+                        sw.WriteLine("\t\t CustomerID: " + order.CustomerID.ToString());
+                        sw.WriteLine("\n");
+                    }
+
+                    MessageBox.Show("DayEnd has been exported successfully", "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            
-            // write data to txt file
+            catch (Exception)
+            {
+                MessageBox.Show("Day report falis. Contact admin to get help..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
         private void DayReportButton_Click(object sender, EventArgs e)
