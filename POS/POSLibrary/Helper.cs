@@ -35,10 +35,23 @@ namespace POSLibrary
 
         public static List<string> GetCategories()
         {
-            using (var context = new DataContext(Helper.GetConnectionString()))
+            using (var context = new DataContext(GetConnectionString()))
             {
                 var filteredProduct = context.GetTable<TCategory>().Select(category => category.Name);
                 return filteredProduct.ToList();
+            }
+        }
+
+        public static List<TOrder> GetAllOrdersForDayEnd()
+        {
+            DateTime currentDate = DateTime.UtcNow.Date;
+
+            var day = currentDate.Day;
+
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var listOfOrderWithinADay = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day.Equals(day)).ToList();
+                return listOfOrderWithinADay;
             }
         }
     }

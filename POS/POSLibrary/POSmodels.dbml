@@ -17,14 +17,40 @@
       <Column Name="Date" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TotalCost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TProductGroup_TPurchaseLog" Member="TProductGroup" ThisKey="Barcode" OtherKey="Barcode" Type="TProductGroup" IsForeignKey="true" />
       <Association Name="TLocation_TPurchaseLog" Member="TLocation" ThisKey="LocationID" OtherKey="LocationID" Type="TLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TProductGroup" Member="TProductGroups">
+    <Type Name="TProductGroup">
+      <Column Name="Barcode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrandID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FullProductName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShortProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TProductGroup_TPurchaseLog" Member="TPurchaseLogs" ThisKey="Barcode" OtherKey="Barcode" Type="TPurchaseLog" />
+      <Association Name="TCategory_TProductGroup" Member="TCategory" ThisKey="CategoryID" OtherKey="CategoryID" Type="TCategory" IsForeignKey="true" />
+      <Association Name="TBrand_TProductGroup" Member="TBrand" ThisKey="BrandID" OtherKey="BrandID" Type="TBrand" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TProduct" Member="TProducts">
     <Type Name="TProduct">
       <Column Name="SerialNumber" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="TProductGroup_TProduct" Member="TProductGroup" ThisKey="Barcode" OtherKey="Barcode" Type="TProductGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TOrderItems" Member="TOrderItems">
+    <Type Name="TOrderItem">
+      <Column Name="OrderItemsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TOrder_TOrderItem" Member="TOrder" ThisKey="OrderNumber" OtherKey="OrderNumber" Type="TOrder" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TLocation" Member="TLocations">
@@ -35,7 +61,6 @@
       <Column Name="City" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
       <Column Name="Phone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="TLocation_TPurchaseLog" Member="TPurchaseLogs" ThisKey="LocationID" OtherKey="LocationID" Type="TPurchaseLog" />
-      <Association Name="TLocation_TInStock" Member="TInStocks" ThisKey="LocationID" OtherKey="LocationID" Type="TInStock" />
     </Type>
   </Table>
   <Table Name="dbo.TEmployee" Member="TEmployees">
@@ -65,6 +90,13 @@
       <Association Name="TBrand_TProductGroup" Member="TProductGroups" ThisKey="BrandID" OtherKey="BrandID" Type="TProductGroup" />
     </Type>
   </Table>
+  <Table Name="dbo.TCustomer" Member="TCustomers">
+    <Type Name="TCustomer">
+      <Column Name="CustomerID" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="TotalPoints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.TOrder" Member="TOrders">
     <Type Name="TOrder">
       <Column Name="OrderNumber" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -81,51 +113,6 @@
       <Column Name="EmployeeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="TOrder_TOrderItem" Member="TOrderItems" ThisKey="OrderNumber" OtherKey="OrderNumber" Type="TOrderItem" />
       <Association Name="TEmployee_TOrder" Member="TEmployee" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="TEmployee" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TOrderItems" Member="TOrderItems">
-    <Type Name="TOrderItem">
-      <Column Name="OrderItemsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OrderNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="TOrder_TOrderItem" Member="TOrder" ThisKey="OrderNumber" OtherKey="OrderNumber" Type="TOrder" IsForeignKey="true" />
-      <Association Name="TProductGroup_TOrderItem" Member="TProductGroup" ThisKey="Barcode" OtherKey="Barcode" Type="TProductGroup" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TCustomer" Member="TCustomers">
-    <Type Name="TCustomer">
-      <Column Name="CustomerID" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="TotalPoints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TProductGroup" Member="TProductGroups">
-    <Type Name="TProductGroup">
-      <Column Name="Barcode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="Tax" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="Discount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BrandID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FullProductName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ShortProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="TProductGroup_TProduct" Member="TProducts" ThisKey="Barcode" OtherKey="Barcode" Type="TProduct" />
-      <Association Name="TProductGroup_TOrderItem" Member="TOrderItems" ThisKey="Barcode" OtherKey="Barcode" Type="TOrderItem" />
-      <Association Name="TProductGroup_TInStock" Member="TInStocks" ThisKey="Barcode" OtherKey="BarcodeID" Type="TInStock" />
-      <Association Name="TBrand_TProductGroup" Member="TBrand" ThisKey="BrandID" OtherKey="BrandID" Type="TBrand" IsForeignKey="true" />
-      <Association Name="TCategory_TProductGroup" Member="TCategory" ThisKey="CategoryID" OtherKey="CategoryID" Type="TCategory" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TInStock" Member="TInStocks">
-    <Type Name="TInStock">
-      <Column Name="StockID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BarcodeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="TProductGroup_TInStock" Member="TProductGroup" ThisKey="BarcodeID" OtherKey="Barcode" Type="TProductGroup" IsForeignKey="true" />
-      <Association Name="TLocation_TInStock" Member="TLocation" ThisKey="LocationID" OtherKey="LocationID" Type="TLocation" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
