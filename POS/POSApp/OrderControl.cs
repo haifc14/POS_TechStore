@@ -53,10 +53,13 @@ namespace POSApp
 
                 bool canConvertToNumber = int.TryParse(barcodeFromInput, out int itemBarcode);
 
-                if(canConvertToNumber == true) // is item barcode since item barcode is always a int number
+                if(canConvertToNumber == true) // it is item barcode since item barcode is always a int number
                 {
                     // Get Scanned Product info 
                     Product scannedItem = new Product(itemBarcode);
+
+                    //MessageBox.Show(scannedItem.Name);
+                    //MessageBox.Show(scannedItem.Price.ToString());
 
                     // display the scanned item on Left Product Panel            
                     OrderItemControl ItemControl = new OrderItemControl(scannedItem);
@@ -91,10 +94,11 @@ namespace POSApp
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //MessageBox.Show("Invalid barcode!!! Try again...");
-                BarcodeTextBox.Text = "";
+                //BarcodeTextBox.Text = "";
+                MessageBox.Show(ex.Message);
             }
             
         }

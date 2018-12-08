@@ -101,5 +101,13 @@ namespace POSApp
         {
             MessageBox.Show("dasjlflkjadfk");
         }
+
+        private void POSForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Application.OpenForms.Count == 1)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
