@@ -103,9 +103,9 @@ namespace POSApp
                 }
                 
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //MessageBox.Show("Invalid barcode!!! Try again...");
+                MessageBox.Show(exception.Message);
                 BarcodeTextBox.Text = "";
             }
             

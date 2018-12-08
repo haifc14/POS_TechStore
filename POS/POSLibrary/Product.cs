@@ -14,24 +14,21 @@ namespace POSLibrary
         public decimal Price { get; private set; }
         public decimal Discount { get; private set; }
         public decimal Tax { get; private set; }
+        public int Quantity { get; private set; }
          
-        public Product(string name, int barcode, decimal price, decimal discount, decimal tax)
+        public Product(string name, int barcode, decimal price, decimal discount, decimal tax, int quantity)
         {
             Name = name;
             Barcode = barcode;
             Price = price;
             Discount = discount;
             Tax = tax;
+            Quantity = quantity;
         }
 
         public Product(int barcode)
         {
-            var TProduct  = GetProducts(barcode);
-            Name = TProduct.Name;
-            Barcode = TProduct.Barcode;
-            Price = TProduct.Price;
-            Discount = (decimal)TProduct.Discount;
-            Tax = TProduct.Tax;
+            GetProductInfo(barcode);
         }
 
         public override string ToString()
@@ -39,13 +36,31 @@ namespace POSLibrary
             return Name + " " + Barcode + " " + Price + " " + Discount;
         }
 
-        private static TProductGroup GetProducts(int barcode)
+        private void GetProductInfo(int barcode)
         {
-            var context = new DataContext(Helper.GetConnectionString());
-            var products = context.GetTable<TProductGroup>();
-            var filteredProduct = products.Where(product => product.Barcode == barcode).ToList();
-            context.Dispose();
-            return filteredProduct[0];
+            using (var contex = new DataContext(Helper.GetConnectionString()))
+            {
+                var products = contex.GetTable<TProductGroup>();
+                var inStocks = contex.GetTable<TInStock>();
+                var filteredProductInStore = products.Join(inStocks, product => product.Barcode, instock => instock.BarcodeID, 
+                                                (product, instock) => new { product.Barcode, product.Name, product.Price, product.Discount, product.Tax, instock.Quantity, instock.LocationID})
+                                                .Where(filtered => filtered.LocationID == Helper.LocationId);
+                var productAvailableInStore = filteredProductInStore.Where( filteredProduct => filteredProduct.Quantity > 0 && filteredProduct.Barcode == barcode).ToList();
+                if (productAvailableInStore.Count > 0)
+                {
+                    this.Name = productAvailableInStore[0].Name;
+                    this.Price = productAvailableInStore[0].Price;
+                    this.Tax = productAvailableInStore[0].Tax;
+                    this.Barcode = productAvailableInStore[0].Barcode;
+                    this.Discount = (decimal) productAvailableInStore[0].Discount;
+                    this.Quantity = productAvailableInStore[0].Quantity;
+                }
+                else
+                {
+                    throw new Exception("Product not available in store!");
+                }
+
+            }
         }       
     }
 }

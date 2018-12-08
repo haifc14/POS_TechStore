@@ -17,14 +17,26 @@ namespace POSLibrary
             var productsFilteredByBrand = GetProductByBrands(brandName);
             var productsFilteredByCategory = GetProductByCategory(categoryName);
             var productsFilteredBySearch = GetProductsBySearch(keywords);
-            var TProducts = productsFilteredByBrand
+            var ProductAvailableInSystem = productsFilteredByBrand
                                 .Intersect(productsFilteredByCategory, new ProductComparer())
                                 .Intersect(productsFilteredBySearch, new ProductComparer());
+            var inStock = GetInstock();
+            var productAvailableInStore = ProductAvailableInSystem.Join(inStock, product => product.Barcode, instock => instock.BarcodeID,
+                                            (product, instock) => new { product.Barcode, instock.LocationID,instock.Quantity, product.Price, product.Discount, product.Tax, product.Name})
+                                            .Where(product => product.LocationID == Helper.LocationId);
             //converting Tproduct to product object
-            foreach (var TProduct in TProducts)
+            foreach (var item in productAvailableInStore)
             {
-                var product = new Product(TProduct.Name, TProduct.Barcode, TProduct.Price, (decimal)TProduct.Discount, TProduct.Tax);
+                var product = new Product(item.Name, item.Barcode, item.Price, (decimal)item.Discount, item.Tax, item.Quantity);
                 Products.Add(product);
+            }
+        }
+
+        private List<TInStock> GetInstock()
+        {
+            using (var contex = new DataContext(Helper.GetConnectionString()))
+            {
+                return contex.GetTable<TInStock>().ToList();
             }
         }
 

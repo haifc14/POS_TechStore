@@ -36,9 +36,6 @@ namespace POSLibrary
     partial void InsertTPurchaseLog(TPurchaseLog instance);
     partial void UpdateTPurchaseLog(TPurchaseLog instance);
     partial void DeleteTPurchaseLog(TPurchaseLog instance);
-    partial void InsertTProductGroup(TProductGroup instance);
-    partial void UpdateTProductGroup(TProductGroup instance);
-    partial void DeleteTProductGroup(TProductGroup instance);
     partial void InsertTProduct(TProduct instance);
     partial void UpdateTProduct(TProduct instance);
     partial void DeleteTProduct(TProduct instance);
@@ -60,6 +57,12 @@ namespace POSLibrary
     partial void InsertTOrderItem(TOrderItem instance);
     partial void UpdateTOrderItem(TOrderItem instance);
     partial void DeleteTOrderItem(TOrderItem instance);
+    partial void InsertTProductGroup(TProductGroup instance);
+    partial void UpdateTProductGroup(TProductGroup instance);
+    partial void DeleteTProductGroup(TProductGroup instance);
+    partial void InsertTInStock(TInStock instance);
+    partial void UpdateTInStock(TInStock instance);
+    partial void DeleteTInStock(TInStock instance);
     #endregion
 		
 		public POSmodelsDataContext() : 
@@ -105,14 +108,6 @@ namespace POSLibrary
 			get
 			{
 				return this.GetTable<TPurchaseLog>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TProductGroup> TProductGroups
-		{
-			get
-			{
-				return this.GetTable<TProductGroup>();
 			}
 		}
 		
@@ -177,6 +172,22 @@ namespace POSLibrary
 			get
 			{
 				return this.GetTable<TCustomer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TProductGroup> TProductGroups
+		{
+			get
+			{
+				return this.GetTable<TProductGroup>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TInStock> TInStocks
+		{
+			get
+			{
+				return this.GetTable<TInStock>();
 			}
 		}
 	}
@@ -374,8 +385,6 @@ namespace POSLibrary
 		
 		private int _TotalCost;
 		
-		private EntityRef<TProductGroup> _TProductGroup;
-		
 		private EntityRef<TLocation> _TLocation;
 		
     #region Extensibility Method Definitions
@@ -398,7 +407,6 @@ namespace POSLibrary
 		
 		public TPurchaseLog()
 		{
-			this._TProductGroup = default(EntityRef<TProductGroup>);
 			this._TLocation = default(EntityRef<TLocation>);
 			OnCreated();
 		}
@@ -434,10 +442,6 @@ namespace POSLibrary
 			{
 				if ((this._Barcode != value))
 				{
-					if (this._TProductGroup.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnBarcodeChanging(value);
 					this.SendPropertyChanging();
 					this._Barcode = value;
@@ -531,40 +535,6 @@ namespace POSLibrary
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TProductGroup", ThisKey="Barcode", OtherKey="Barcode", IsForeignKey=true)]
-		public TProductGroup TProductGroup
-		{
-			get
-			{
-				return this._TProductGroup.Entity;
-			}
-			set
-			{
-				TProductGroup previousValue = this._TProductGroup.Entity;
-				if (((previousValue != value) 
-							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TProductGroup.Entity = null;
-						previousValue.TPurchaseLogs.Remove(this);
-					}
-					this._TProductGroup.Entity = value;
-					if ((value != null))
-					{
-						value.TPurchaseLogs.Add(this);
-						this._Barcode = value.Barcode;
-					}
-					else
-					{
-						this._Barcode = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TProductGroup");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TLocation_TPurchaseLog", Storage="_TLocation", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
 		public TLocation TLocation
 		{
@@ -620,446 +590,6 @@ namespace POSLibrary
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TProductGroup")]
-	public partial class TProductGroup : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Barcode;
-		
-		private string _Name;
-		
-		private decimal _Price;
-		
-		private int _Quantity;
-		
-		private decimal _Tax;
-		
-		private System.Nullable<decimal> _Discount;
-		
-		private string _DESCRIPTION;
-		
-		private System.Nullable<int> _CategoryID;
-		
-		private int _BrandID;
-		
-		private string _FullProductName;
-		
-		private string _ShortProductName;
-		
-		private EntitySet<TPurchaseLog> _TPurchaseLogs;
-		
-		private EntitySet<TOrderItem> _TOrderItems;
-		
-		private EntityRef<TCategory> _TCategory;
-		
-		private EntityRef<TBrand> _TBrand;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnBarcodeChanging(int value);
-    partial void OnBarcodeChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    partial void OnQuantityChanging(int value);
-    partial void OnQuantityChanged();
-    partial void OnTaxChanging(decimal value);
-    partial void OnTaxChanged();
-    partial void OnDiscountChanging(System.Nullable<decimal> value);
-    partial void OnDiscountChanged();
-    partial void OnDESCRIPTIONChanging(string value);
-    partial void OnDESCRIPTIONChanged();
-    partial void OnCategoryIDChanging(System.Nullable<int> value);
-    partial void OnCategoryIDChanged();
-    partial void OnBrandIDChanging(int value);
-    partial void OnBrandIDChanged();
-    partial void OnFullProductNameChanging(string value);
-    partial void OnFullProductNameChanged();
-    partial void OnShortProductNameChanging(string value);
-    partial void OnShortProductNameChanged();
-    #endregion
-		
-		public TProductGroup()
-		{
-			this._TPurchaseLogs = new EntitySet<TPurchaseLog>(new Action<TPurchaseLog>(this.attach_TPurchaseLogs), new Action<TPurchaseLog>(this.detach_TPurchaseLogs));
-			this._TOrderItems = new EntitySet<TOrderItem>(new Action<TOrderItem>(this.attach_TOrderItems), new Action<TOrderItem>(this.detach_TOrderItems));
-			this._TCategory = default(EntityRef<TCategory>);
-			this._TBrand = default(EntityRef<TBrand>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barcode", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Barcode
-		{
-			get
-			{
-				return this._Barcode;
-			}
-			set
-			{
-				if ((this._Barcode != value))
-				{
-					this.OnBarcodeChanging(value);
-					this.SendPropertyChanging();
-					this._Barcode = value;
-					this.SendPropertyChanged("Barcode");
-					this.OnBarcodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
-		public int Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this.OnQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Quantity = value;
-					this.SendPropertyChanged("Quantity");
-					this.OnQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tax", DbType="Money NOT NULL")]
-		public decimal Tax
-		{
-			get
-			{
-				return this._Tax;
-			}
-			set
-			{
-				if ((this._Tax != value))
-				{
-					this.OnTaxChanging(value);
-					this.SendPropertyChanging();
-					this._Tax = value;
-					this.SendPropertyChanged("Tax");
-					this.OnTaxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Discount", DbType="Money")]
-		public System.Nullable<decimal> Discount
-		{
-			get
-			{
-				return this._Discount;
-			}
-			set
-			{
-				if ((this._Discount != value))
-				{
-					this.OnDiscountChanging(value);
-					this.SendPropertyChanging();
-					this._Discount = value;
-					this.SendPropertyChanged("Discount");
-					this.OnDiscountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-		public string DESCRIPTION
-		{
-			get
-			{
-				return this._DESCRIPTION;
-			}
-			set
-			{
-				if ((this._DESCRIPTION != value))
-				{
-					this.OnDESCRIPTIONChanging(value);
-					this.SendPropertyChanging();
-					this._DESCRIPTION = value;
-					this.SendPropertyChanged("DESCRIPTION");
-					this.OnDESCRIPTIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="Int")]
-		public System.Nullable<int> CategoryID
-		{
-			get
-			{
-				return this._CategoryID;
-			}
-			set
-			{
-				if ((this._CategoryID != value))
-				{
-					if (this._TCategory.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryID = value;
-					this.SendPropertyChanged("CategoryID");
-					this.OnCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrandID", DbType="Int NOT NULL")]
-		public int BrandID
-		{
-			get
-			{
-				return this._BrandID;
-			}
-			set
-			{
-				if ((this._BrandID != value))
-				{
-					if (this._TBrand.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBrandIDChanging(value);
-					this.SendPropertyChanging();
-					this._BrandID = value;
-					this.SendPropertyChanged("BrandID");
-					this.OnBrandIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullProductName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string FullProductName
-		{
-			get
-			{
-				return this._FullProductName;
-			}
-			set
-			{
-				if ((this._FullProductName != value))
-				{
-					this.OnFullProductNameChanging(value);
-					this.SendPropertyChanging();
-					this._FullProductName = value;
-					this.SendPropertyChanged("FullProductName");
-					this.OnFullProductNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortProductName", DbType="NVarChar(50)")]
-		public string ShortProductName
-		{
-			get
-			{
-				return this._ShortProductName;
-			}
-			set
-			{
-				if ((this._ShortProductName != value))
-				{
-					this.OnShortProductNameChanging(value);
-					this.SendPropertyChanging();
-					this._ShortProductName = value;
-					this.SendPropertyChanged("ShortProductName");
-					this.OnShortProductNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TPurchaseLog", Storage="_TPurchaseLogs", ThisKey="Barcode", OtherKey="Barcode")]
-		public EntitySet<TPurchaseLog> TPurchaseLogs
-		{
-			get
-			{
-				return this._TPurchaseLogs;
-			}
-			set
-			{
-				this._TPurchaseLogs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TOrderItem", Storage="_TOrderItems", ThisKey="Barcode", OtherKey="Barcode")]
-		public EntitySet<TOrderItem> TOrderItems
-		{
-			get
-			{
-				return this._TOrderItems;
-			}
-			set
-			{
-				this._TOrderItems.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCategory_TProductGroup", Storage="_TCategory", ThisKey="CategoryID", OtherKey="CategoryID", IsForeignKey=true)]
-		public TCategory TCategory
-		{
-			get
-			{
-				return this._TCategory.Entity;
-			}
-			set
-			{
-				TCategory previousValue = this._TCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._TCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TCategory.Entity = null;
-						previousValue.TProductGroups.Remove(this);
-					}
-					this._TCategory.Entity = value;
-					if ((value != null))
-					{
-						value.TProductGroups.Add(this);
-						this._CategoryID = value.CategoryID;
-					}
-					else
-					{
-						this._CategoryID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TCategory");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TBrand_TProductGroup", Storage="_TBrand", ThisKey="BrandID", OtherKey="BrandID", IsForeignKey=true)]
-		public TBrand TBrand
-		{
-			get
-			{
-				return this._TBrand.Entity;
-			}
-			set
-			{
-				TBrand previousValue = this._TBrand.Entity;
-				if (((previousValue != value) 
-							|| (this._TBrand.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TBrand.Entity = null;
-						previousValue.TProductGroups.Remove(this);
-					}
-					this._TBrand.Entity = value;
-					if ((value != null))
-					{
-						value.TProductGroups.Add(this);
-						this._BrandID = value.BrandID;
-					}
-					else
-					{
-						this._BrandID = default(int);
-					}
-					this.SendPropertyChanged("TBrand");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TPurchaseLogs(TPurchaseLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.TProductGroup = this;
-		}
-		
-		private void detach_TPurchaseLogs(TPurchaseLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.TProductGroup = null;
-		}
-		
-		private void attach_TOrderItems(TOrderItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.TProductGroup = this;
-		}
-		
-		private void detach_TOrderItems(TOrderItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.TProductGroup = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TProduct")]
 	public partial class TProduct : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1069,6 +599,8 @@ namespace POSLibrary
 		private int _SerialNumber;
 		
 		private System.Nullable<int> _Barcode;
+		
+		private EntityRef<TProductGroup> _TProductGroup;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1082,6 +614,7 @@ namespace POSLibrary
 		
 		public TProduct()
 		{
+			this._TProductGroup = default(EntityRef<TProductGroup>);
 			OnCreated();
 		}
 		
@@ -1116,11 +649,49 @@ namespace POSLibrary
 			{
 				if ((this._Barcode != value))
 				{
+					if (this._TProductGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnBarcodeChanging(value);
 					this.SendPropertyChanging();
 					this._Barcode = value;
 					this.SendPropertyChanged("Barcode");
 					this.OnBarcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TProduct", Storage="_TProductGroup", ThisKey="Barcode", OtherKey="Barcode", IsForeignKey=true)]
+		public TProductGroup TProductGroup
+		{
+			get
+			{
+				return this._TProductGroup.Entity;
+			}
+			set
+			{
+				TProductGroup previousValue = this._TProductGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TProductGroup.Entity = null;
+						previousValue.TProducts.Remove(this);
+					}
+					this._TProductGroup.Entity = value;
+					if ((value != null))
+					{
+						value.TProducts.Add(this);
+						this._Barcode = value.Barcode;
+					}
+					else
+					{
+						this._Barcode = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TProductGroup");
 				}
 			}
 		}
@@ -1164,6 +735,8 @@ namespace POSLibrary
 		
 		private EntitySet<TPurchaseLog> _TPurchaseLogs;
 		
+		private EntitySet<TInStock> _TInStocks;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1183,6 +756,7 @@ namespace POSLibrary
 		public TLocation()
 		{
 			this._TPurchaseLogs = new EntitySet<TPurchaseLog>(new Action<TPurchaseLog>(this.attach_TPurchaseLogs), new Action<TPurchaseLog>(this.detach_TPurchaseLogs));
+			this._TInStocks = new EntitySet<TInStock>(new Action<TInStock>(this.attach_TInStocks), new Action<TInStock>(this.detach_TInStocks));
 			OnCreated();
 		}
 		
@@ -1299,6 +873,19 @@ namespace POSLibrary
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TLocation_TInStock", Storage="_TInStocks", ThisKey="LocationID", OtherKey="LocationID")]
+		public EntitySet<TInStock> TInStocks
+		{
+			get
+			{
+				return this._TInStocks;
+			}
+			set
+			{
+				this._TInStocks.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1326,6 +913,18 @@ namespace POSLibrary
 		}
 		
 		private void detach_TPurchaseLogs(TPurchaseLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.TLocation = null;
+		}
+		
+		private void attach_TInStocks(TInStock entity)
+		{
+			this.SendPropertyChanging();
+			entity.TLocation = this;
+		}
+		
+		private void detach_TInStocks(TInStock entity)
 		{
 			this.SendPropertyChanging();
 			entity.TLocation = null;
@@ -2229,9 +1828,9 @@ namespace POSLibrary
 		
 		private System.Nullable<int> _OrderNumber;
 		
-		private EntityRef<TProductGroup> _TProductGroup;
-		
 		private EntityRef<TOrder> _TOrder;
+		
+		private EntityRef<TProductGroup> _TProductGroup;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2247,8 +1846,8 @@ namespace POSLibrary
 		
 		public TOrderItem()
 		{
-			this._TProductGroup = default(EntityRef<TProductGroup>);
 			this._TOrder = default(EntityRef<TOrder>);
+			this._TProductGroup = default(EntityRef<TProductGroup>);
 			OnCreated();
 		}
 		
@@ -2320,40 +1919,6 @@ namespace POSLibrary
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TOrderItem", Storage="_TProductGroup", ThisKey="Barcode", OtherKey="Barcode", IsForeignKey=true)]
-		public TProductGroup TProductGroup
-		{
-			get
-			{
-				return this._TProductGroup.Entity;
-			}
-			set
-			{
-				TProductGroup previousValue = this._TProductGroup.Entity;
-				if (((previousValue != value) 
-							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TProductGroup.Entity = null;
-						previousValue.TOrderItems.Remove(this);
-					}
-					this._TProductGroup.Entity = value;
-					if ((value != null))
-					{
-						value.TOrderItems.Add(this);
-						this._Barcode = value.Barcode;
-					}
-					else
-					{
-						this._Barcode = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TProductGroup");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TOrder_TOrderItem", Storage="_TOrder", ThisKey="OrderNumber", OtherKey="OrderNumber", IsForeignKey=true)]
 		public TOrder TOrder
 		{
@@ -2384,6 +1949,40 @@ namespace POSLibrary
 						this._OrderNumber = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("TOrder");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TOrderItem", Storage="_TProductGroup", ThisKey="Barcode", OtherKey="Barcode", IsForeignKey=true)]
+		public TProductGroup TProductGroup
+		{
+			get
+			{
+				return this._TProductGroup.Entity;
+			}
+			set
+			{
+				TProductGroup previousValue = this._TProductGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TProductGroup.Entity = null;
+						previousValue.TOrderItems.Remove(this);
+					}
+					this._TProductGroup.Entity = value;
+					if ((value != null))
+					{
+						value.TOrderItems.Add(this);
+						this._Barcode = value.Barcode;
+					}
+					else
+					{
+						this._Barcode = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TProductGroup");
 				}
 			}
 		}
@@ -2468,6 +2067,666 @@ namespace POSLibrary
 				{
 					this._TotalPoints = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TProductGroup")]
+	public partial class TProductGroup : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Barcode;
+		
+		private string _Name;
+		
+		private decimal _Price;
+		
+		private decimal _Tax;
+		
+		private System.Nullable<decimal> _Discount;
+		
+		private string _DESCRIPTION;
+		
+		private System.Nullable<int> _CategoryID;
+		
+		private int _BrandID;
+		
+		private string _FullProductName;
+		
+		private string _ShortProductName;
+		
+		private EntitySet<TProduct> _TProducts;
+		
+		private EntitySet<TOrderItem> _TOrderItems;
+		
+		private EntitySet<TInStock> _TInStocks;
+		
+		private EntityRef<TBrand> _TBrand;
+		
+		private EntityRef<TCategory> _TCategory;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBarcodeChanging(int value);
+    partial void OnBarcodeChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnTaxChanging(decimal value);
+    partial void OnTaxChanged();
+    partial void OnDiscountChanging(System.Nullable<decimal> value);
+    partial void OnDiscountChanged();
+    partial void OnDESCRIPTIONChanging(string value);
+    partial void OnDESCRIPTIONChanged();
+    partial void OnCategoryIDChanging(System.Nullable<int> value);
+    partial void OnCategoryIDChanged();
+    partial void OnBrandIDChanging(int value);
+    partial void OnBrandIDChanged();
+    partial void OnFullProductNameChanging(string value);
+    partial void OnFullProductNameChanged();
+    partial void OnShortProductNameChanging(string value);
+    partial void OnShortProductNameChanged();
+    #endregion
+		
+		public TProductGroup()
+		{
+			this._TProducts = new EntitySet<TProduct>(new Action<TProduct>(this.attach_TProducts), new Action<TProduct>(this.detach_TProducts));
+			this._TOrderItems = new EntitySet<TOrderItem>(new Action<TOrderItem>(this.attach_TOrderItems), new Action<TOrderItem>(this.detach_TOrderItems));
+			this._TInStocks = new EntitySet<TInStock>(new Action<TInStock>(this.attach_TInStocks), new Action<TInStock>(this.detach_TInStocks));
+			this._TBrand = default(EntityRef<TBrand>);
+			this._TCategory = default(EntityRef<TCategory>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barcode", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Barcode
+		{
+			get
+			{
+				return this._Barcode;
+			}
+			set
+			{
+				if ((this._Barcode != value))
+				{
+					this.OnBarcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Barcode = value;
+					this.SendPropertyChanged("Barcode");
+					this.OnBarcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tax", DbType="Money NOT NULL")]
+		public decimal Tax
+		{
+			get
+			{
+				return this._Tax;
+			}
+			set
+			{
+				if ((this._Tax != value))
+				{
+					this.OnTaxChanging(value);
+					this.SendPropertyChanging();
+					this._Tax = value;
+					this.SendPropertyChanged("Tax");
+					this.OnTaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Discount", DbType="Money")]
+		public System.Nullable<decimal> Discount
+		{
+			get
+			{
+				return this._Discount;
+			}
+			set
+			{
+				if ((this._Discount != value))
+				{
+					this.OnDiscountChanging(value);
+					this.SendPropertyChanging();
+					this._Discount = value;
+					this.SendPropertyChanged("Discount");
+					this.OnDiscountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this.OnDESCRIPTIONChanging(value);
+					this.SendPropertyChanging();
+					this._DESCRIPTION = value;
+					this.SendPropertyChanged("DESCRIPTION");
+					this.OnDESCRIPTIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="Int")]
+		public System.Nullable<int> CategoryID
+		{
+			get
+			{
+				return this._CategoryID;
+			}
+			set
+			{
+				if ((this._CategoryID != value))
+				{
+					if (this._TCategory.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryID = value;
+					this.SendPropertyChanged("CategoryID");
+					this.OnCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrandID", DbType="Int NOT NULL")]
+		public int BrandID
+		{
+			get
+			{
+				return this._BrandID;
+			}
+			set
+			{
+				if ((this._BrandID != value))
+				{
+					if (this._TBrand.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBrandIDChanging(value);
+					this.SendPropertyChanging();
+					this._BrandID = value;
+					this.SendPropertyChanged("BrandID");
+					this.OnBrandIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullProductName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FullProductName
+		{
+			get
+			{
+				return this._FullProductName;
+			}
+			set
+			{
+				if ((this._FullProductName != value))
+				{
+					this.OnFullProductNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullProductName = value;
+					this.SendPropertyChanged("FullProductName");
+					this.OnFullProductNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortProductName", DbType="NVarChar(50)")]
+		public string ShortProductName
+		{
+			get
+			{
+				return this._ShortProductName;
+			}
+			set
+			{
+				if ((this._ShortProductName != value))
+				{
+					this.OnShortProductNameChanging(value);
+					this.SendPropertyChanging();
+					this._ShortProductName = value;
+					this.SendPropertyChanged("ShortProductName");
+					this.OnShortProductNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TProduct", Storage="_TProducts", ThisKey="Barcode", OtherKey="Barcode")]
+		public EntitySet<TProduct> TProducts
+		{
+			get
+			{
+				return this._TProducts;
+			}
+			set
+			{
+				this._TProducts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TOrderItem", Storage="_TOrderItems", ThisKey="Barcode", OtherKey="Barcode")]
+		public EntitySet<TOrderItem> TOrderItems
+		{
+			get
+			{
+				return this._TOrderItems;
+			}
+			set
+			{
+				this._TOrderItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TInStock", Storage="_TInStocks", ThisKey="Barcode", OtherKey="BarcodeID")]
+		public EntitySet<TInStock> TInStocks
+		{
+			get
+			{
+				return this._TInStocks;
+			}
+			set
+			{
+				this._TInStocks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TBrand_TProductGroup", Storage="_TBrand", ThisKey="BrandID", OtherKey="BrandID", IsForeignKey=true)]
+		public TBrand TBrand
+		{
+			get
+			{
+				return this._TBrand.Entity;
+			}
+			set
+			{
+				TBrand previousValue = this._TBrand.Entity;
+				if (((previousValue != value) 
+							|| (this._TBrand.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TBrand.Entity = null;
+						previousValue.TProductGroups.Remove(this);
+					}
+					this._TBrand.Entity = value;
+					if ((value != null))
+					{
+						value.TProductGroups.Add(this);
+						this._BrandID = value.BrandID;
+					}
+					else
+					{
+						this._BrandID = default(int);
+					}
+					this.SendPropertyChanged("TBrand");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCategory_TProductGroup", Storage="_TCategory", ThisKey="CategoryID", OtherKey="CategoryID", IsForeignKey=true)]
+		public TCategory TCategory
+		{
+			get
+			{
+				return this._TCategory.Entity;
+			}
+			set
+			{
+				TCategory previousValue = this._TCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._TCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TCategory.Entity = null;
+						previousValue.TProductGroups.Remove(this);
+					}
+					this._TCategory.Entity = value;
+					if ((value != null))
+					{
+						value.TProductGroups.Add(this);
+						this._CategoryID = value.CategoryID;
+					}
+					else
+					{
+						this._CategoryID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TCategory");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TProducts(TProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = this;
+		}
+		
+		private void detach_TProducts(TProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = null;
+		}
+		
+		private void attach_TOrderItems(TOrderItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = this;
+		}
+		
+		private void detach_TOrderItems(TOrderItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = null;
+		}
+		
+		private void attach_TInStocks(TInStock entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = this;
+		}
+		
+		private void detach_TInStocks(TInStock entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TInStock")]
+	public partial class TInStock : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _StockID;
+		
+		private System.Nullable<int> _BarcodeID;
+		
+		private System.Nullable<int> _LocationID;
+		
+		private int _Quantity;
+		
+		private EntityRef<TProductGroup> _TProductGroup;
+		
+		private EntityRef<TLocation> _TLocation;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStockIDChanging(int value);
+    partial void OnStockIDChanged();
+    partial void OnBarcodeIDChanging(System.Nullable<int> value);
+    partial void OnBarcodeIDChanged();
+    partial void OnLocationIDChanging(System.Nullable<int> value);
+    partial void OnLocationIDChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    #endregion
+		
+		public TInStock()
+		{
+			this._TProductGroup = default(EntityRef<TProductGroup>);
+			this._TLocation = default(EntityRef<TLocation>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int StockID
+		{
+			get
+			{
+				return this._StockID;
+			}
+			set
+			{
+				if ((this._StockID != value))
+				{
+					this.OnStockIDChanging(value);
+					this.SendPropertyChanging();
+					this._StockID = value;
+					this.SendPropertyChanged("StockID");
+					this.OnStockIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", DbType="Int")]
+		public System.Nullable<int> BarcodeID
+		{
+			get
+			{
+				return this._BarcodeID;
+			}
+			set
+			{
+				if ((this._BarcodeID != value))
+				{
+					if (this._TProductGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBarcodeIDChanging(value);
+					this.SendPropertyChanging();
+					this._BarcodeID = value;
+					this.SendPropertyChanged("BarcodeID");
+					this.OnBarcodeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="Int")]
+		public System.Nullable<int> LocationID
+		{
+			get
+			{
+				return this._LocationID;
+			}
+			set
+			{
+				if ((this._LocationID != value))
+				{
+					if (this._TLocation.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._LocationID = value;
+					this.SendPropertyChanged("LocationID");
+					this.OnLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TInStock", Storage="_TProductGroup", ThisKey="BarcodeID", OtherKey="Barcode", IsForeignKey=true)]
+		public TProductGroup TProductGroup
+		{
+			get
+			{
+				return this._TProductGroup.Entity;
+			}
+			set
+			{
+				TProductGroup previousValue = this._TProductGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TProductGroup.Entity = null;
+						previousValue.TInStocks.Remove(this);
+					}
+					this._TProductGroup.Entity = value;
+					if ((value != null))
+					{
+						value.TInStocks.Add(this);
+						this._BarcodeID = value.Barcode;
+					}
+					else
+					{
+						this._BarcodeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TProductGroup");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TLocation_TInStock", Storage="_TLocation", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
+		public TLocation TLocation
+		{
+			get
+			{
+				return this._TLocation.Entity;
+			}
+			set
+			{
+				TLocation previousValue = this._TLocation.Entity;
+				if (((previousValue != value) 
+							|| (this._TLocation.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TLocation.Entity = null;
+						previousValue.TInStocks.Remove(this);
+					}
+					this._TLocation.Entity = value;
+					if ((value != null))
+					{
+						value.TInStocks.Add(this);
+						this._LocationID = value.LocationID;
+					}
+					else
+					{
+						this._LocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TLocation");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

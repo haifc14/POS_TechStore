@@ -47,38 +47,38 @@
             this.OrderControl_Panel.Controls.Add(this.FinalizeOrderButton);
             this.OrderControl_Panel.Controls.Add(this.SignOff_Button);
             this.OrderControl_Panel.Controls.Add(this.ReturnButton);
-            this.OrderControl_Panel.Location = new System.Drawing.Point(566, 627);
-            this.OrderControl_Panel.Margin = new System.Windows.Forms.Padding(4);
+            this.OrderControl_Panel.Location = new System.Drawing.Point(1132, 1215);
+            this.OrderControl_Panel.Margin = new System.Windows.Forms.Padding(8);
             this.OrderControl_Panel.Name = "OrderControl_Panel";
-            this.OrderControl_Panel.Size = new System.Drawing.Size(751, 104);
+            this.OrderControl_Panel.Size = new System.Drawing.Size(1502, 202);
             this.OrderControl_Panel.TabIndex = 2;
             // 
             // DayEndButton
             // 
-            this.DayEndButton.Location = new System.Drawing.Point(519, 9);
-            this.DayEndButton.Margin = new System.Windows.Forms.Padding(4);
+            this.DayEndButton.Location = new System.Drawing.Point(1038, 17);
+            this.DayEndButton.Margin = new System.Windows.Forms.Padding(8);
             this.DayEndButton.Name = "DayEndButton";
-            this.DayEndButton.Size = new System.Drawing.Size(100, 86);
+            this.DayEndButton.Size = new System.Drawing.Size(200, 167);
             this.DayEndButton.TabIndex = 46;
             this.DayEndButton.Text = "DayEnd";
             this.DayEndButton.UseVisualStyleBackColor = true;
             // 
             // DayReportButton
             // 
-            this.DayReportButton.Location = new System.Drawing.Point(627, 9);
-            this.DayReportButton.Margin = new System.Windows.Forms.Padding(4);
+            this.DayReportButton.Location = new System.Drawing.Point(1254, 17);
+            this.DayReportButton.Margin = new System.Windows.Forms.Padding(8);
             this.DayReportButton.Name = "DayReportButton";
-            this.DayReportButton.Size = new System.Drawing.Size(100, 86);
+            this.DayReportButton.Size = new System.Drawing.Size(200, 167);
             this.DayReportButton.TabIndex = 45;
             this.DayReportButton.Text = "DayReport";
             this.DayReportButton.UseVisualStyleBackColor = true;
             // 
             // FinalizeOrderButton
             // 
-            this.FinalizeOrderButton.Location = new System.Drawing.Point(23, 9);
-            this.FinalizeOrderButton.Margin = new System.Windows.Forms.Padding(4);
+            this.FinalizeOrderButton.Location = new System.Drawing.Point(46, 17);
+            this.FinalizeOrderButton.Margin = new System.Windows.Forms.Padding(8);
             this.FinalizeOrderButton.Name = "FinalizeOrderButton";
-            this.FinalizeOrderButton.Size = new System.Drawing.Size(234, 86);
+            this.FinalizeOrderButton.Size = new System.Drawing.Size(468, 167);
             this.FinalizeOrderButton.TabIndex = 44;
             this.FinalizeOrderButton.Text = "Finalize Order";
             this.FinalizeOrderButton.UseVisualStyleBackColor = true;
@@ -86,10 +86,10 @@
             // 
             // SignOff_Button
             // 
-            this.SignOff_Button.Location = new System.Drawing.Point(411, 9);
-            this.SignOff_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.SignOff_Button.Location = new System.Drawing.Point(822, 17);
+            this.SignOff_Button.Margin = new System.Windows.Forms.Padding(8);
             this.SignOff_Button.Name = "SignOff_Button";
-            this.SignOff_Button.Size = new System.Drawing.Size(100, 86);
+            this.SignOff_Button.Size = new System.Drawing.Size(200, 167);
             this.SignOff_Button.TabIndex = 43;
             this.SignOff_Button.Text = "Sign Off";
             this.SignOff_Button.UseVisualStyleBackColor = true;
@@ -97,10 +97,10 @@
             // 
             // ReturnButton
             // 
-            this.ReturnButton.Location = new System.Drawing.Point(288, 9);
-            this.ReturnButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ReturnButton.Location = new System.Drawing.Point(576, 17);
+            this.ReturnButton.Margin = new System.Windows.Forms.Padding(8);
             this.ReturnButton.Name = "ReturnButton";
-            this.ReturnButton.Size = new System.Drawing.Size(100, 86);
+            this.ReturnButton.Size = new System.Drawing.Size(200, 167);
             this.ReturnButton.TabIndex = 42;
             this.ReturnButton.Text = "Return";
             this.ReturnButton.UseVisualStyleBackColor = true;
@@ -109,31 +109,31 @@
             // 
             this.OrderControl.BackColor = System.Drawing.SystemColors.Control;
             this.OrderControl.EmployeeId = 0;
-            this.OrderControl.Location = new System.Drawing.Point(8, 11);
-            this.OrderControl.Margin = new System.Windows.Forms.Padding(1);
+            this.OrderControl.Location = new System.Drawing.Point(16, 21);
+            this.OrderControl.Margin = new System.Windows.Forms.Padding(2);
             this.OrderControl.Name = "OrderControl";
-            this.OrderControl.Size = new System.Drawing.Size(537, 720);
+            this.OrderControl.Size = new System.Drawing.Size(1074, 1395);
             this.OrderControl.TabIndex = 7;
             this.OrderControl.Load += new System.EventHandler(this.OrderControl_Load);
             // 
             // productViewControl1
             // 
             this.productViewControl1.BackColor = System.Drawing.SystemColors.Control;
-            this.productViewControl1.Location = new System.Drawing.Point(566, 10);
-            this.productViewControl1.Margin = new System.Windows.Forms.Padding(1);
+            this.productViewControl1.Location = new System.Drawing.Point(1132, 19);
+            this.productViewControl1.Margin = new System.Windows.Forms.Padding(2);
             this.productViewControl1.Name = "productViewControl1";
-            this.productViewControl1.Size = new System.Drawing.Size(750, 600);
+            this.productViewControl1.Size = new System.Drawing.Size(1500, 1162);
             this.productViewControl1.TabIndex = 6;
             // 
             // POSForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 745);
+            this.ClientSize = new System.Drawing.Size(2660, 1443);
             this.Controls.Add(this.OrderControl);
             this.Controls.Add(this.productViewControl1);
             this.Controls.Add(this.OrderControl_Panel);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(8);
             this.Name = "POSForm";
             this.Text = "POS";
             this.Load += new System.EventHandler(this.PosForm_Load);

@@ -11,6 +11,7 @@ namespace POSLibrary
     {
         internal const decimal PointsWorthTo1Dollar = 1000;
         internal const decimal PointsGainFactorFrom1Dollar = 1;
+        internal const int LocationId = 4;
 
         internal static string GetConnectionString()
         {
