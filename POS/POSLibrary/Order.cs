@@ -131,23 +131,24 @@ namespace POSLibrary
             this.TotalPaidByCard = moneyPaid;
         }
 
-        public void ReedemPoints(int points)
+        public void ReedemPoints(int inputPoints)
         {
-            if (Customer.CustomerId == "-1" && points != 0)
+            if (Customer.CustomerId == "-1" && inputPoints != 0)
             {
                 throw new Exception("Please scan loyality card first to redeem points!");
             }
-            if (points < 0)
+            if (inputPoints < 0)
             {
                 throw new Exception("Invalid Points amount supplied!");
             }
-            if (points > this.Customer.GetPoints())
+            if (inputPoints > this.Customer.GetPoints())
             {
                 throw new Exception("Not enough points available to redeem!");
             }
-            if (points <= this.Customer.GetPoints())
+            if (inputPoints <= this.Customer.GetPoints())
             {
-                this.TotalRedeemPoints = points;
+                this.TotalRedeemPoints = inputPoints;
+                Customer.ReedemPoints(inputPoints);
             }
         }
 
@@ -223,55 +224,56 @@ namespace POSLibrary
         {
             try
             {
-                using (var contex = new DataContext(Helper.GetConnectionString()))
+                using (TransactionScope transaction = new TransactionScope())
                 {
-                    //updating order
-                    var TOrder = new TOrder()
+                    using (var contex = new DataContext(Helper.GetConnectionString()))
                     {
-                        TotalPrice = this.Total,
-                        TotalDiscount = this.TotalDiscount + EmployeeDiscount,
-                        TotalTax = this.Tax,
-                        CardPayment = this.TotalPaidByCard,
-                        CashPayment = this.TotalPaidByCash,
-                        PoitRedeem = this.TotalRedeemPoints,
-                        PointEarned = this.Customer.GetPoints(),
-                        IsReturned = this.IsReturn ? 1 : 0,
-                        CustomerID = this.Customer.CustomerId,
-                        EmployeeId = this.EmployeeID,
-                    };
-                    contex.GetTable<TOrder>().InsertOnSubmit(TOrder);
-                    contex.SubmitChanges();
-                    //updating orderitem
-                    List<TOrderItem> TorderItemsList = new List<TOrderItem>();
-                    foreach (var item in this.ListOfItems)
-                    {
-                        var TOrderItem = new TOrderItem()
+                        //updating order
+                        var TOrder = new TOrder()
                         {
-                            Barcode = item.Barcode,
-                            OrderNumber = TOrder.OrderNumber
+                            TotalPrice = this.Total,
+                            TotalDiscount = this.TotalDiscount + EmployeeDiscount,
+                            TotalTax = this.Tax,
+                            CardPayment = this.TotalPaidByCard,
+                            CashPayment = this.TotalPaidByCash,
+                            PoitRedeem = this.TotalRedeemPoints,
+                            PointEarned = this.Customer.GetPoints(),
+                            IsReturned = this.IsReturn ? 1 : 0,
+                            CustomerID = this.Customer.CustomerId,
+                            EmployeeID = this.EmployeeID,
+                            OrdeDate = DateTime.UtcNow
                         };
-                        TorderItemsList.Add(TOrderItem);
+                        contex.GetTable<TOrder>().InsertOnSubmit(TOrder);
+                        contex.SubmitChanges();
+
+                        //updating orderitem
+
+                        List<TOrderItem> TorderItemsList = new List<TOrderItem>();
+                        foreach (var item in this.ListOfItems)
+                        {
+                            var TOrderItem = new TOrderItem()
+                            {
+                                Barcode = item.Barcode,
+                                OrderNumber = TOrder.OrderNumber
+                            };
+                            contex.GetTable<TInStock>().Where(instock => instock.BarcodeID == TOrderItem.Barcode && instock.LocationID == Helper.LocationId)
+                                                .ToList()[0].Quantity--;
+                            TorderItemsList.Add(TOrderItem);
+                        }
+                        contex.GetTable<TOrderItem>().InsertAllOnSubmit(TorderItemsList);
+                        contex.SubmitChanges();
+
+                        //updating customer
+
+                        var customers = contex.GetTable<TCustomer>().Where(customer => customer.CustomerId == this.Customer.CustomerId).ToList();
+                        if (customers.Count > 0)
+                        {
+                            MessageBox.Show(this.Customer.GetPoints().ToString());
+                            customers[0].TotalPoints = customers[0].TotalPoints - this.TotalRedeemPoints + (int)this.Total;
+                        }
+                        contex.SubmitChanges();
                     }
-                    contex.GetTable<TOrderItem>().InsertAllOnSubmit(TorderItemsList);
-                    contex.SubmitChanges();
-
-                    ////updating customer
-                    //var customerContex = contex.GetTable<TCustomer>();
-                    //var customers = customerContex.Where(customer => customer.CustomerID == this.Customer.CustomerId).ToList();
-                    //if (customers.Count != 0)
-                    //{
-                    //    customers[0].Name = this.Customer.GetName();
-                    //    customers[0].TotalPoints = this.Customer.GetPoints();
-
-                    //}
-                    //else
-                    //{
-                    //    customerContex.InsertOnSubmit(new TCustomer()
-                    //    {
-                    //        Name = this.Customer.GetName(),
-                    //        TotalPoints = this.Customer.GetPoints(),
-                    //    });
-                    //}
+                    transaction.Complete();
                 }
             }
             catch (Exception)

@@ -25,14 +25,14 @@ namespace POSLibrary
             CustomerId = customerId;
             var TCustomer = GetCustomerInfoFromDB();
             CustomerName = TCustomer.Name;
-            CustomerPoints = TCustomer.TotalPoints;
+            CustomerPoints = (int)TCustomer.TotalPoints;
         }
 
         private TCustomer GetCustomerInfoFromDB()
         {
             var context = new DataContext(Helper.GetConnectionString());
             var customers = context.GetTable<TCustomer>();
-            var filteredCustomers = customers.Where(customer => customer.CustomerID == CustomerId).ToList();
+            var filteredCustomers = customers.Where(customer => customer.CustomerId == CustomerId).ToList();
             if (filteredCustomers.Count > 0)
             {
                 return filteredCustomers[0];
@@ -52,6 +52,11 @@ namespace POSLibrary
         public int GetPoints()
         {
             return CustomerPoints;
+        }
+
+        public void ReedemPoints(int points)
+        {
+            this.CustomerPoints -= points;
         }
 
         public void EarnPoints(int points)
