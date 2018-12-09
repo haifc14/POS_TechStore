@@ -161,6 +161,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "POSForm";
             this.Text = "POS";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.POSForm_FormClosing);
             this.Load += new System.EventHandler(this.PosForm_Load);
             this.OrderControl_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
