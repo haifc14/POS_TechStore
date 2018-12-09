@@ -63,6 +63,16 @@ namespace POSApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dollardSymbol {
+            get {
+                object obj = ResourceManager.GetObject("dollardSymbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap loginPhoto {
             get {
                 object obj = ResourceManager.GetObject("loginPhoto", resourceCulture);
