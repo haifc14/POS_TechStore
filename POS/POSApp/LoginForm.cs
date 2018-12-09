@@ -56,5 +56,10 @@ namespace POSApp
                 Application.Exit();
             }
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            //pictureBoxLoginPhoto.Image = Image.FromFile("../../../Images/loginPhoto.jpg");
+        }
     }
 }
