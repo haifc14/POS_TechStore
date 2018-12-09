@@ -338,7 +338,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(345, 940);
+            this.btnClose.Location = new System.Drawing.Point(131, 940);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(257, 103);
             this.btnClose.TabIndex = 3;
@@ -349,7 +349,7 @@
             // btnExportData
             // 
             this.btnExportData.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportData.Location = new System.Drawing.Point(710, 940);
+            this.btnExportData.Location = new System.Drawing.Point(480, 940);
             this.btnExportData.Name = "btnExportData";
             this.btnExportData.Size = new System.Drawing.Size(241, 103);
             this.btnExportData.TabIndex = 3;
