@@ -36,8 +36,8 @@ namespace POSApp
                 if (returnedEmployeeID > 0)
                 {
                     POSForm posForm = new POSForm(returnedEmployeeID);
-                    this.Close();
                     posForm.Show();
+                    this.Close();
                 }
             }
             catch (Exception egf) 
@@ -48,6 +48,13 @@ namespace POSApp
                 PasswordTextbox.Text = "";
             }                    
         }
-        
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Application.OpenForms.Count == 1)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
