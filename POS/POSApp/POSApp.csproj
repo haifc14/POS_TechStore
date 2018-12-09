@@ -49,6 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DailyReportForm.Designer.cs">
+      <DependentUpon>DailyReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetCashTillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetCashTillForm.Designer.cs">
+      <DependentUpon>GetCashTillForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FinalizeOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,12 +79,12 @@
     <Compile Include="OrderControl.Designer.cs">
       <DependentUpon>OrderControl.cs</DependentUpon>
     </Compile>
-	<Compile Include="OrderPaymentOptionControl.cs">
+    <Compile Include="OrderPaymentOptionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OrderPaymentOptionControl.Designer.cs">
       <DependentUpon>OrderPaymentOptionControl.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="OrderItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -99,6 +111,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DailyReportForm.resx">
+      <DependentUpon>DailyReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GetCashTillForm.resx">
+      <DependentUpon>GetCashTillForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FinalizeOrderForm.resx">
       <DependentUpon>FinalizeOrderForm.cs</DependentUpon>
     </EmbeddedResource>
