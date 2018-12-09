@@ -39,7 +39,8 @@
             // 
             this.labelStartingCashTitle.AutoSize = true;
             this.labelStartingCashTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStartingCashTitle.Location = new System.Drawing.Point(37, 80);
+            this.labelStartingCashTitle.ForeColor = System.Drawing.Color.Black;
+            this.labelStartingCashTitle.Location = new System.Drawing.Point(43, 65);
             this.labelStartingCashTitle.Name = "labelStartingCashTitle";
             this.labelStartingCashTitle.Size = new System.Drawing.Size(257, 42);
             this.labelStartingCashTitle.TabIndex = 4;
@@ -49,44 +50,49 @@
             // 
             this.labelTotalCashEarnTitle.AutoSize = true;
             this.labelTotalCashEarnTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalCashEarnTitle.Location = new System.Drawing.Point(37, 200);
+            this.labelTotalCashEarnTitle.ForeColor = System.Drawing.Color.Black;
+            this.labelTotalCashEarnTitle.Location = new System.Drawing.Point(43, 164);
             this.labelTotalCashEarnTitle.Name = "labelTotalCashEarnTitle";
-            this.labelTotalCashEarnTitle.Size = new System.Drawing.Size(313, 42);
+            this.labelTotalCashEarnTitle.Size = new System.Drawing.Size(223, 42);
             this.labelTotalCashEarnTitle.TabIndex = 4;
-            this.labelTotalCashEarnTitle.Text = "Total Cash in Till";
+            this.labelTotalCashEarnTitle.Text = "Till Balance";
             // 
             // btnShowReport
             // 
+            this.btnShowReport.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnShowReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnShowReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowReport.Location = new System.Drawing.Point(229, 346);
+            this.btnShowReport.ForeColor = System.Drawing.Color.White;
+            this.btnShowReport.Location = new System.Drawing.Point(422, 266);
             this.btnShowReport.Name = "btnShowReport";
-            this.btnShowReport.Size = new System.Drawing.Size(247, 113);
+            this.btnShowReport.Size = new System.Drawing.Size(247, 93);
             this.btnShowReport.TabIndex = 3;
             this.btnShowReport.Text = "Show Report";
-            this.btnShowReport.UseVisualStyleBackColor = true;
+            this.btnShowReport.UseVisualStyleBackColor = false;
             this.btnShowReport.Click += new System.EventHandler(this.btnShowReport_Click);
             // 
             // textBoxStartingCash
             // 
-            this.textBoxStartingCash.Location = new System.Drawing.Point(387, 92);
+            this.textBoxStartingCash.Location = new System.Drawing.Point(339, 50);
             this.textBoxStartingCash.Multiline = true;
             this.textBoxStartingCash.Name = "textBoxStartingCash";
-            this.textBoxStartingCash.Size = new System.Drawing.Size(250, 51);
+            this.textBoxStartingCash.Size = new System.Drawing.Size(330, 57);
             this.textBoxStartingCash.TabIndex = 1;
             // 
             // textBoxTotalCashInTill
             // 
-            this.textBoxTotalCashInTill.Location = new System.Drawing.Point(387, 191);
+            this.textBoxTotalCashInTill.Location = new System.Drawing.Point(339, 155);
             this.textBoxTotalCashInTill.Multiline = true;
             this.textBoxTotalCashInTill.Name = "textBoxTotalCashInTill";
-            this.textBoxTotalCashInTill.Size = new System.Drawing.Size(250, 51);
+            this.textBoxTotalCashInTill.Size = new System.Drawing.Size(330, 57);
             this.textBoxTotalCashInTill.TabIndex = 2;
             // 
             // GetCashReportInputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 526);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(732, 408);
             this.Controls.Add(this.textBoxTotalCashInTill);
             this.Controls.Add(this.textBoxStartingCash);
             this.Controls.Add(this.btnShowReport);
