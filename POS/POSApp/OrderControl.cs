@@ -101,7 +101,8 @@ namespace POSApp
                     CustomerNameLabel.Text = customerName;
                     CustomerPointsLabel.Text = customerPoints.ToString();
                 }
-                
+
+                BarcodeTextBox.Clear();
             }
             catch (Exception exception)
             {
