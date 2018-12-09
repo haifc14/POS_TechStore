@@ -111,7 +111,6 @@ namespace POSApp
                 MessageBox.Show("Change : " + change.ToString());
                 if (change >= 0)
                 {
-                    CurrentOrder.EarnPoints();
                     CurrentOrder.SaveOrderToDatabase();
                     this.CloseCurrentOrder(this);
                 }

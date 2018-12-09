@@ -58,12 +58,5 @@ namespace POSLibrary
         {
             this.CustomerPoints -= points;
         }
-
-        public void EarnPoints(int points)
-        {
-            this.CustomerPoints = points;
-        }
-
-
     }
 }
