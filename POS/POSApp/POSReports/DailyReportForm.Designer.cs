@@ -59,6 +59,9 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnExportData = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.printDayEndReportDocs = new System.Drawing.Printing.PrintDocument();
+            this.printDialogDayEndReport = new System.Windows.Forms.PrintDialog();
             this.SuspendLayout();
             // 
             // labelCurrentDateTitle
@@ -338,7 +341,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(131, 940);
+            this.btnClose.Location = new System.Drawing.Point(149, 980);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(257, 103);
             this.btnClose.TabIndex = 3;
@@ -349,7 +352,7 @@
             // btnExportData
             // 
             this.btnExportData.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportData.Location = new System.Drawing.Point(480, 940);
+            this.btnExportData.Location = new System.Drawing.Point(498, 980);
             this.btnExportData.Name = "btnExportData";
             this.btnExportData.Size = new System.Drawing.Size(241, 103);
             this.btnExportData.TabIndex = 3;
@@ -357,11 +360,32 @@
             this.btnExportData.UseVisualStyleBackColor = true;
             this.btnExportData.Click += new System.EventHandler(this.btnExportData_Click);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Location = new System.Drawing.Point(830, 974);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(241, 109);
+            this.btnPrint.TabIndex = 4;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // printDayEndReportDocs
+            // 
+            this.printDayEndReportDocs.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDayEndReportDocs_PrintPage);
+            // 
+            // printDialogDayEndReport
+            // 
+            this.printDialogDayEndReport.Document = this.printDayEndReportDocs;
+            this.printDialogDayEndReport.UseEXDialog = true;
+            // 
             // DailyReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1272, 1068);
+            this.ClientSize = new System.Drawing.Size(1272, 1136);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnExportData);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel7);
@@ -433,5 +457,8 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnExportData;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Drawing.Printing.PrintDocument printDayEndReportDocs;
+        private System.Windows.Forms.PrintDialog printDialogDayEndReport;
     }
 }
