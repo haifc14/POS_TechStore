@@ -33,6 +33,7 @@
             this.btnShowReport = new System.Windows.Forms.Button();
             this.textBoxStartingCash = new System.Windows.Forms.TextBox();
             this.textBoxTotalCashInTill = new System.Windows.Forms.TextBox();
+            this.btnCancelInputTillBalance = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelStartingCashTitle
@@ -87,6 +88,20 @@
             this.textBoxTotalCashInTill.Size = new System.Drawing.Size(330, 57);
             this.textBoxTotalCashInTill.TabIndex = 2;
             // 
+            // btnCancelInputTillBalance
+            // 
+            this.btnCancelInputTillBalance.BackColor = System.Drawing.Color.Red;
+            this.btnCancelInputTillBalance.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelInputTillBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelInputTillBalance.ForeColor = System.Drawing.Color.White;
+            this.btnCancelInputTillBalance.Location = new System.Drawing.Point(76, 266);
+            this.btnCancelInputTillBalance.Name = "btnCancelInputTillBalance";
+            this.btnCancelInputTillBalance.Size = new System.Drawing.Size(247, 93);
+            this.btnCancelInputTillBalance.TabIndex = 3;
+            this.btnCancelInputTillBalance.Text = "Cancel";
+            this.btnCancelInputTillBalance.UseVisualStyleBackColor = false;
+            this.btnCancelInputTillBalance.Click += new System.EventHandler(this.btnCancelInputTillBalance_Click);
+            // 
             // GetCashReportInputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -95,6 +110,7 @@
             this.ClientSize = new System.Drawing.Size(732, 408);
             this.Controls.Add(this.textBoxTotalCashInTill);
             this.Controls.Add(this.textBoxStartingCash);
+            this.Controls.Add(this.btnCancelInputTillBalance);
             this.Controls.Add(this.btnShowReport);
             this.Controls.Add(this.labelTotalCashEarnTitle);
             this.Controls.Add(this.labelStartingCashTitle);
@@ -111,5 +127,6 @@
         private System.Windows.Forms.Button btnShowReport;
         private System.Windows.Forms.TextBox textBoxStartingCash;
         private System.Windows.Forms.TextBox textBoxTotalCashInTill;
+        private System.Windows.Forms.Button btnCancelInputTillBalance;
     }
 }

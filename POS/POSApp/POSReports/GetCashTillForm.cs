@@ -15,6 +15,7 @@ namespace POSApp
         public GetCashReportInputForm()
         {
             InitializeComponent();
+            this.ControlBox = false;
         }
 
         private void btnShowReport_Click(object sender, EventArgs e)
@@ -48,6 +49,11 @@ namespace POSApp
                 }
             }
             
+        }
+
+        private void btnCancelInputTillBalance_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
