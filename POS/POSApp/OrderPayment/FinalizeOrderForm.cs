@@ -42,7 +42,8 @@ namespace POSApp
                 Label label = new Label()
                 {
                     Width = this.OrderSummaryPanel.Width,
-                    Text = item.Name + "  " + item.Price
+                    Text = item.Name + "  " + item.Price,
+                    Font = new Font("Arial", 12, FontStyle.Bold),
                 };
                 this.OrderSummaryPanel.Controls.Add(label);
             }
@@ -53,30 +54,42 @@ namespace POSApp
             Label label = new Label()
             {
                 Width = this.OrderSummaryPanel.Width,
+                Font = new Font("Arial", 14, FontStyle.Bold),
             };
             this.OrderSummaryPanel.Controls.Add(label);
             label = new Label()
             {
                 Width = this.OrderSummaryPanel.Width,
-                Text = "Subtotal " + CurrentOrder.SubTotal.ToString()
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                Text = "--------------------------------------------",
             };
             this.OrderSummaryPanel.Controls.Add(label);
             label = new Label()
             {
                 Width = this.OrderSummaryPanel.Width,
-                Text = "Discount " + CurrentOrder.Discount.ToString()
+                Text = "Subtotal " + CurrentOrder.SubTotal.ToString(),
+                Font = new Font("Arial", 14, FontStyle.Bold),
             };
             this.OrderSummaryPanel.Controls.Add(label);
             label = new Label()
             {
                 Width = this.OrderSummaryPanel.Width,
-                Text = "Tax "+ CurrentOrder.Tax.ToString()
+                Text = "Discount " + CurrentOrder.Discount.ToString(),
+                Font = new Font("Arial", 14, FontStyle.Bold),
             };
             this.OrderSummaryPanel.Controls.Add(label);
             label = new Label()
             {
                 Width = this.OrderSummaryPanel.Width,
-                Text = "Total " + CurrentOrder.Total.ToString()
+                Text = "Tax "+ CurrentOrder.Tax.ToString(),
+                Font = new Font("Arial", 14, FontStyle.Bold),
+            };
+            this.OrderSummaryPanel.Controls.Add(label);
+            label = new Label()
+            {
+                Width = this.OrderSummaryPanel.Width,
+                Text = "Total " + CurrentOrder.Total.ToString(),
+                Font = new Font("Arial", 14, FontStyle.Bold),
             };
             this.OrderSummaryPanel.Controls.Add(label);
         }

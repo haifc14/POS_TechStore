@@ -143,5 +143,10 @@ namespace POSApp
                 this.OrderView_Panel.Controls.Remove(orderItemControl);
             };         
         }
+
+        private void OrderControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

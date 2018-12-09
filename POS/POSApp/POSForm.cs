@@ -123,8 +123,13 @@ namespace POSApp
 
         private void DayReportButton_Click(object sender, EventArgs e)
         {
-            GetCashReportInputForm tillCashInputForm = new GetCashReportInputForm();
-            tillCashInputForm.ShowDialog();
+            DialogResult result = MessageBox.Show("Are you sure you want to day close?", "warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.OK)
+            {
+                this.Hide();
+                GetCashReportInputForm tillCashInputForm = new GetCashReportInputForm();
+                tillCashInputForm.Show();
+            }
         }
 
         private void printDayDetailReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)

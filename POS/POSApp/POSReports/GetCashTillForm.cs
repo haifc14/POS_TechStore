@@ -28,14 +28,26 @@ namespace POSApp
             {
                 // valid inputs
                 DailyReportForm dailyReport = new DailyReportForm(validStartingCash, validTotalCashInTillCash);
-                dailyReport.ShowDialog();
                 this.Close();
+                dailyReport.Show();
             }
             else
             {
                 // invalid inputs
                 MessageBox.Show("Invalid cash input. Please try again..", "Wrong Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void GetCashReportInputForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Application.OpenForms.Count == 1)
+            {
+                foreach (Form item in Application.OpenForms)
+                {
+                    item.Show();
+                }
+            }
+            
         }
     }
 }

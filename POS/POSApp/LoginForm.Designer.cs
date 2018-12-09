@@ -43,10 +43,9 @@
             this.SignInBtn.BackColor = System.Drawing.Color.YellowGreen;
             this.SignInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SignInBtn.ForeColor = System.Drawing.Color.White;
-            this.SignInBtn.Location = new System.Drawing.Point(875, 406);
-            this.SignInBtn.Margin = new System.Windows.Forms.Padding(6);
+            this.SignInBtn.Location = new System.Drawing.Point(438, 211);
             this.SignInBtn.Name = "SignInBtn";
-            this.SignInBtn.Size = new System.Drawing.Size(215, 89);
+            this.SignInBtn.Size = new System.Drawing.Size(108, 46);
             this.SignInBtn.TabIndex = 0;
             this.SignInBtn.Text = "Log In";
             this.SignInBtn.UseVisualStyleBackColor = false;
@@ -56,10 +55,9 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(407, 161);
-            this.UsernameLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.UsernameLabel.Location = new System.Drawing.Point(204, 84);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(196, 44);
+            this.UsernameLabel.Size = new System.Drawing.Size(97, 24);
             this.UsernameLabel.TabIndex = 1;
             this.UsernameLabel.Text = "Username";
             // 
@@ -67,29 +65,29 @@
             // 
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(398, 292);
-            this.PasswordLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.PasswordLabel.Location = new System.Drawing.Point(199, 152);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(207, 44);
+            this.PasswordLabel.Size = new System.Drawing.Size(102, 24);
             this.PasswordLabel.TabIndex = 2;
             this.PasswordLabel.Text = "Passwaord";
             // 
             // UserNameTextbox
             // 
-            this.UserNameTextbox.Location = new System.Drawing.Point(615, 149);
-            this.UserNameTextbox.Margin = new System.Windows.Forms.Padding(6);
+            this.UserNameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserNameTextbox.Location = new System.Drawing.Point(308, 78);
             this.UserNameTextbox.Multiline = true;
             this.UserNameTextbox.Name = "UserNameTextbox";
-            this.UserNameTextbox.Size = new System.Drawing.Size(475, 56);
+            this.UserNameTextbox.Size = new System.Drawing.Size(240, 31);
             this.UserNameTextbox.TabIndex = 3;
             // 
             // PasswordTextbox
             // 
-            this.PasswordTextbox.Location = new System.Drawing.Point(615, 280);
-            this.PasswordTextbox.Margin = new System.Windows.Forms.Padding(6);
+            this.PasswordTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordTextbox.Location = new System.Drawing.Point(308, 146);
             this.PasswordTextbox.Multiline = true;
             this.PasswordTextbox.Name = "PasswordTextbox";
-            this.PasswordTextbox.Size = new System.Drawing.Size(475, 56);
+            this.PasswordTextbox.PasswordChar = '*';
+            this.PasswordTextbox.Size = new System.Drawing.Size(240, 31);
             this.PasswordTextbox.TabIndex = 4;
             this.PasswordTextbox.Text = "\r\n";
             // 
@@ -98,9 +96,10 @@
             this.pictureBoxLoginPhoto.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLoginPhoto.ErrorImage = null;
             this.pictureBoxLoginPhoto.Image = global::POSApp.Properties.Resources.loginPhoto;
-            this.pictureBoxLoginPhoto.Location = new System.Drawing.Point(33, 123);
+            this.pictureBoxLoginPhoto.Location = new System.Drawing.Point(16, 64);
+            this.pictureBoxLoginPhoto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBoxLoginPhoto.Name = "pictureBoxLoginPhoto";
-            this.pictureBoxLoginPhoto.Size = new System.Drawing.Size(354, 336);
+            this.pictureBoxLoginPhoto.Size = new System.Drawing.Size(177, 175);
             this.pictureBoxLoginPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLoginPhoto.TabIndex = 5;
             this.pictureBoxLoginPhoto.TabStop = false;
@@ -108,17 +107,18 @@
             // panelLineDeco
             // 
             this.panelLineDeco.BackColor = System.Drawing.Color.YellowGreen;
-            this.panelLineDeco.Location = new System.Drawing.Point(33, 40);
+            this.panelLineDeco.Location = new System.Drawing.Point(16, 21);
+            this.panelLineDeco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelLineDeco.Name = "panelLineDeco";
-            this.panelLineDeco.Size = new System.Drawing.Size(1057, 16);
+            this.panelLineDeco.Size = new System.Drawing.Size(528, 8);
             this.panelLineDeco.TabIndex = 6;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1121, 560);
+            this.ClientSize = new System.Drawing.Size(561, 291);
             this.Controls.Add(this.panelLineDeco);
             this.Controls.Add(this.pictureBoxLoginPhoto);
             this.Controls.Add(this.PasswordTextbox);
@@ -126,7 +126,6 @@
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.SignInBtn);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "LoginForm";
             this.Text = "POS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);

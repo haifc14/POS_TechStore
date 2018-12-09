@@ -133,5 +133,17 @@ namespace POSApp
         {
             printDayEndReportDocs.Print();
         }
+
+        private void DailyReportForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Application.OpenForms.Count == 1)
+            {
+                Application.Exit();
+            }
+            foreach (Form item in Application.OpenForms)
+            {
+                item.Show();
+            }
+        }
     }
 }

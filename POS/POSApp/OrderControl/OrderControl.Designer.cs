@@ -39,64 +39,75 @@
             this.CustomerPointsLabel = new System.Windows.Forms.Label();
             this.OrderType_Panel = new System.Windows.Forms.Panel();
             this.OrderType_Label = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.InputBarcodePanel.SuspendLayout();
             this.OrderType_Panel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // OrderSummaryFlowPanel
             // 
-            this.OrderSummaryFlowPanel.Location = new System.Drawing.Point(6, 876);
-            this.OrderSummaryFlowPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OrderSummaryFlowPanel.BackColor = System.Drawing.Color.White;
+            this.OrderSummaryFlowPanel.Location = new System.Drawing.Point(3, 2);
+            this.OrderSummaryFlowPanel.Margin = new System.Windows.Forms.Padding(2);
             this.OrderSummaryFlowPanel.Name = "OrderSummaryFlowPanel";
-            this.OrderSummaryFlowPanel.Size = new System.Drawing.Size(1064, 320);
+            this.OrderSummaryFlowPanel.Size = new System.Drawing.Size(391, 133);
             this.OrderSummaryFlowPanel.TabIndex = 13;
             // 
             // InputBarcodePanel
             // 
             this.InputBarcodePanel.Controls.Add(this.BarcodeTextBox);
             this.InputBarcodePanel.Controls.Add(this.SubmitBarcodeBtn);
-            this.InputBarcodePanel.Location = new System.Drawing.Point(6, 1201);
-            this.InputBarcodePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.InputBarcodePanel.Location = new System.Drawing.Point(2, 504);
+            this.InputBarcodePanel.Margin = new System.Windows.Forms.Padding(2);
             this.InputBarcodePanel.Name = "InputBarcodePanel";
-            this.InputBarcodePanel.Size = new System.Drawing.Size(1062, 192);
+            this.InputBarcodePanel.Size = new System.Drawing.Size(398, 81);
             this.InputBarcodePanel.TabIndex = 12;
             // 
             // BarcodeTextBox
             // 
-            this.BarcodeTextBox.Location = new System.Drawing.Point(128, 85);
-            this.BarcodeTextBox.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.BarcodeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarcodeTextBox.Location = new System.Drawing.Point(44, 31);
             this.BarcodeTextBox.Name = "BarcodeTextBox";
-            this.BarcodeTextBox.Size = new System.Drawing.Size(546, 38);
+            this.BarcodeTextBox.Size = new System.Drawing.Size(207, 26);
             this.BarcodeTextBox.TabIndex = 13;
             // 
             // SubmitBarcodeBtn
             // 
-            this.SubmitBarcodeBtn.Location = new System.Drawing.Point(736, 76);
-            this.SubmitBarcodeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SubmitBarcodeBtn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.SubmitBarcodeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SubmitBarcodeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SubmitBarcodeBtn.ForeColor = System.Drawing.Color.White;
+            this.SubmitBarcodeBtn.Location = new System.Drawing.Point(274, 26);
+            this.SubmitBarcodeBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SubmitBarcodeBtn.Name = "SubmitBarcodeBtn";
-            this.SubmitBarcodeBtn.Size = new System.Drawing.Size(194, 62);
+            this.SubmitBarcodeBtn.Size = new System.Drawing.Size(94, 38);
             this.SubmitBarcodeBtn.TabIndex = 14;
-            this.SubmitBarcodeBtn.Text = "Submit";
-            this.SubmitBarcodeBtn.UseVisualStyleBackColor = true;
+            this.SubmitBarcodeBtn.Text = "Scan";
+            this.SubmitBarcodeBtn.UseVisualStyleBackColor = false;
             this.SubmitBarcodeBtn.Click += new System.EventHandler(this.SubmitBarcodeBtn_Click);
             // 
             // OrderView_Panel
             // 
             this.OrderView_Panel.AutoScroll = true;
-            this.OrderView_Panel.Location = new System.Drawing.Point(6, 147);
-            this.OrderView_Panel.Margin = new System.Windows.Forms.Padding(66, 62, 66, 62);
+            this.OrderView_Panel.BackColor = System.Drawing.Color.White;
+            this.OrderView_Panel.Location = new System.Drawing.Point(3, 2);
+            this.OrderView_Panel.Margin = new System.Windows.Forms.Padding(25, 26, 25, 26);
             this.OrderView_Panel.Name = "OrderView_Panel";
-            this.OrderView_Panel.Size = new System.Drawing.Size(1062, 723);
+            this.OrderView_Panel.Size = new System.Drawing.Size(391, 283);
             this.OrderView_Panel.TabIndex = 11;
             // 
             // EmployeeIDLabel
             // 
             this.EmployeeIDLabel.AutoSize = true;
             this.EmployeeIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeIDLabel.Location = new System.Drawing.Point(296, 13);
-            this.EmployeeIDLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.EmployeeIDLabel.ForeColor = System.Drawing.Color.Black;
+            this.EmployeeIDLabel.Location = new System.Drawing.Point(111, 5);
+            this.EmployeeIDLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.EmployeeIDLabel.Name = "EmployeeIDLabel";
-            this.EmployeeIDLabel.Size = new System.Drawing.Size(131, 54);
+            this.EmployeeIDLabel.Size = new System.Drawing.Size(54, 24);
             this.EmployeeIDLabel.TabIndex = 14;
             this.EmployeeIDLabel.Text = "1001";
             // 
@@ -104,10 +115,11 @@
             // 
             this.EmployeeIDTitleLabel.AutoSize = true;
             this.EmployeeIDTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeIDTitleLabel.Location = new System.Drawing.Point(8, 19);
-            this.EmployeeIDTitleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.EmployeeIDTitleLabel.ForeColor = System.Drawing.Color.Black;
+            this.EmployeeIDTitleLabel.Location = new System.Drawing.Point(3, 8);
+            this.EmployeeIDTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.EmployeeIDTitleLabel.Name = "EmployeeIDTitleLabel";
-            this.EmployeeIDTitleLabel.Size = new System.Drawing.Size(259, 46);
+            this.EmployeeIDTitleLabel.Size = new System.Drawing.Size(111, 20);
             this.EmployeeIDTitleLabel.TabIndex = 16;
             this.EmployeeIDTitleLabel.Text = "EmployeeID:";
             // 
@@ -115,60 +127,86 @@
             // 
             this.CustomerNameLabel.AutoSize = true;
             this.CustomerNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerNameLabel.Location = new System.Drawing.Point(628, 19);
-            this.CustomerNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CustomerNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.CustomerNameLabel.Location = new System.Drawing.Point(236, 8);
+            this.CustomerNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CustomerNameLabel.Name = "CustomerNameLabel";
-            this.CustomerNameLabel.Size = new System.Drawing.Size(0, 46);
+            this.CustomerNameLabel.Size = new System.Drawing.Size(0, 20);
             this.CustomerNameLabel.TabIndex = 17;
             // 
             // CustomerPointsLabel
             // 
             this.CustomerPointsLabel.AutoSize = true;
             this.CustomerPointsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerPointsLabel.ForeColor = System.Drawing.Color.DarkViolet;
-            this.CustomerPointsLabel.Location = new System.Drawing.Point(878, 19);
-            this.CustomerPointsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CustomerPointsLabel.ForeColor = System.Drawing.Color.Black;
+            this.CustomerPointsLabel.Location = new System.Drawing.Point(329, 8);
+            this.CustomerPointsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CustomerPointsLabel.Name = "CustomerPointsLabel";
-            this.CustomerPointsLabel.Size = new System.Drawing.Size(0, 54);
+            this.CustomerPointsLabel.Size = new System.Drawing.Size(0, 24);
             this.CustomerPointsLabel.TabIndex = 18;
             this.CustomerPointsLabel.Tag = "";
             // 
             // OrderType_Panel
             // 
+            this.OrderType_Panel.BackColor = System.Drawing.Color.White;
             this.OrderType_Panel.Controls.Add(this.OrderType_Label);
-            this.OrderType_Panel.Location = new System.Drawing.Point(6, 81);
+            this.OrderType_Panel.Location = new System.Drawing.Point(2, 34);
+            this.OrderType_Panel.Margin = new System.Windows.Forms.Padding(1);
             this.OrderType_Panel.Name = "OrderType_Panel";
-            this.OrderType_Panel.Size = new System.Drawing.Size(1062, 60);
+            this.OrderType_Panel.Size = new System.Drawing.Size(398, 25);
             this.OrderType_Panel.TabIndex = 19;
             // 
             // OrderType_Label
             // 
             this.OrderType_Label.AutoSize = true;
             this.OrderType_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderType_Label.Location = new System.Drawing.Point(10, 10);
+            this.OrderType_Label.Location = new System.Drawing.Point(4, 4);
+            this.OrderType_Label.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.OrderType_Label.Name = "OrderType_Label";
-            this.OrderType_Label.Size = new System.Drawing.Size(0, 46);
+            this.OrderType_Label.Size = new System.Drawing.Size(0, 20);
             this.OrderType_Label.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Green;
+            this.panel1.Controls.Add(this.OrderSummaryFlowPanel);
+            this.panel1.Location = new System.Drawing.Point(3, 357);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(397, 138);
+            this.panel1.TabIndex = 20;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Green;
+            this.panel2.Controls.Add(this.OrderView_Panel);
+            this.panel2.Location = new System.Drawing.Point(3, 63);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(397, 288);
+            this.panel2.TabIndex = 0;
             // 
             // OrderControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.OrderType_Panel);
             this.Controls.Add(this.CustomerPointsLabel);
             this.Controls.Add(this.CustomerNameLabel);
             this.Controls.Add(this.EmployeeIDTitleLabel);
             this.Controls.Add(this.EmployeeIDLabel);
-            this.Controls.Add(this.OrderSummaryFlowPanel);
             this.Controls.Add(this.InputBarcodePanel);
-            this.Controls.Add(this.OrderView_Panel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "OrderControl";
-            this.Size = new System.Drawing.Size(1074, 1395);
+            this.Size = new System.Drawing.Size(403, 585);
+            this.Load += new System.EventHandler(this.OrderControl_Load);
             this.InputBarcodePanel.ResumeLayout(false);
             this.InputBarcodePanel.PerformLayout();
             this.OrderType_Panel.ResumeLayout(false);
             this.OrderType_Panel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +225,7 @@
         private System.Windows.Forms.Label CustomerPointsLabel;
         private System.Windows.Forms.Panel OrderType_Panel;
         private System.Windows.Forms.Label OrderType_Label;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

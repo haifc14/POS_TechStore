@@ -42,7 +42,6 @@ namespace POSApp
             }
             catch (Exception egf) 
             {
-                MessageBox.Show(egf.Message);
                 MessageBox.Show("Invalid username and password. Try again...");
                 UserNameTextbox.Text = "";
                 PasswordTextbox.Text = "";
