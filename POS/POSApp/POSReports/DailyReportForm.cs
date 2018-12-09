@@ -100,5 +100,38 @@ namespace POSApp
             }
             
         }
+
+        private void printDayEndReportDocs_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            //DateTime currentDate = DateTime.UtcNow.Date;
+            DateTime currentDate = DateTime.Parse("2018-12-09 20:44:02.3033333"); // for testing           
+            List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd(currentDate);
+
+            int x = e.MarginBounds.Left;
+            int y = e.MarginBounds.Top;
+            int nxtLineIncrement = 20;
+            Graphics g = e.Graphics;
+            var font = new Font("Arial", 16);
+            var brush = new SolidBrush(Color.Black);
+            g.DrawString("Day End Summary Report", font, brush, x, y);
+            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+
+            g.DrawString("\tDate : " + currentDate.ToLongDateString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tTotal Orders : " + TotalOrder.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tTotal Items : " + TotalItems.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tTotal Income By Card : " + TotalIncomeByCard.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tTotal Income By Cash : " + TotalIncomeByCash.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tTotal Redeem Points Fee : " + TotalReedemsPoints.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tTotal Income : " + TotalIncome.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tStarting Cash : " + StartingCash.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tTotal Till Balance : " + ActualCashInTill.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tVariance : " + Variance.ToString(), font, brush, x, y += nxtLineIncrement);
+                     
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            printDayEndReportDocs.Print();
+        }
     }
 }

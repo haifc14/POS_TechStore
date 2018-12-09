@@ -1,9 +1,9 @@
 			--------DAY END SUMMARY REPORT-----------
 	Date: December 9, 2018
-	Total Orders: 25
-	Total Items: 34
-	Total Income By Card: 1355.0000
-	Total Income By Cash: 14673.0000
+	Total Orders: 27
+	Total Items: 38
+	Total Income By Card: 2355.0000
+	Total Income By Cash: 15302.0000
 	Total Redeems Fee: 11
-	Total Income: 16069.0000
-	Variance: 10273.0000
+	Total Income: 17698.0000
+	Variance: 10147.0000
