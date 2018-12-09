@@ -62,9 +62,9 @@ namespace POSApp
 
         private void SignOff_Button_Click(object sender, EventArgs e)
         {
-            this.Close();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
+            this.Close();
         }
 
         private void PrintLastOrderBtn_Click(object sender, EventArgs e)
@@ -157,6 +157,20 @@ namespace POSApp
                 g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
             }
                        
+        }
+
+        private void ReturnButton_Click(object sender, EventArgs e)
+        {
+            // if items are already added in order show error
+            if (this.OrderControl.CurrentOrder.ListOfItems.Count > 0)
+            {
+                MessageBox.Show("Finish current order first. or abort transaction!");
+            }
+            else
+            {
+                this.OrderControl.CurrentOrder.VoidTransaction();
+                this.OrderControl.OrderType = "---------Void Transaction-----------";
+            }
         }
     }
 }

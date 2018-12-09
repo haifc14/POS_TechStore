@@ -26,6 +26,13 @@ namespace POSLibrary
             Quantity = quantity;
         }
 
+        public void RetrunProduct()
+        {
+            Price = -Price;
+            Discount = -Discount;
+            Tax = -Tax;
+        }
+
         public Product(int barcode)
         {
             GetProductInfo(barcode);
@@ -59,7 +66,6 @@ namespace POSLibrary
                 {
                     throw new Exception("Product not available in store!");
                 }
-
             }
         }       
     }

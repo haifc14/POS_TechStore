@@ -66,6 +66,9 @@ namespace POSLibrary
     partial void InsertTProductGroup(TProductGroup instance);
     partial void UpdateTProductGroup(TProductGroup instance);
     partial void DeleteTProductGroup(TProductGroup instance);
+    partial void InsertTReturned(TReturned instance);
+    partial void UpdateTReturned(TReturned instance);
+    partial void DeleteTReturned(TReturned instance);
     #endregion
 		
 		public POSmodelsDataContext() : 
@@ -191,6 +194,14 @@ namespace POSLibrary
 			get
 			{
 				return this.GetTable<TProductGroup>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TReturned> TReturneds
+		{
+			get
+			{
+				return this.GetTable<TReturned>();
 			}
 		}
 	}
@@ -740,6 +751,8 @@ namespace POSLibrary
 		
 		private EntitySet<TInStock> _TInStocks;
 		
+		private EntitySet<TReturned> _TReturneds;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -760,6 +773,7 @@ namespace POSLibrary
 		{
 			this._TPurchaseLogs = new EntitySet<TPurchaseLog>(new Action<TPurchaseLog>(this.attach_TPurchaseLogs), new Action<TPurchaseLog>(this.detach_TPurchaseLogs));
 			this._TInStocks = new EntitySet<TInStock>(new Action<TInStock>(this.attach_TInStocks), new Action<TInStock>(this.detach_TInStocks));
+			this._TReturneds = new EntitySet<TReturned>(new Action<TReturned>(this.attach_TReturneds), new Action<TReturned>(this.detach_TReturneds));
 			OnCreated();
 		}
 		
@@ -889,6 +903,19 @@ namespace POSLibrary
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TLocation_TReturned", Storage="_TReturneds", ThisKey="LocationID", OtherKey="LocationID")]
+		public EntitySet<TReturned> TReturneds
+		{
+			get
+			{
+				return this._TReturneds;
+			}
+			set
+			{
+				this._TReturneds.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -928,6 +955,18 @@ namespace POSLibrary
 		}
 		
 		private void detach_TInStocks(TInStock entity)
+		{
+			this.SendPropertyChanging();
+			entity.TLocation = null;
+		}
+		
+		private void attach_TReturneds(TReturned entity)
+		{
+			this.SendPropertyChanging();
+			entity.TLocation = this;
+		}
+		
+		private void detach_TReturneds(TReturned entity)
 		{
 			this.SendPropertyChanging();
 			entity.TLocation = null;
@@ -2324,6 +2363,8 @@ namespace POSLibrary
 		
 		private EntitySet<TOrderItem> _TOrderItems;
 		
+		private EntitySet<TReturned> _TReturneds;
+		
 		private EntityRef<TBrand> _TBrand;
 		
 		private EntityRef<TCategory> _TCategory;
@@ -2359,6 +2400,7 @@ namespace POSLibrary
 			this._TProducts = new EntitySet<TProduct>(new Action<TProduct>(this.attach_TProducts), new Action<TProduct>(this.detach_TProducts));
 			this._TInStocks = new EntitySet<TInStock>(new Action<TInStock>(this.attach_TInStocks), new Action<TInStock>(this.detach_TInStocks));
 			this._TOrderItems = new EntitySet<TOrderItem>(new Action<TOrderItem>(this.attach_TOrderItems), new Action<TOrderItem>(this.detach_TOrderItems));
+			this._TReturneds = new EntitySet<TReturned>(new Action<TReturned>(this.attach_TReturneds), new Action<TReturned>(this.detach_TReturneds));
 			this._TBrand = default(EntityRef<TBrand>);
 			this._TCategory = default(EntityRef<TCategory>);
 			OnCreated();
@@ -2611,6 +2653,19 @@ namespace POSLibrary
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TReturned", Storage="_TReturneds", ThisKey="Barcode", OtherKey="BarcodeID")]
+		public EntitySet<TReturned> TReturneds
+		{
+			get
+			{
+				return this._TReturneds;
+			}
+			set
+			{
+				this._TReturneds.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TBrand_TProductGroup", Storage="_TBrand", ThisKey="BrandID", OtherKey="BrandID", IsForeignKey=true)]
 		public TBrand TBrand
 		{
@@ -2733,6 +2788,234 @@ namespace POSLibrary
 		{
 			this.SendPropertyChanging();
 			entity.TProductGroup = null;
+		}
+		
+		private void attach_TReturneds(TReturned entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = this;
+		}
+		
+		private void detach_TReturneds(TReturned entity)
+		{
+			this.SendPropertyChanging();
+			entity.TProductGroup = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TReturned")]
+	public partial class TReturned : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ReturnID;
+		
+		private System.Nullable<int> _BarcodeID;
+		
+		private System.Nullable<int> _LocationID;
+		
+		private int _Quantity;
+		
+		private EntityRef<TProductGroup> _TProductGroup;
+		
+		private EntityRef<TLocation> _TLocation;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnReturnIDChanging(int value);
+    partial void OnReturnIDChanged();
+    partial void OnBarcodeIDChanging(System.Nullable<int> value);
+    partial void OnBarcodeIDChanged();
+    partial void OnLocationIDChanging(System.Nullable<int> value);
+    partial void OnLocationIDChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    #endregion
+		
+		public TReturned()
+		{
+			this._TProductGroup = default(EntityRef<TProductGroup>);
+			this._TLocation = default(EntityRef<TLocation>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReturnID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ReturnID
+		{
+			get
+			{
+				return this._ReturnID;
+			}
+			set
+			{
+				if ((this._ReturnID != value))
+				{
+					this.OnReturnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReturnID = value;
+					this.SendPropertyChanged("ReturnID");
+					this.OnReturnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", DbType="Int")]
+		public System.Nullable<int> BarcodeID
+		{
+			get
+			{
+				return this._BarcodeID;
+			}
+			set
+			{
+				if ((this._BarcodeID != value))
+				{
+					if (this._TProductGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBarcodeIDChanging(value);
+					this.SendPropertyChanging();
+					this._BarcodeID = value;
+					this.SendPropertyChanged("BarcodeID");
+					this.OnBarcodeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="Int")]
+		public System.Nullable<int> LocationID
+		{
+			get
+			{
+				return this._LocationID;
+			}
+			set
+			{
+				if ((this._LocationID != value))
+				{
+					if (this._TLocation.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._LocationID = value;
+					this.SendPropertyChanged("LocationID");
+					this.OnLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TProductGroup_TReturned", Storage="_TProductGroup", ThisKey="BarcodeID", OtherKey="Barcode", IsForeignKey=true)]
+		public TProductGroup TProductGroup
+		{
+			get
+			{
+				return this._TProductGroup.Entity;
+			}
+			set
+			{
+				TProductGroup previousValue = this._TProductGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._TProductGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TProductGroup.Entity = null;
+						previousValue.TReturneds.Remove(this);
+					}
+					this._TProductGroup.Entity = value;
+					if ((value != null))
+					{
+						value.TReturneds.Add(this);
+						this._BarcodeID = value.Barcode;
+					}
+					else
+					{
+						this._BarcodeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TProductGroup");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TLocation_TReturned", Storage="_TLocation", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
+		public TLocation TLocation
+		{
+			get
+			{
+				return this._TLocation.Entity;
+			}
+			set
+			{
+				TLocation previousValue = this._TLocation.Entity;
+				if (((previousValue != value) 
+							|| (this._TLocation.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TLocation.Entity = null;
+						previousValue.TReturneds.Remove(this);
+					}
+					this._TLocation.Entity = value;
+					if ((value != null))
+					{
+						value.TReturneds.Add(this);
+						this._LocationID = value.LocationID;
+					}
+					else
+					{
+						this._LocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TLocation");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

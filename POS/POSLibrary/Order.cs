@@ -98,6 +98,12 @@ namespace POSLibrary
         #endregion
 
         #region Methods
+        public void VoidTransaction()
+        {
+            this.IsReturn = true;
+        }
+
+
         public decimal GetBalanceDue()
         {
             UpdateOrderInfo();
@@ -163,6 +169,10 @@ namespace POSLibrary
 
         public void AddItem(Product productToAdd)
         {
+            if (IsReturn)
+            {
+                productToAdd.RetrunProduct();
+            }
             ListOfItems.Add(productToAdd);
             UpdateOrderInfo();         
         }
@@ -193,13 +203,6 @@ namespace POSLibrary
                 Discount += product.Discount;              
             }
             Total = (SubTotal + Tax) - Discount;
-        }
-
-        public void UpdateOrderStatus()
-        {
-            if (!IsReturn) return;
-
-            Total = -Total;       
         }
 
         private void ResetOrder()
@@ -251,12 +254,20 @@ namespace POSLibrary
                                 Barcode = item.Barcode,
                                 OrderNumber = TOrder.OrderNumber
                             };
-                            contex.GetTable<TInStock>().Where(instock => instock.BarcodeID == TOrderItem.Barcode && instock.LocationID == Helper.LocationId)
+                            if (!IsReturn)
+                            {
+                                contex.GetTable<TInStock>().Where(instock => instock.BarcodeID == TOrderItem.Barcode && instock.LocationID == Helper.LocationId)
                                                 .ToList()[0].Quantity--;
+                            }
+                            else
+                            {
+                                var returnedProduct = new TReturned() { LocationID = Helper.LocationId, Quantity = 1, BarcodeID = TOrderItem.Barcode};
+                                contex.GetTable<TReturned>().InsertOnSubmit(returnedProduct);
+                            }
                             TorderItemsList.Add(TOrderItem);
                         }
                         contex.GetTable<TOrderItem>().InsertAllOnSubmit(TorderItemsList);
-                        contex.SubmitChanges();
+                        contex.SubmitChanges(); 
 
                         //updating customer
 

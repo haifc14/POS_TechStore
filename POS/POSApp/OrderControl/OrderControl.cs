@@ -41,11 +41,19 @@ namespace POSApp
             }
         }
 
+        public string OrderType
+        {
+            get { return OrderType_Label.Text; }
+            set { OrderType_Label.Text = value; }
+        }
+
         public OrderControl()
         {
             InitializeComponent();
             CurrentOrder = new Order(new Customer());
             OrderSummaryView = new OrderSummaryControl();
+            // Binding data of Temporary Order To OrderSummaryControl                 
+            BindingOrderDataToOrderView(CurrentOrder, OrderSummaryView);
         }
 
 
@@ -69,7 +77,10 @@ namespace POSApp
                 {
                     // Get Scanned Product info 
                     Product scannedItem = new Product(itemBarcode);
-
+                    if (!CurrentOrder.IsReturn)
+                    {
+                        scannedItem.RetrunProduct();
+                    }
                     // display the scanned item on Left Product Panel            
                     OrderItemControl ItemControl = new OrderItemControl(scannedItem);
                     ItemControl.RemoveItemEvent += RemoveItem();
@@ -78,13 +89,9 @@ namespace POSApp
                     // Adding scanned item to a order                 
                     CurrentOrder.AddItem(scannedItem);
 
-                    // Binding data of Temporary Order To OrderSummaryControl                 
-                    BindingOrderDataToOrderView(CurrentOrder, OrderSummaryView);
-
                     // Display Order Info to form
                     // OrderSummaryFlowPanel.Controls.Clear();
                     OrderSummaryFlowPanel.Controls.Add(OrderSummaryView);
-                    
                 }
                 else
                 {
@@ -114,7 +121,6 @@ namespace POSApp
 
         private void BindingOrderDataToOrderView(Order orderData, OrderSummaryControl orderUI)
         {
-            orderUI.DataBindings.Clear();
 
             Binding bindingOrderSubTotal = new Binding("SubTotal", orderData, "SubTotal", true, DataSourceUpdateMode.OnPropertyChanged);
             orderUI.DataBindings.Add(bindingOrderSubTotal);
