@@ -113,8 +113,8 @@ namespace POSApp
             Graphics g = e.Graphics;
             var font = new Font("Arial", 16);
             var brush = new SolidBrush(Color.Black);
-            g.DrawString("Day End Summary Report", font, brush, x, y);
-            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("\tDay End Summary Report", font, brush, x, y);
+            g.DrawString("\t--------------------------------------", font, brush, x, y += nxtLineIncrement);
 
             g.DrawString("\tDate : " + currentDate.ToLongDateString(), font, brush, x, y += nxtLineIncrement);
             g.DrawString("\tTotal Orders : " + TotalOrder.ToString(), font, brush, x, y += nxtLineIncrement);

@@ -28,7 +28,7 @@ namespace POSApp
             {
                 // valid inputs
                 DailyReportForm dailyReport = new DailyReportForm(validStartingCash, validTotalCashInTillCash);
-                dailyReport.Show();
+                dailyReport.ShowDialog();
                 this.Close();
             }
             else
