@@ -104,13 +104,6 @@ namespace POSApp
             }
             g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
             g.DrawString("Chage Due: " + _lastOrder.GetBalanceDue().ToString(), font, brush, x, y += nxtLineIncrement);
-
-        }
-
-        private void DayEndButton_Click(object sender, EventArgs e)
-        {
-            
-
         }
 
         private void DayEndButton_Click_1(object sender, EventArgs e)

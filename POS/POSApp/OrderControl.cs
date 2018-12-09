@@ -114,6 +114,8 @@ namespace POSApp
 
         private void BindingOrderDataToOrderView(Order orderData, OrderSummaryControl orderUI)
         {
+            orderUI.DataBindings.Clear();
+
             Binding bindingOrderSubTotal = new Binding("SubTotal", orderData, "SubTotal", true, DataSourceUpdateMode.OnPropertyChanged);
             orderUI.DataBindings.Add(bindingOrderSubTotal);
 
