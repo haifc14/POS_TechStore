@@ -39,21 +39,13 @@ namespace POSApp
             }
         }
 
-        private void GetCashReportInputForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (Application.OpenForms.Count == 1)
-            {
-                foreach (Form item in Application.OpenForms)
-                {
-                    item.Show();
-                }
-            }
-            
-        }
-
         private void btnCancelInputTillBalance_Click(object sender, EventArgs e)
         {
             this.Close();
+            foreach (Form item in Application.OpenForms)
+            {
+                item.Show();
+            }
         }
     }
 }

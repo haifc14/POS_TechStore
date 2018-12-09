@@ -39,6 +39,7 @@ namespace POSApp
             TotalIncome = Helper.GetTotalIncomeOfCurrentDay(CurrentDate);
             Variance = GetVariance();
             DisplayReportData();
+            this.ControlBox = false;
         }
 
         private decimal GetTotalRedeemPoints(DateTime currentDate)
@@ -74,6 +75,10 @@ namespace POSApp
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+            foreach (Form item in Application.OpenForms)
+            {
+                item.Show();
+            }
         }
 
         private void btnExportData_Click(object sender, EventArgs e)
@@ -132,18 +137,6 @@ namespace POSApp
         private void btnPrint_Click(object sender, EventArgs e)
         {
             printDayEndReportDocs.Print();
-        }
-
-        private void DailyReportForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (Application.OpenForms.Count == 1)
-            {
-                Application.Exit();
-            }
-            foreach (Form item in Application.OpenForms)
-            {
-                item.Show();
-            }
         }
     }
 }

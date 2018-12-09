@@ -483,7 +483,6 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DailyReportForm";
             this.Text = "DailyReportForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DailyReportForm_FormClosing);
             this.panel9.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();

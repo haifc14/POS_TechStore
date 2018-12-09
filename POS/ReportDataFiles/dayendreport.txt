@@ -6,4 +6,4 @@
 	Total Income By Cash: 536.0000
 	Total Redeems Fee: 11
 	Total Income: 2932.0000
-	Variance: -3864.0000
+	Variance: -464.0000
