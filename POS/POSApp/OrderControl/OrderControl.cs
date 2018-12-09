@@ -77,7 +77,7 @@ namespace POSApp
                 {
                     // Get Scanned Product info 
                     Product scannedItem = new Product(itemBarcode);
-                    if (!CurrentOrder.IsReturn)
+                    if (CurrentOrder.IsReturn)
                     {
                         scannedItem.RetrunProduct();
                     }

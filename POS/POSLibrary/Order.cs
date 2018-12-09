@@ -169,10 +169,6 @@ namespace POSLibrary
 
         public void AddItem(Product productToAdd)
         {
-            if (IsReturn)
-            {
-                productToAdd.RetrunProduct();
-            }
             ListOfItems.Add(productToAdd);
             UpdateOrderInfo();         
         }
