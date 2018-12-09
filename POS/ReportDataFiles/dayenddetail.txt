@@ -160,3 +160,147 @@ Date: December 9, 2018
 		 CustomerID: C500
 
 
+	Hai Do
+		 Order Number: 17
+		 Total Price: 313.0000
+		 Total Discount: 0.0000
+		 Total Tax: 14.0000
+		 Total CardPayment: 313.0000
+		 Total CashPayment: 0.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+
+	Hai Do
+		 Order Number: 18
+		 Total Price: 313.0000
+		 Total Discount: 0.0000
+		 Total Tax: 14.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 313.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+
+	Hai Do
+		 Order Number: 19
+		 Total Price: 313.0000
+		 Total Discount: 0.0000
+		 Total Tax: 14.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 313.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+
+	Hai Do
+		 Order Number: 20
+		 Total Price: 313.0000
+		 Total Discount: 0.0000
+		 Total Tax: 14.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 313.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+
+	Hai Do
+		 Order Number: 21
+		 Total Price: 626.0000
+		 Total Discount: 0.0000
+		 Total Tax: 28.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 626.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+
+	Hai Do
+		 Order Number: 22
+		 Total Price: 626.0000
+		 Total Discount: 0.0000
+		 Total Tax: 28.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 626.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+
+	no name
+		 Order Number: 23
+		 Total Price: 1440.0000
+		 Total Discount: 30.0000
+		 Total Tax: 63.0000
+		 Total CardPayment: 1000.0000
+		 Total CashPayment: 409.0000
+		 Total Points Redeem: 1000
+		 Total Points Earned: 0
+		 CustomerID: C501
+
+
+	Hai Do
+		 Order Number: 24
+		 Total Price: 313.0000
+		 Total Discount: 0.0000
+		 Total Tax: 14.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 313.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+
+	no name
+		 Order Number: 25
+		 Total Price: 1955.0000
+		 Total Discount: 0.0000
+		 Total Tax: 255.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 1954.0000
+		 Total Points Redeem: 1000
+		 Total Points Earned: 3343
+		 CustomerID: C503
+
+
+	Hai Do
+		 Order Number: 26
+		 Total Price: 1955.0000
+		 Total Discount: 0.0000
+		 Total Tax: 255.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 1955.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 2440
+		 CustomerID: C501
+
+
+	no name
+		 Order Number: 27
+		 Total Price: 1955.0000
+		 Total Discount: 0.0000
+		 Total Tax: 255.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 1954.0000
+		 Total Points Redeem: 1000
+		 Total Points Earned: 3395
+		 CustomerID: C501
+
+
+	Hai Do
+		 Order Number: 28
+		 Total Price: 313.0000
+		 Total Discount: 0.0000
+		 Total Tax: 14.0000
+		 Total CardPayment: 0.0000
+		 Total CashPayment: 313.0000
+		 Total Points Redeem: 0
+		 Total Points Earned: 0
+		 CustomerID: -1
+
+

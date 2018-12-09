@@ -67,22 +67,54 @@ namespace POSApp
             loginForm.Show();
         }
 
-<<<<<<< HEAD
-        private void productViewControl1_Load(object sender, EventArgs e)
+        private void PrintLastOrderBtn_Click(object sender, EventArgs e)
         {
-            // get data from TOrder tabel
+            PrintReceiptDocument.Print();
+        }
 
-            //List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd();
+        private void PrintReceiptDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            int x = e.MarginBounds.Left;
+            int y = e.MarginBounds.Top;
+            int nxtLineIncrement = 20;
+            Graphics g = e.Graphics;
+            var font = new Font("Arial", 16);
+            var brush = new SolidBrush(Color.Black);
+            g.DrawString("Order summary", font, brush, x, y);
+            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+            foreach (var item in _lastOrder.ListOfItems)
+            {
+                g.DrawString(item.ToString(), font, brush, x, y += nxtLineIncrement);
+            }
+            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("Subtotal : $" + _lastOrder.SubTotal.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("Tax : $" + _lastOrder.Tax.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("TotalDiscount: $" + _lastOrder.TotalDiscount.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("Total $" + _lastOrder.Total.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("-----------------Payment---------------------", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("Card Payment: $" + _lastOrder.TotalPaidByCard.ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("Cash Payment: $" + _lastOrder.TotalPaidByCash.ToString(), font, brush, x, y += nxtLineIncrement);
+            if (_lastOrder.Customer.CustomerId != "-1")
+            {
+                g.DrawString("Total Points Redeem: " + _lastOrder.TotalRedeemPoints.ToString(), font, brush, x, y += nxtLineIncrement);
+                g.DrawString("Total Earned Points: " + _lastOrder.Total, font, brush, x, y += nxtLineIncrement);
+                g.DrawString("Total Points Left: " + (_lastOrder.Customer.GetPoints()).ToString(),
+                                    font, brush, x, y += nxtLineIncrement);
+            }
+            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("Chage Due: " + _lastOrder.GetBalanceDue().ToString(), font, brush, x, y += nxtLineIncrement);
 
-            //foreach (var order in listOfOrdersWithinCurrentDay)
-            //{
-                
-            //}
-            
-            // write data to txt file
-=======
+        }
+
         private void DayEndButton_Click(object sender, EventArgs e)
-        {          
+        {
+            
+
+        }
+
+        private void DayEndButton_Click_1(object sender, EventArgs e)
+        {
             DateTime currentDate = DateTime.UtcNow.Date;
             //DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333"); // for testing           
             List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd(currentDate);
@@ -120,80 +152,6 @@ namespace POSApp
             {
                 MessageBox.Show("Day report falis. Contact admin to get help..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
->>>>>>> DayEnd
-        }
-
-        private void OrderControl_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PrintLastOrderBtn_Click(object sender, EventArgs e)
-        {
-            PrintReceiptDocument.Print();
-        }
-
-        private void PrintReceiptDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-<<<<<<< HEAD
-            int x = e.MarginBounds.Left;
-            int y = e.MarginBounds.Top;
-            int nxtLineIncrement = 20;
-            Graphics g = e.Graphics;
-            var font = new Font("Arial", 16);
-            var brush = new SolidBrush(Color.Black);
-            g.DrawString("Order summary", font, brush, x, y);
-            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
-            foreach (var item in _lastOrder.ListOfItems)
-            {
-                g.DrawString(item.ToString(), font, brush, x, y += nxtLineIncrement);
-            }
-            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
-            g.DrawString("Subtotal : $" + _lastOrder.SubTotal.ToString(), font, brush, x, y += nxtLineIncrement);
-            g.DrawString("Tax : $" + _lastOrder.Tax.ToString(), font, brush, x, y += nxtLineIncrement);
-            g.DrawString("TotalDiscount: $" + _lastOrder.TotalDiscount.ToString(), font, brush, x, y += nxtLineIncrement);
-            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
-            g.DrawString("Total $"+_lastOrder.Total.ToString(), font, brush, x, y += nxtLineIncrement);
-            g.DrawString("-----------------Payment---------------------", font, brush, x, y += nxtLineIncrement);
-            g.DrawString("Card Payment: $" + _lastOrder.TotalPaidByCard.ToString(), font, brush, x, y += nxtLineIncrement);
-            g.DrawString("Cash Payment: $" + _lastOrder.TotalPaidByCash.ToString(), font, brush, x, y += nxtLineIncrement);
-            if (_lastOrder.Customer.CustomerId != "-1")
-            {
-                g.DrawString("Total Points Redeem: " + _lastOrder.TotalRedeemPoints.ToString(), font, brush, x, y += nxtLineIncrement);
-                g.DrawString("Total Earned Points: " + _lastOrder.Total, font, brush, x, y += nxtLineIncrement);
-                g.DrawString("Total Points Left: " + (_lastOrder.Customer.GetPoints()).ToString(),
-                                    font, brush, x, y += nxtLineIncrement);
-            }
-            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
-            g.DrawString("Chage Due: " + _lastOrder.GetBalanceDue().ToString(), font, brush, x, y += nxtLineIncrement);
-
-=======
-
-            // popup the form to get input for starting cash and total cash in till from user
-
-            GetCashReportInputForm cashInputForm = new GetCashReportInputForm();
-
-            cashInputForm.ShowDialog();
-
-            //DateTime currentDate = DateTime.UtcNow.Date;
-            DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333"); // for testing
-
-            // Get summary of total income from all orders from system including card and cash for a day
-            decimal totalIncomeOfCurrentDayFromSystem = Helper.GetTotalIncomeOfCurrentDay(currentDate);
-
-            decimal totalIncomeOfCurrentDayByCard = Helper.GetTotalIncomeByCardOfCurrentDay(currentDate);
-           
-            decimal totalIncomeOfCurrentDayByCash = Helper.GetTotalIncomeByCashOfCurrentDay(currentDate);
-
-            int totalOrdersOfCurrentDay = Helper.GetTotalOrdersOfCurrentDay(currentDate);
-
-            
-            
-            // Open a report form to let cashier input the actual money when the end of day
-            // then export the differnece between income from system versus actual inconme of current day
-
-            
         }
 
         private void POSForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -202,7 +160,6 @@ namespace POSApp
             {
                 Application.Exit();
             }
->>>>>>> DayEnd
         }
     }
 }

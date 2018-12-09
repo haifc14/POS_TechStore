@@ -77,6 +77,7 @@
             this.DayEndButton.TabIndex = 46;
             this.DayEndButton.Text = "DayEnd";
             this.DayEndButton.UseVisualStyleBackColor = true;
+            this.DayEndButton.Click += new System.EventHandler(this.DayEndButton_Click_1);
             // 
             // DayReportButton
             // 
@@ -129,7 +130,6 @@
             this.OrderControl.Name = "OrderControl";
             this.OrderControl.Size = new System.Drawing.Size(1074, 1395);
             this.OrderControl.TabIndex = 7;
-            this.OrderControl.Load += new System.EventHandler(this.OrderControl_Load);
             // 
             // productViewControl1
             // 

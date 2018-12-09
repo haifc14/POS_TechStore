@@ -9,15 +9,12 @@ namespace POSLibrary
 {
     public static class Helper
     {
-<<<<<<< HEAD
         internal const decimal PointsWorthTo1Dollar = 1000;
         internal const decimal PointsGainFactorFrom1Dollar = 1;
         internal const int LocationId = 4;
-=======
 
         public static string FILE_PATH_DETAIL_REPORT = @"../../../ReportDataFiles/dayenddetail.txt";
         public static string FILE_PATH_DAYEND_REPORT = @"../../../ReportDataFiles/dayendreport.txt";
->>>>>>> DayEnd
 
         internal static string GetConnectionString()
         {
