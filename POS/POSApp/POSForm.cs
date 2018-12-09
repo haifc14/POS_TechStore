@@ -161,5 +161,11 @@ namespace POSApp
                 Application.Exit();
             }
         }
+
+        private void DayReportButton_Click(object sender, EventArgs e)
+        {
+            GetCashReportInputForm tillCashInputForm = new GetCashReportInputForm();
+            tillCashInputForm.ShowDialog();
+        }
     }
 }

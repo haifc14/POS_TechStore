@@ -78,18 +78,27 @@ namespace POSApp
 
         private void btnExportData_Click(object sender, EventArgs e)
         {
-            using (StreamWriter writer = new StreamWriter(Helper.FILE_PATH_DAYEND_REPORT))
+            try
             {
-                writer.WriteLine("\t\t\t" + "--------DAY END SUMMARY REPORT-----------");
-                writer.WriteLine("\t" + "Date: " + CurrentDate.ToLongDateString());
-                writer.WriteLine("\t" + "Total Orders: " + TotalOrder.ToString());
-                writer.WriteLine("\t" + "Total Items: " + TotalItems.ToString());
-                writer.WriteLine("\t" + "Total Income By Card: " + TotalIncomeByCard.ToString());
-                writer.WriteLine("\t" + "Total Income By Cash: " + TotalIncomeByCash.ToString());
-                writer.WriteLine("\t" + "Total Redeems Fee: " + TotalReedemsPoints.ToString());
-                writer.WriteLine("\t" + "Total Income: " + TotalIncome.ToString());
-                writer.WriteLine("\t" + "Variance: " + Variance.ToString());
+                using (StreamWriter writer = new StreamWriter(Helper.FILE_PATH_DAYEND_REPORT))
+                {
+                    writer.WriteLine("\t\t\t" + "--------DAY END SUMMARY REPORT-----------");
+                    writer.WriteLine("\t" + "Date: " + CurrentDate.ToLongDateString());
+                    writer.WriteLine("\t" + "Total Orders: " + TotalOrder.ToString());
+                    writer.WriteLine("\t" + "Total Items: " + TotalItems.ToString());
+                    writer.WriteLine("\t" + "Total Income By Card: " + TotalIncomeByCard.ToString());
+                    writer.WriteLine("\t" + "Total Income By Cash: " + TotalIncomeByCash.ToString());
+                    writer.WriteLine("\t" + "Total Redeems Fee: " + TotalReedemsPoints.ToString());
+                    writer.WriteLine("\t" + "Total Income: " + TotalIncome.ToString());
+                    writer.WriteLine("\t" + "Variance: " + Variance.ToString());
+                }
+                MessageBox.Show("Day end report is saved successfully.");
             }
+            catch (Exception)
+            {
+                MessageBox.Show("The report isn't saved successfully. Try again.");
+            }
+            
         }
     }
 }
