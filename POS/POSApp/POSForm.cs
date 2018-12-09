@@ -52,14 +52,10 @@ namespace POSApp
         }
 
         private void DayEndButton_Click(object sender, EventArgs e)
-        {
-            // get data from TOrder tabel
-
-            //DateTime currentDate = DateTime.UtcNow.Date;
-            DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333"); // for testing 
-           
+        {          
+            DateTime currentDate = DateTime.UtcNow.Date;
+            //DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333"); // for testing           
             List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd(currentDate);
-
             try
             {
                 // write data to dayend txt file
@@ -73,7 +69,7 @@ namespace POSApp
                     foreach (var order in listOfOrdersWithinCurrentDay)
                     {
 
-                        int employeeIdForEachOrder = (int)order.EmployeeId;
+                        int employeeIdForEachOrder = (int)order.EmployeeID;
                         sw.WriteLine("\t" + Helper.GetEmployeeNameFromOrderReport(employeeIdForEachOrder));
                         sw.WriteLine("\t\t Order Number: " + order.OrderNumber.ToString());
                         sw.WriteLine("\t\t Total Price: " + order.TotalPrice.ToString());
@@ -99,6 +95,13 @@ namespace POSApp
 
         private void DayReportButton_Click(object sender, EventArgs e)
         {
+
+            // popup the form to get input for starting cash and total cash in till from user
+
+            GetCashReportInputForm cashInputForm = new GetCashReportInputForm();
+
+            cashInputForm.ShowDialog();
+
             //DateTime currentDate = DateTime.UtcNow.Date;
             DateTime currentDate = DateTime.Parse("2018-12-02 20:44:02.3033333"); // for testing
 
@@ -108,6 +111,10 @@ namespace POSApp
             decimal totalIncomeOfCurrentDayByCard = Helper.GetTotalIncomeByCardOfCurrentDay(currentDate);
            
             decimal totalIncomeOfCurrentDayByCash = Helper.GetTotalIncomeByCashOfCurrentDay(currentDate);
+
+            int totalOrdersOfCurrentDay = Helper.GetTotalOrdersOfCurrentDay(currentDate);
+
+            
             
             // Open a report form to let cashier input the actual money when the end of day
             // then export the differnece between income from system versus actual inconme of current day

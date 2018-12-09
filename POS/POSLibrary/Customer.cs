@@ -23,14 +23,14 @@ namespace POSLibrary
             CustomerId = customerId;
             var TCustomer = GetCustomerInfoFromDB();
             CustomerName = TCustomer.Name;
-            CustomerPoints = TCustomer.TotalPoints;
+            CustomerPoints = (int)TCustomer.TotalPoints;
         }
 
         private TCustomer GetCustomerInfoFromDB()
         {
             var context = new DataContext(Helper.GetConnectionString());
             var customers = context.GetTable<TCustomer>();
-            var filteredCustomers = customers.Where(customer => customer.CustomerID == CustomerId).ToList();
+            var filteredCustomers = customers.Where(customer => customer.CustomerId == CustomerId).ToList();
             var currentCustomer = filteredCustomers[0];
             return currentCustomer;
         }

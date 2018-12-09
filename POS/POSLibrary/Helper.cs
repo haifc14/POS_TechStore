@@ -70,7 +70,8 @@ namespace POSLibrary
 
         public static decimal GetTotalIncomeOfCurrentDay(DateTime currentDate)
         {
-            var currentDay = currentDate.Day;
+            //var currentDay = currentDate.Day;
+            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
@@ -82,7 +83,8 @@ namespace POSLibrary
 
         public static decimal GetTotalIncomeByCardOfCurrentDay(DateTime currentDate)
         {
-            var currentDay = currentDate.Day;
+            //var currentDay = currentDate.Day;
+            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
@@ -94,13 +96,55 @@ namespace POSLibrary
 
         public static decimal GetTotalIncomeByCashOfCurrentDay(DateTime currentDate)
         {
-            var currentDay = currentDate.Day;
+            //var currentDay = currentDate.Day;
+            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
                 var totalIncomeByCash = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day == currentDay).Select(order => order.CashPayment).Sum();
 
                 return totalIncomeByCash;
+            }
+        }
+
+        public static int GetTotalOrdersOfCurrentDay(DateTime currentDate)
+        {
+            //var currentDay = currentDate.Day;
+            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var totalOrdersOfCurrentDay = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day == currentDay).Count();
+
+                return totalOrdersOfCurrentDay;
+            }
+        }
+
+        public static int GetTotalRedeemPointsOfCurrentDay(DateTime currentDate)
+        {
+            //var currentDay = currentDate.Day;
+            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var totalRedeemPoints = context.GetTable<TOrder>().Where(order => order.OrdeDate.Day == currentDay).Select(order => order.PoitRedeem).Sum();
+                return (int)totalRedeemPoints;
+            }
+        }
+
+        public static int GetTotalItemsOfCurrentDay(DateTime currentDate)
+        {
+            //var currentDay = currentDate.Day;
+            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+
+            using (var context = new DataContext(GetConnectionString()))
+            {
+                var totalItems = from order in context.GetTable<TOrder>()
+                                 join orderItems in context.GetTable<TOrderItem>() on order.OrderNumber equals orderItems.OrderNumber
+                                 where order.OrdeDate.Day == currentDay
+                                 select new { OrderNumber = order.OrderNumber };
+
+                return totalItems.Count();              
             }
         }
     }

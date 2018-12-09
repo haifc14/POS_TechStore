@@ -59,7 +59,7 @@
             this.DayEndButton.Name = "DayEndButton";
             this.DayEndButton.Size = new System.Drawing.Size(150, 134);
             this.DayEndButton.TabIndex = 41;
-            this.DayEndButton.Text = "DayEnd";
+            this.DayEndButton.Text = "Detail Report";
             this.DayEndButton.UseVisualStyleBackColor = true;
             this.DayEndButton.Click += new System.EventHandler(this.DayEndButton_Click);
             // 
@@ -70,7 +70,7 @@
             this.DayReportButton.Name = "DayReportButton";
             this.DayReportButton.Size = new System.Drawing.Size(150, 134);
             this.DayReportButton.TabIndex = 40;
-            this.DayReportButton.Text = "DayReport";
+            this.DayReportButton.Text = "Day End";
             this.DayReportButton.UseVisualStyleBackColor = true;
             this.DayReportButton.Click += new System.EventHandler(this.DayReportButton_Click);
             // 

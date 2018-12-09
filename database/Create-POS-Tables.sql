@@ -34,10 +34,10 @@ CREATE TABLE TOrder
     CashPayment MONEY NOT NULL,
     PoitRedeem INT DEFAULT 0,
     PointEarned INT DEFAULT 0,
-    OrdeDate DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    OrdeDate DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
     IsReturned INT DEFAULT 0 CHECK (IsReturned = 0 OR IsReturned = 1),
-    CustomerID INT FOREIGN KEY REFERENCES TCustomer(CustomerID),
-    Username INT FOREIGN KEY REFERENCES TEmployee(Username)
+    CustomerID NVARCHAR(MAX) NOT NULL,
+    EmployeeID INT NOT NULL
 )
 GO
 
@@ -86,7 +86,7 @@ GO
 CREATE TABLE TCustomerPurchase
 (
     CustomerPurchaseID INT PRIMARY KEY IDENTITY,
-    PurchaseDate DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    PurchaseDate DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
     CustomerID INT FOREIGN KEY REFERENCES TCustomer(CustomerID),
     Barcode INT FOREIGN KEY REFERENCES TProduct(Barcode)
 )
@@ -98,7 +98,7 @@ GO
 CREATE TABLE TOrderItems
 (
     OrderItemsID INT PRIMARY KEY IDENTITY,
-    Barcode INT FOREIGN KEY REFERENCES TProduct(Barcode),
+    Barcode INT FOREIGN KEY REFERENCES TProductGroup(Barcode),
     OrderNumber INT FOREIGN KEY REFERENCES TOrder(OrderNumber)
 
 )
