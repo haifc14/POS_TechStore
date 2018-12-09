@@ -59,7 +59,7 @@ namespace POSApp
             try
             {
                 // write data to dayend txt file
-                using (StreamWriter sw = new StreamWriter(Helper.FILE_PATH_DAYEND))
+                using (StreamWriter sw = new StreamWriter(Helper.FILE_PATH_DETAIL_REPORT))
                 {
                     sw.WriteLine("\t\t\t\t" + "------------ DAY END REPORT-------------");
                     sw.WriteLine("\n");

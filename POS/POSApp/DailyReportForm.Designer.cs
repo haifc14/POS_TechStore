@@ -57,13 +57,15 @@
             this.labelStartingCashTitle = new System.Windows.Forms.Label();
             this.labelStartingCash = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnExportData = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelCurrentDateTitle
             // 
             this.labelCurrentDateTitle.AutoSize = true;
             this.labelCurrentDateTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurrentDateTitle.Location = new System.Drawing.Point(49, 70);
+            this.labelCurrentDateTitle.Location = new System.Drawing.Point(261, 70);
             this.labelCurrentDateTitle.Name = "labelCurrentDateTitle";
             this.labelCurrentDateTitle.Size = new System.Drawing.Size(101, 42);
             this.labelCurrentDateTitle.TabIndex = 0;
@@ -73,7 +75,7 @@
             // 
             this.labelTotalOrdersTitle.AutoSize = true;
             this.labelTotalOrdersTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalOrdersTitle.Location = new System.Drawing.Point(49, 164);
+            this.labelTotalOrdersTitle.Location = new System.Drawing.Point(261, 164);
             this.labelTotalOrdersTitle.Name = "labelTotalOrdersTitle";
             this.labelTotalOrdersTitle.Size = new System.Drawing.Size(237, 42);
             this.labelTotalOrdersTitle.TabIndex = 0;
@@ -83,7 +85,7 @@
             // 
             this.labelTotalItemsTitle.AutoSize = true;
             this.labelTotalItemsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalItemsTitle.Location = new System.Drawing.Point(49, 256);
+            this.labelTotalItemsTitle.Location = new System.Drawing.Point(261, 256);
             this.labelTotalItemsTitle.Name = "labelTotalItemsTitle";
             this.labelTotalItemsTitle.Size = new System.Drawing.Size(211, 42);
             this.labelTotalItemsTitle.TabIndex = 0;
@@ -93,7 +95,7 @@
             // 
             this.labelTotalIncomeTitle.AutoSize = true;
             this.labelTotalIncomeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalIncomeTitle.Location = new System.Drawing.Point(49, 598);
+            this.labelTotalIncomeTitle.Location = new System.Drawing.Point(261, 598);
             this.labelTotalIncomeTitle.Name = "labelTotalIncomeTitle";
             this.labelTotalIncomeTitle.Size = new System.Drawing.Size(244, 42);
             this.labelTotalIncomeTitle.TabIndex = 0;
@@ -103,7 +105,7 @@
             // 
             this.labelTotalByCardTitle.AutoSize = true;
             this.labelTotalByCardTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalByCardTitle.Location = new System.Drawing.Point(49, 340);
+            this.labelTotalByCardTitle.Location = new System.Drawing.Point(261, 340);
             this.labelTotalByCardTitle.Name = "labelTotalByCardTitle";
             this.labelTotalByCardTitle.Size = new System.Drawing.Size(397, 42);
             this.labelTotalByCardTitle.TabIndex = 0;
@@ -113,7 +115,7 @@
             // 
             this.labelTotalByCashTitle.AutoSize = true;
             this.labelTotalByCashTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalByCashTitle.Location = new System.Drawing.Point(49, 428);
+            this.labelTotalByCashTitle.Location = new System.Drawing.Point(261, 428);
             this.labelTotalByCashTitle.Name = "labelTotalByCashTitle";
             this.labelTotalByCashTitle.Size = new System.Drawing.Size(404, 42);
             this.labelTotalByCashTitle.TabIndex = 0;
@@ -123,7 +125,7 @@
             // 
             this.labelTotalRedeemsTitle.AutoSize = true;
             this.labelTotalRedeemsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalRedeemsTitle.Location = new System.Drawing.Point(48, 516);
+            this.labelTotalRedeemsTitle.Location = new System.Drawing.Point(260, 516);
             this.labelTotalRedeemsTitle.Name = "labelTotalRedeemsTitle";
             this.labelTotalRedeemsTitle.Size = new System.Drawing.Size(363, 42);
             this.labelTotalRedeemsTitle.TabIndex = 0;
@@ -133,7 +135,7 @@
             // 
             this.labelActualTillMoneyTitle.AutoSize = true;
             this.labelActualTillMoneyTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelActualTillMoneyTitle.Location = new System.Drawing.Point(48, 763);
+            this.labelActualTillMoneyTitle.Location = new System.Drawing.Point(260, 763);
             this.labelActualTillMoneyTitle.Name = "labelActualTillMoneyTitle";
             this.labelActualTillMoneyTitle.Size = new System.Drawing.Size(366, 42);
             this.labelActualTillMoneyTitle.TabIndex = 0;
@@ -143,7 +145,7 @@
             // 
             this.labelVarianceTitle.AutoSize = true;
             this.labelVarianceTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVarianceTitle.Location = new System.Drawing.Point(48, 848);
+            this.labelVarianceTitle.Location = new System.Drawing.Point(260, 848);
             this.labelVarianceTitle.Name = "labelVarianceTitle";
             this.labelVarianceTitle.Size = new System.Drawing.Size(174, 42);
             this.labelVarianceTitle.TabIndex = 0;
@@ -153,7 +155,7 @@
             // 
             this.labelCurrentDate.AutoSize = true;
             this.labelCurrentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurrentDate.Location = new System.Drawing.Point(491, 68);
+            this.labelCurrentDate.Location = new System.Drawing.Point(703, 68);
             this.labelCurrentDate.Name = "labelCurrentDate";
             this.labelCurrentDate.Size = new System.Drawing.Size(200, 37);
             this.labelCurrentDate.TabIndex = 1;
@@ -163,7 +165,7 @@
             // 
             this.labelTotalOrders.AutoSize = true;
             this.labelTotalOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalOrders.Location = new System.Drawing.Point(548, 167);
+            this.labelTotalOrders.Location = new System.Drawing.Point(760, 167);
             this.labelTotalOrders.Name = "labelTotalOrders";
             this.labelTotalOrders.Size = new System.Drawing.Size(200, 37);
             this.labelTotalOrders.TabIndex = 1;
@@ -173,7 +175,7 @@
             // 
             this.labelTotalItems.AutoSize = true;
             this.labelTotalItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalItems.Location = new System.Drawing.Point(548, 261);
+            this.labelTotalItems.Location = new System.Drawing.Point(760, 261);
             this.labelTotalItems.Name = "labelTotalItems";
             this.labelTotalItems.Size = new System.Drawing.Size(200, 37);
             this.labelTotalItems.TabIndex = 1;
@@ -183,7 +185,7 @@
             // 
             this.labelTotalByCard.AutoSize = true;
             this.labelTotalByCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalByCard.Location = new System.Drawing.Point(553, 345);
+            this.labelTotalByCard.Location = new System.Drawing.Point(765, 345);
             this.labelTotalByCard.Name = "labelTotalByCard";
             this.labelTotalByCard.Size = new System.Drawing.Size(200, 37);
             this.labelTotalByCard.TabIndex = 1;
@@ -193,7 +195,7 @@
             // 
             this.labelTotalByCash.AutoSize = true;
             this.labelTotalByCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalByCash.Location = new System.Drawing.Point(553, 434);
+            this.labelTotalByCash.Location = new System.Drawing.Point(765, 434);
             this.labelTotalByCash.Name = "labelTotalByCash";
             this.labelTotalByCash.Size = new System.Drawing.Size(200, 37);
             this.labelTotalByCash.TabIndex = 1;
@@ -203,7 +205,7 @@
             // 
             this.labelTotalRedeems.AutoSize = true;
             this.labelTotalRedeems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalRedeems.Location = new System.Drawing.Point(553, 522);
+            this.labelTotalRedeems.Location = new System.Drawing.Point(765, 522);
             this.labelTotalRedeems.Name = "labelTotalRedeems";
             this.labelTotalRedeems.Size = new System.Drawing.Size(200, 37);
             this.labelTotalRedeems.TabIndex = 1;
@@ -213,7 +215,7 @@
             // 
             this.labelTotalIncome.AutoSize = true;
             this.labelTotalIncome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalIncome.Location = new System.Drawing.Point(553, 604);
+            this.labelTotalIncome.Location = new System.Drawing.Point(765, 604);
             this.labelTotalIncome.Name = "labelTotalIncome";
             this.labelTotalIncome.Size = new System.Drawing.Size(200, 37);
             this.labelTotalIncome.TabIndex = 1;
@@ -223,7 +225,7 @@
             // 
             this.labelTotalActualTillIncome.AutoSize = true;
             this.labelTotalActualTillIncome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalActualTillIncome.Location = new System.Drawing.Point(553, 763);
+            this.labelTotalActualTillIncome.Location = new System.Drawing.Point(765, 763);
             this.labelTotalActualTillIncome.Name = "labelTotalActualTillIncome";
             this.labelTotalActualTillIncome.Size = new System.Drawing.Size(200, 37);
             this.labelTotalActualTillIncome.TabIndex = 1;
@@ -235,7 +237,7 @@
             this.labelVariance.BackColor = System.Drawing.SystemColors.Control;
             this.labelVariance.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVariance.ForeColor = System.Drawing.Color.Brown;
-            this.labelVariance.Location = new System.Drawing.Point(553, 853);
+            this.labelVariance.Location = new System.Drawing.Point(765, 853);
             this.labelVariance.Name = "labelVariance";
             this.labelVariance.Size = new System.Drawing.Size(229, 42);
             this.labelVariance.TabIndex = 1;
@@ -244,7 +246,7 @@
             // panelDelimiter
             // 
             this.panelDelimiter.BackColor = System.Drawing.Color.IndianRed;
-            this.panelDelimiter.Location = new System.Drawing.Point(49, 209);
+            this.panelDelimiter.Location = new System.Drawing.Point(261, 209);
             this.panelDelimiter.Name = "panelDelimiter";
             this.panelDelimiter.Size = new System.Drawing.Size(704, 10);
             this.panelDelimiter.TabIndex = 2;
@@ -252,7 +254,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.IndianRed;
-            this.panel1.Location = new System.Drawing.Point(49, 115);
+            this.panel1.Location = new System.Drawing.Point(261, 115);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(704, 10);
             this.panel1.TabIndex = 2;
@@ -260,7 +262,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.IndianRed;
-            this.panel2.Location = new System.Drawing.Point(49, 301);
+            this.panel2.Location = new System.Drawing.Point(261, 301);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(704, 10);
             this.panel2.TabIndex = 2;
@@ -268,7 +270,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.IndianRed;
-            this.panel3.Location = new System.Drawing.Point(49, 385);
+            this.panel3.Location = new System.Drawing.Point(261, 385);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(704, 10);
             this.panel3.TabIndex = 2;
@@ -276,7 +278,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.IndianRed;
-            this.panel4.Location = new System.Drawing.Point(55, 474);
+            this.panel4.Location = new System.Drawing.Point(267, 474);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(704, 10);
             this.panel4.TabIndex = 2;
@@ -284,7 +286,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.IndianRed;
-            this.panel5.Location = new System.Drawing.Point(56, 562);
+            this.panel5.Location = new System.Drawing.Point(268, 562);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(704, 10);
             this.panel5.TabIndex = 2;
@@ -292,7 +294,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.IndianRed;
-            this.panel6.Location = new System.Drawing.Point(56, 644);
+            this.panel6.Location = new System.Drawing.Point(268, 644);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(704, 10);
             this.panel6.TabIndex = 2;
@@ -300,7 +302,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.IndianRed;
-            this.panel7.Location = new System.Drawing.Point(49, 808);
+            this.panel7.Location = new System.Drawing.Point(261, 808);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(704, 10);
             this.panel7.TabIndex = 2;
@@ -309,7 +311,7 @@
             // 
             this.labelStartingCashTitle.AutoSize = true;
             this.labelStartingCashTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStartingCashTitle.Location = new System.Drawing.Point(49, 686);
+            this.labelStartingCashTitle.Location = new System.Drawing.Point(261, 686);
             this.labelStartingCashTitle.Name = "labelStartingCashTitle";
             this.labelStartingCashTitle.Size = new System.Drawing.Size(257, 42);
             this.labelStartingCashTitle.TabIndex = 0;
@@ -319,7 +321,7 @@
             // 
             this.labelStartingCash.AutoSize = true;
             this.labelStartingCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStartingCash.Location = new System.Drawing.Point(553, 692);
+            this.labelStartingCash.Location = new System.Drawing.Point(765, 692);
             this.labelStartingCash.Name = "labelStartingCash";
             this.labelStartingCash.Size = new System.Drawing.Size(200, 37);
             this.labelStartingCash.TabIndex = 1;
@@ -328,16 +330,40 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.IndianRed;
-            this.panel8.Location = new System.Drawing.Point(56, 732);
+            this.panel8.Location = new System.Drawing.Point(268, 732);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(704, 10);
             this.panel8.TabIndex = 2;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(345, 940);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(257, 103);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnExportData
+            // 
+            this.btnExportData.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportData.Location = new System.Drawing.Point(710, 940);
+            this.btnExportData.Name = "btnExportData";
+            this.btnExportData.Size = new System.Drawing.Size(241, 103);
+            this.btnExportData.TabIndex = 3;
+            this.btnExportData.Text = "Save";
+            this.btnExportData.UseVisualStyleBackColor = true;
+            this.btnExportData.Click += new System.EventHandler(this.btnExportData_Click);
             // 
             // DailyReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 998);
+            this.ClientSize = new System.Drawing.Size(1272, 1068);
+            this.Controls.Add(this.btnExportData);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel6);
@@ -405,5 +431,7 @@
         private System.Windows.Forms.Label labelStartingCashTitle;
         private System.Windows.Forms.Label labelStartingCash;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnExportData;
     }
 }

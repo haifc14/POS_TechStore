@@ -10,7 +10,8 @@ namespace POSLibrary
     public static class Helper
     {
 
-        public static string FILE_PATH_DAYEND = @"../../../ReportDataFiles/dayend.txt";
+        public static string FILE_PATH_DETAIL_REPORT = @"../../../ReportDataFiles/dayenddetail.txt";
+        public static string FILE_PATH_DAYEND_REPORT = @"../../../ReportDataFiles/dayendreport.txt";
 
         internal static string GetConnectionString()
         {
