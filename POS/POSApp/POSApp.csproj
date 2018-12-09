@@ -49,22 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DailyReportForm.cs">
+    <Compile Include="POSReports\DailyReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DailyReportForm.Designer.cs">
+    <Compile Include="POSReports\DailyReportForm.Designer.cs">
       <DependentUpon>DailyReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GetCashTillForm.cs">
+    <Compile Include="POSReports\GetCashTillForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GetCashTillForm.Designer.cs">
+    <Compile Include="POSReports\GetCashTillForm.Designer.cs">
       <DependentUpon>GetCashTillForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FinalizeOrderForm.cs">
+    <Compile Include="OrderPayment\FinalizeOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FinalizeOrderForm.Designer.cs">
+    <Compile Include="OrderPayment\FinalizeOrderForm.Designer.cs">
       <DependentUpon>FinalizeOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
@@ -73,28 +73,28 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderControl.cs">
+    <Compile Include="OrderControl\OrderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OrderControl.Designer.cs">
+    <Compile Include="OrderControl\OrderControl.Designer.cs">
       <DependentUpon>OrderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderPaymentOptionControl.cs">
+    <Compile Include="OrderPayment\OrderPaymentOptionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OrderPaymentOptionControl.Designer.cs">
+    <Compile Include="OrderPayment\OrderPaymentOptionControl.Designer.cs">
       <DependentUpon>OrderPaymentOptionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderItemControl.cs">
+    <Compile Include="OrderControl\OrderItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OrderItemControl.Designer.cs">
+    <Compile Include="OrderControl\OrderItemControl.Designer.cs">
       <DependentUpon>OrderItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderSummaryControl.cs">
+    <Compile Include="OrderControl\OrderSummaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OrderSummaryControl.designer.cs">
+    <Compile Include="OrderControl\OrderSummaryControl.designer.cs">
       <DependentUpon>OrderSummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="POSForm.cs">
@@ -103,42 +103,42 @@
     <Compile Include="POSForm.Designer.cs">
       <DependentUpon>POSForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductViewControl.cs">
+    <Compile Include="SearchProduct\ProductViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ProductViewControl.Designer.cs">
+    <Compile Include="SearchProduct\ProductViewControl.Designer.cs">
       <DependentUpon>ProductViewControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DailyReportForm.resx">
+    <EmbeddedResource Include="POSReports\DailyReportForm.resx">
       <DependentUpon>DailyReportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GetCashTillForm.resx">
+    <EmbeddedResource Include="POSReports\GetCashTillForm.resx">
       <DependentUpon>GetCashTillForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FinalizeOrderForm.resx">
+    <EmbeddedResource Include="OrderPayment\FinalizeOrderForm.resx">
       <DependentUpon>FinalizeOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderControl.resx">
+    <EmbeddedResource Include="OrderControl\OrderControl.resx">
       <DependentUpon>OrderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderPaymentOptionControl.resx">
+    <EmbeddedResource Include="OrderPayment\OrderPaymentOptionControl.resx">
       <DependentUpon>OrderPaymentOptionControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderItemControl.resx">
+    <EmbeddedResource Include="OrderControl\OrderItemControl.resx">
       <DependentUpon>OrderItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderSummaryControl.resx">
+    <EmbeddedResource Include="OrderControl\OrderSummaryControl.resx">
       <DependentUpon>OrderSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POSForm.resx">
       <DependentUpon>POSForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductViewControl.resx">
+    <EmbeddedResource Include="SearchProduct\ProductViewControl.resx">
       <DependentUpon>ProductViewControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
