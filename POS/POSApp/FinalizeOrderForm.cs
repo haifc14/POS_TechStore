@@ -13,8 +13,8 @@ namespace POSApp
 {
     public partial class FinalizeOrderForm : Form
     {
-        private Order CurrentOrder;
-        
+        public Order CurrentOrder;
+
         private event Action<FinalizeOrderForm> CloseCurrentOrder;
 
         public FinalizeOrderForm(Order curruntOrder, Action<FinalizeOrderForm> closeCurrentOrder)

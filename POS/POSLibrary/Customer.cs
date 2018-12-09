@@ -10,7 +10,7 @@ namespace POSLibrary
     public class Customer
     {
         private string CustomerName;
-        internal string CustomerId;
+        public string CustomerId;
         private int CustomerPoints;
 
         public Customer()

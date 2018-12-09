@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.OrderControl_Panel = new System.Windows.Forms.Panel();
+            this.PrintLastOrderBtn = new System.Windows.Forms.Button();
             this.DayEndButton = new System.Windows.Forms.Button();
             this.DayReportButton = new System.Windows.Forms.Button();
             this.FinalizeOrderButton = new System.Windows.Forms.Button();
@@ -36,12 +37,15 @@
             this.ReturnButton = new System.Windows.Forms.Button();
             this.OrderControl = new POSApp.OrderControl();
             this.productViewControl1 = new POSApp.ProductViewControl();
+            this.PrintReceiptDialog = new System.Windows.Forms.PrintDialog();
+            this.PrintReceiptDocument = new System.Drawing.Printing.PrintDocument();
             this.OrderControl_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // OrderControl_Panel
             // 
             this.OrderControl_Panel.BackColor = System.Drawing.SystemColors.Control;
+            this.OrderControl_Panel.Controls.Add(this.PrintLastOrderBtn);
             this.OrderControl_Panel.Controls.Add(this.DayEndButton);
             this.OrderControl_Panel.Controls.Add(this.DayReportButton);
             this.OrderControl_Panel.Controls.Add(this.FinalizeOrderButton);
@@ -53,9 +57,20 @@
             this.OrderControl_Panel.Size = new System.Drawing.Size(1502, 202);
             this.OrderControl_Panel.TabIndex = 2;
             // 
+            // PrintLastOrderBtn
+            // 
+            this.PrintLastOrderBtn.Location = new System.Drawing.Point(453, 17);
+            this.PrintLastOrderBtn.Margin = new System.Windows.Forms.Padding(8);
+            this.PrintLastOrderBtn.Name = "PrintLastOrderBtn";
+            this.PrintLastOrderBtn.Size = new System.Drawing.Size(193, 167);
+            this.PrintLastOrderBtn.TabIndex = 47;
+            this.PrintLastOrderBtn.Text = "Print Last Order";
+            this.PrintLastOrderBtn.UseVisualStyleBackColor = true;
+            this.PrintLastOrderBtn.Click += new System.EventHandler(this.PrintLastOrderBtn_Click);
+            // 
             // DayEndButton
             // 
-            this.DayEndButton.Location = new System.Drawing.Point(1038, 17);
+            this.DayEndButton.Location = new System.Drawing.Point(1085, 17);
             this.DayEndButton.Margin = new System.Windows.Forms.Padding(8);
             this.DayEndButton.Name = "DayEndButton";
             this.DayEndButton.Size = new System.Drawing.Size(200, 167);
@@ -65,7 +80,7 @@
             // 
             // DayReportButton
             // 
-            this.DayReportButton.Location = new System.Drawing.Point(1254, 17);
+            this.DayReportButton.Location = new System.Drawing.Point(1294, 17);
             this.DayReportButton.Margin = new System.Windows.Forms.Padding(8);
             this.DayReportButton.Name = "DayReportButton";
             this.DayReportButton.Size = new System.Drawing.Size(200, 167);
@@ -75,10 +90,10 @@
             // 
             // FinalizeOrderButton
             // 
-            this.FinalizeOrderButton.Location = new System.Drawing.Point(46, 17);
+            this.FinalizeOrderButton.Location = new System.Drawing.Point(8, 17);
             this.FinalizeOrderButton.Margin = new System.Windows.Forms.Padding(8);
             this.FinalizeOrderButton.Name = "FinalizeOrderButton";
-            this.FinalizeOrderButton.Size = new System.Drawing.Size(468, 167);
+            this.FinalizeOrderButton.Size = new System.Drawing.Size(417, 167);
             this.FinalizeOrderButton.TabIndex = 44;
             this.FinalizeOrderButton.Text = "Finalize Order";
             this.FinalizeOrderButton.UseVisualStyleBackColor = true;
@@ -86,7 +101,7 @@
             // 
             // SignOff_Button
             // 
-            this.SignOff_Button.Location = new System.Drawing.Point(822, 17);
+            this.SignOff_Button.Location = new System.Drawing.Point(871, 17);
             this.SignOff_Button.Margin = new System.Windows.Forms.Padding(8);
             this.SignOff_Button.Name = "SignOff_Button";
             this.SignOff_Button.Size = new System.Drawing.Size(200, 167);
@@ -97,10 +112,10 @@
             // 
             // ReturnButton
             // 
-            this.ReturnButton.Location = new System.Drawing.Point(576, 17);
+            this.ReturnButton.Location = new System.Drawing.Point(662, 17);
             this.ReturnButton.Margin = new System.Windows.Forms.Padding(8);
             this.ReturnButton.Name = "ReturnButton";
-            this.ReturnButton.Size = new System.Drawing.Size(200, 167);
+            this.ReturnButton.Size = new System.Drawing.Size(193, 167);
             this.ReturnButton.TabIndex = 42;
             this.ReturnButton.Text = "Return";
             this.ReturnButton.UseVisualStyleBackColor = true;
@@ -124,6 +139,15 @@
             this.productViewControl1.Name = "productViewControl1";
             this.productViewControl1.Size = new System.Drawing.Size(1500, 1162);
             this.productViewControl1.TabIndex = 6;
+            // 
+            // PrintReceiptDialog
+            // 
+            this.PrintReceiptDialog.Document = this.PrintReceiptDocument;
+            this.PrintReceiptDialog.UseEXDialog = true;
+            // 
+            // PrintReceiptDocument
+            // 
+            this.PrintReceiptDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintReceiptDocument_PrintPage);
             // 
             // POSForm
             // 
@@ -151,5 +175,8 @@
         private System.Windows.Forms.Button FinalizeOrderButton;
         private System.Windows.Forms.Button SignOff_Button;
         private System.Windows.Forms.Button ReturnButton;
+        private System.Windows.Forms.Button PrintLastOrderBtn;
+        private System.Windows.Forms.PrintDialog PrintReceiptDialog;
+        private System.Drawing.Printing.PrintDocument PrintReceiptDocument;
     }
 }
