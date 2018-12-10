@@ -177,5 +177,7 @@ namespace POSApp
                 this.OrderControl.OrderType = "---------Void Transaction-----------";
             }
         }
+
+        
     }
 }

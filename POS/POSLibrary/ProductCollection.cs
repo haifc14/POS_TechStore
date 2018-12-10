@@ -88,12 +88,61 @@ namespace POSLibrary
             {
                 var instock = GetInstock();
                 var products = contex.GetTable<TProductGroup>().Join(instock, product => product.Barcode, instockproduct => instockproduct.BarcodeID,
-                                        (product, instockproduct) => new { product.Barcode, product.Name, product.Discount, product.Price, product.Tax, instockproduct.Quantity, instockproduct.LocationID})
+                                        (product, instockproduct) => new { product.Barcode, product.Name, product.Discount, product.Price, product.Tax, instockproduct.Quantity, instockproduct.LocationID })
                                         .Where(product => product.LocationID == Helper.LocationId).ToList();
                 int productNo = rand.Next(0, Products.Count);
                 var filteredProduct = products[productNo];
                 var recommendedProduct = new Product(filteredProduct.Name, filteredProduct.Barcode, filteredProduct.Price, (decimal)filteredProduct.Discount, filteredProduct.Tax, filteredProduct.Quantity);
                 return recommendedProduct;
+            }
+        }
+
+        private List<TOrderItem> GetAllOrderItems()
+        {
+            using (var context = new DataContext(Helper.GetConnectionString()))
+            {
+                var orderItems = context.GetTable<TOrderItem>().ToList();
+                return orderItems;
+            }
+        }
+
+        private List<TOrder> GetAllOrders()
+        {
+            using (var context = new DataContext(Helper.GetConnectionString()))
+            {
+                var orders = context.GetTable<TOrder>().ToList();
+                return orders;
+            }
+        }
+
+        public int GetBarcodeOfLatestPurchasedForCertainCustomser(string customerCode)
+        {
+            using (var context = new DataContext(Helper.GetConnectionString()))
+            {
+                var inStock = GetInstock();
+                var orderItems = GetAllOrderItems();
+                var orders = GetAllOrders();
+
+                var barcodeOfLatestProductOfCuurentCustomer = orders
+                                                .Join(orderItems, order => order.OrderNumber, item => item.OrderNumber, (order, item) => new { order, item })
+                                                .Join(inStock, itemAgain => itemAgain.item.Barcode, instock => instock.BarcodeID, (itemAgain, instock) => new { itemAgain, instock })
+                                                .Where(itemAgain => itemAgain.itemAgain.order.CustomerID == customerCode && itemAgain.instock.Quantity > 0)
+                                                .OrderByDescending(row => row.itemAgain.order.OrdeDate).Take(1)
+                                                .Select(row => new
+                                                {
+                                                    Barcode = row.itemAgain.item.Barcode                                                  
+                                                }).ToList();
+
+                return (int)barcodeOfLatestProductOfCuurentCustomer[0].Barcode;
+            }
+        }
+
+        public TProductGroup GetProductInfoByBarcode(int barcode)
+        {
+            using (var context = new DataContext(Helper.GetConnectionString()))
+            {
+                var productInfo = context.GetTable<TProductGroup>().Where(product => product.Barcode == barcode).ToList();
+                return productInfo[0];
             }
         }
     }
