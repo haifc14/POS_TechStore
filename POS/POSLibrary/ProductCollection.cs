@@ -10,6 +10,7 @@ namespace POSLibrary
     public class ProductCollection
     {
         public List<Product> Products { get; private set; }
+        private Random rand = new Random();
 
         public ProductCollection(string keywords, string brandName = "", string categoryName = "")
         {
@@ -78,6 +79,21 @@ namespace POSLibrary
                     return products.Where(product => product.CategoryID == filteredCategory[0].CategoryID).ToList();
                 }
                 return products.ToList();
+            }
+        }
+
+        private Product GetRandomProduct()
+        {
+            using (var contex = new DataContext(Helper.GetConnectionString()))
+            {
+                var instock = GetInstock();
+                var products = contex.GetTable<TProductGroup>().Join(instock, product => product.Barcode, instockproduct => instockproduct.BarcodeID,
+                                        (product, instockproduct) => new { product.Barcode, product.Name, product.Discount, product.Price, product.Tax, instockproduct.Quantity, instockproduct.LocationID})
+                                        .Where(product => product.LocationID == Helper.LocationId).ToList();
+                int productNo = rand.Next(0, Products.Count);
+                var filteredProduct = products[productNo];
+                var recommendedProduct = new Product(filteredProduct.Name, filteredProduct.Barcode, filteredProduct.Price, (decimal)filteredProduct.Discount, filteredProduct.Tax, filteredProduct.Quantity);
+                return recommendedProduct;
             }
         }
     }
