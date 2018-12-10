@@ -53,9 +53,10 @@
             this.OrderControl_Panel.Controls.Add(this.FinalizeOrderButton);
             this.OrderControl_Panel.Controls.Add(this.SignOff_Button);
             this.OrderControl_Panel.Controls.Add(this.ReturnButton);
-            this.OrderControl_Panel.Location = new System.Drawing.Point(424, 510);
+            this.OrderControl_Panel.Location = new System.Drawing.Point(848, 981);
+            this.OrderControl_Panel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.OrderControl_Panel.Name = "OrderControl_Panel";
-            this.OrderControl_Panel.Size = new System.Drawing.Size(563, 85);
+            this.OrderControl_Panel.Size = new System.Drawing.Size(1126, 163);
             this.OrderControl_Panel.TabIndex = 2;
             // 
             // PrintLastOrderBtn
@@ -64,9 +65,10 @@
             this.PrintLastOrderBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PrintLastOrderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PrintLastOrderBtn.ForeColor = System.Drawing.Color.White;
-            this.PrintLastOrderBtn.Location = new System.Drawing.Point(170, 7);
+            this.PrintLastOrderBtn.Location = new System.Drawing.Point(340, 13);
+            this.PrintLastOrderBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.PrintLastOrderBtn.Name = "PrintLastOrderBtn";
-            this.PrintLastOrderBtn.Size = new System.Drawing.Size(72, 70);
+            this.PrintLastOrderBtn.Size = new System.Drawing.Size(144, 135);
             this.PrintLastOrderBtn.TabIndex = 47;
             this.PrintLastOrderBtn.Text = "Print Last Order";
             this.PrintLastOrderBtn.UseVisualStyleBackColor = false;
@@ -78,9 +80,10 @@
             this.DetailedReportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.DetailedReportBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DetailedReportBtn.ForeColor = System.Drawing.Color.White;
-            this.DetailedReportBtn.Location = new System.Drawing.Point(407, 7);
+            this.DetailedReportBtn.Location = new System.Drawing.Point(814, 13);
+            this.DetailedReportBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.DetailedReportBtn.Name = "DetailedReportBtn";
-            this.DetailedReportBtn.Size = new System.Drawing.Size(75, 70);
+            this.DetailedReportBtn.Size = new System.Drawing.Size(150, 135);
             this.DetailedReportBtn.TabIndex = 46;
             this.DetailedReportBtn.Text = "Detatiled Report";
             this.DetailedReportBtn.UseVisualStyleBackColor = false;
@@ -92,9 +95,10 @@
             this.DayEndBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.DayEndBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DayEndBtn.ForeColor = System.Drawing.Color.White;
-            this.DayEndBtn.Location = new System.Drawing.Point(485, 7);
+            this.DayEndBtn.Location = new System.Drawing.Point(970, 13);
+            this.DayEndBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.DayEndBtn.Name = "DayEndBtn";
-            this.DayEndBtn.Size = new System.Drawing.Size(75, 70);
+            this.DayEndBtn.Size = new System.Drawing.Size(150, 135);
             this.DayEndBtn.TabIndex = 45;
             this.DayEndBtn.Text = "Day End";
             this.DayEndBtn.UseVisualStyleBackColor = false;
@@ -106,9 +110,10 @@
             this.FinalizeOrderButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.FinalizeOrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FinalizeOrderButton.ForeColor = System.Drawing.Color.White;
-            this.FinalizeOrderButton.Location = new System.Drawing.Point(3, 7);
+            this.FinalizeOrderButton.Location = new System.Drawing.Point(6, 13);
+            this.FinalizeOrderButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.FinalizeOrderButton.Name = "FinalizeOrderButton";
-            this.FinalizeOrderButton.Size = new System.Drawing.Size(156, 70);
+            this.FinalizeOrderButton.Size = new System.Drawing.Size(312, 135);
             this.FinalizeOrderButton.TabIndex = 44;
             this.FinalizeOrderButton.Text = "Finalize Order";
             this.FinalizeOrderButton.UseVisualStyleBackColor = false;
@@ -120,9 +125,10 @@
             this.SignOff_Button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SignOff_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SignOff_Button.ForeColor = System.Drawing.Color.White;
-            this.SignOff_Button.Location = new System.Drawing.Point(327, 7);
+            this.SignOff_Button.Location = new System.Drawing.Point(654, 13);
+            this.SignOff_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.SignOff_Button.Name = "SignOff_Button";
-            this.SignOff_Button.Size = new System.Drawing.Size(75, 70);
+            this.SignOff_Button.Size = new System.Drawing.Size(150, 135);
             this.SignOff_Button.TabIndex = 43;
             this.SignOff_Button.Text = "Sign Off";
             this.SignOff_Button.UseVisualStyleBackColor = false;
@@ -134,9 +140,10 @@
             this.ReturnButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ReturnButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReturnButton.ForeColor = System.Drawing.Color.White;
-            this.ReturnButton.Location = new System.Drawing.Point(248, 7);
+            this.ReturnButton.Location = new System.Drawing.Point(496, 13);
+            this.ReturnButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ReturnButton.Name = "ReturnButton";
-            this.ReturnButton.Size = new System.Drawing.Size(72, 70);
+            this.ReturnButton.Size = new System.Drawing.Size(144, 135);
             this.ReturnButton.TabIndex = 42;
             this.ReturnButton.Text = "Return";
             this.ReturnButton.UseVisualStyleBackColor = false;
@@ -164,31 +171,32 @@
             // 
             this.OrderControl.BackColor = System.Drawing.Color.White;
             this.OrderControl.EmployeeId = 0;
-            this.OrderControl.Location = new System.Drawing.Point(6, 9);
-            this.OrderControl.Margin = new System.Windows.Forms.Padding(1);
+            this.OrderControl.Location = new System.Drawing.Point(12, 17);
+            this.OrderControl.Margin = new System.Windows.Forms.Padding(2);
             this.OrderControl.Name = "OrderControl";
             this.OrderControl.OrderType = "";
-            this.OrderControl.Size = new System.Drawing.Size(403, 585);
+            this.OrderControl.Size = new System.Drawing.Size(806, 1125);
             this.OrderControl.TabIndex = 7;
             // 
             // productViewControl1
             // 
             this.productViewControl1.BackColor = System.Drawing.Color.Gray;
-            this.productViewControl1.Location = new System.Drawing.Point(424, 8);
-            this.productViewControl1.Margin = new System.Windows.Forms.Padding(1);
+            this.productViewControl1.Location = new System.Drawing.Point(848, 15);
+            this.productViewControl1.Margin = new System.Windows.Forms.Padding(2);
             this.productViewControl1.Name = "productViewControl1";
-            this.productViewControl1.Size = new System.Drawing.Size(563, 487);
+            this.productViewControl1.Size = new System.Drawing.Size(1126, 937);
             this.productViewControl1.TabIndex = 6;
             // 
             // POSForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(993, 602);
+            this.ClientSize = new System.Drawing.Size(1986, 1158);
             this.Controls.Add(this.OrderControl);
             this.Controls.Add(this.productViewControl1);
             this.Controls.Add(this.OrderControl_Panel);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "POSForm";
             this.Text = "POS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.POSForm_FormClosing);
