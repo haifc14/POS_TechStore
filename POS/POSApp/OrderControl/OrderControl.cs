@@ -15,6 +15,8 @@ namespace POSApp
     {
         private Order _currentOrder;
 
+        public static string CustomerBarcode = "";
+
         public Order CurrentOrder
         {
             get
@@ -73,7 +75,7 @@ namespace POSApp
 
                 bool canConvertToNumber = int.TryParse(barcodeFromInput, out int itemBarcode);
 
-                if(canConvertToNumber == true) // is item barcode since item barcode is always a int number
+                if(canConvertToNumber == true) // it is item barcode since item barcode is always a int number
                 {
                     // Get Scanned Product info 
                     Product scannedItem = new Product(itemBarcode);
@@ -95,9 +97,11 @@ namespace POSApp
                 }
                 else
                 {
-                    // is Customer code since customer barcode contain 'C' letter befor number
+                    // it is Customer code since customer barcode contain 'C' letter befor number
                     // so that it cannot be parsed to int number
-                    Customer customer = new Customer(barcodeFromInput);
+                    CustomerBarcode = barcodeFromInput;
+
+                    Customer customer = new Customer(CustomerBarcode);
 
                     CurrentOrder.Customer = customer;
 

@@ -15,21 +15,23 @@ namespace POSLibrary
         
         public ProductCollection()
         {
-            Products = new List<Product>();
-            Product randomProductOne = GetRandomProduct();
-            Product randomProductTwo = GetRandomProduct();
-            Products.Add(randomProductOne);
-            Products.Add(randomProductTwo);
+            Products = GetTwoRandomProduct();
         }
 
         public ProductCollection(string customerCode)
         {
             Products = new List<Product>();
+
             List<int> productInfoOfRandomProductOfCustomer = GetRandomProductInoFromCertainCustomserPurchases(customerCode);
-            Product randomProductFromFromCustomerPurchases = GetProductInfoByBarcode(productInfoOfRandomProductOfCustomer[0], productInfoOfRandomProductOfCustomer[1]);
-            Product randomProductFromSystem = GetRandomProduct();
-            Products.Add(randomProductFromFromCustomerPurchases);
-            Products.Add(randomProductFromSystem);
+            if (productInfoOfRandomProductOfCustomer != null)
+            {   // customer has bought product
+                Products = GetRecommendedProductForCurrentCustomer(productInfoOfRandomProductOfCustomer);
+            } 
+            else
+            {
+                // customer has not bought any product yet
+                Products = GetTwoRandomProduct();
+            }
         }
 
         public ProductCollection(string keywords, string brandName = "", string categoryName = "")
@@ -140,6 +142,7 @@ namespace POSLibrary
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
+               
                 var inStock = GetInstock();
                 var orderItems = GetAllOrderItems();
                 var orders = GetAllOrders();
@@ -159,11 +162,13 @@ namespace POSLibrary
 
                 List<int> result = new List<int>();
 
-                result.Add((int)listOfCustomerPurchasesBarcode[productNo].Barcode);
-                result.Add((int)listOfCustomerPurchasesBarcode[productNo].Quantity);
-
-                return result;
-
+                if (listOfCustomerPurchasesBarcode.Count > 0)
+                {
+                    result.Add((int)listOfCustomerPurchasesBarcode[productNo].Barcode);
+                    result.Add((int)listOfCustomerPurchasesBarcode[productNo].Quantity);
+                    return result;
+                }
+                return null;                   
             }
         }
 
@@ -174,6 +179,29 @@ namespace POSLibrary
                 var productInfo = context.GetTable<TProductGroup>().Where(product => product.Barcode == barcode).ToList();
                 return new Product(productInfo[0].Name, productInfo[0].Barcode, productInfo[0].Price, (decimal)productInfo[0].Discount, productInfo[0].Tax, quantity);
             }
+        }
+
+        private List<Product> GetTwoRandomProduct()
+        {
+            List<Product> resultList = new List<Product>();
+            Product randomProductOne = GetRandomProduct();
+            Product randomProductTwo = GetRandomProduct();
+            resultList.Add(randomProductOne);
+            resultList.Add(randomProductTwo);
+            return resultList;
+        }
+
+        private List<Product> GetRecommendedProductForCurrentCustomer( List<int> productTokens) 
+        {
+            // it will include one latest product that customer bought + one random product from system
+
+            List<Product> result = new List<Product>();
+
+            Product randomProductFromFromCustomerPurchases = GetProductInfoByBarcode(productTokens[0], productTokens[1]);
+            Product randomProductFromSystem = GetRandomProduct();
+            result.Add(randomProductFromFromCustomerPurchases);
+            result.Add(randomProductFromSystem);
+            return result;
         }
     }
 }

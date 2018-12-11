@@ -94,22 +94,24 @@ namespace POSApp
         private void RecommendedButtton_Click(object sender, EventArgs e)
         {
             // get the Customer code when their card was scanned
-            string customerCode = "C500"; // for testing 
-
+            string customerCode = OrderControl.CustomerBarcode;
+           
             var bindingSource = new BindingSource();
 
-            // no customer code
-            ProductCollection collectionFromSystem = new ProductCollection();
-          
-            bindingSource.DataSource = collectionFromSystem.Products;
-            //ProductDataGradeView.DataSource = bindingSource;
-
-            // if customer has card, recommend the latest purchased product + random products
-
-            ProductCollection collectionFromCustomerPurchases = new ProductCollection(customerCode);
-            
-            bindingSource.DataSource = collectionFromCustomerPurchases.Products;
-            ProductDataGradeView.DataSource = bindingSource;
+            if (customerCode == "")
+            {
+                // no customer code
+                ProductCollection collectionFromSystem = new ProductCollection();
+                bindingSource.DataSource = collectionFromSystem.Products;
+                ProductDataGradeView.DataSource = bindingSource;
+            }
+            else
+            {
+                // if customer has card, recommend the latest purchased product + random products
+                ProductCollection collectionFromCustomerPurchases = new ProductCollection(customerCode);
+                bindingSource.DataSource = collectionFromCustomerPurchases.Products;
+                ProductDataGradeView.DataSource = bindingSource;
+            }          
         }
     }
 }
