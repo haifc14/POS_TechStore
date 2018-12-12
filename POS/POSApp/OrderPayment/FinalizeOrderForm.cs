@@ -109,7 +109,7 @@ namespace POSApp
         }
 
         //get input of payments and finishing order payment
-        private void CompleteOrderTransaction()
+        private async void CompleteOrderTransaction()
         {
             decimal employeeDiscount = 0;
             decimal.TryParse(OrderDiscountControl.UserInput, out employeeDiscount);
@@ -129,7 +129,17 @@ namespace POSApp
                 MessageBox.Show("Change Due: " + change.ToString());
                 if (change >= 0)
                 {
-                    CurrentOrder.SaveOrderToDatabase();
+                    LoaderForm loader = new LoaderForm();
+                    loader.Show();
+                    await Task.Run( () => 
+                    {
+                        try
+                        {
+                            CurrentOrder.SaveOrderToDatabase();
+                        }
+                        catch { }
+                    });
+                    loader.Close();
                     this.CloseCurrentOrder(this);
                 }
             }
