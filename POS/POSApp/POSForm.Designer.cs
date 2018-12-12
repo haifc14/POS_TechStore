@@ -46,6 +46,7 @@
             // 
             // OrderControl_Panel
             // 
+            this.OrderControl_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrderControl_Panel.BackColor = System.Drawing.Color.Gray;
             this.OrderControl_Panel.Controls.Add(this.PrintLastOrderBtn);
             this.OrderControl_Panel.Controls.Add(this.DetailedReportBtn);
@@ -53,7 +54,7 @@
             this.OrderControl_Panel.Controls.Add(this.FinalizeOrderButton);
             this.OrderControl_Panel.Controls.Add(this.SignOff_Button);
             this.OrderControl_Panel.Controls.Add(this.ReturnButton);
-            this.OrderControl_Panel.Location = new System.Drawing.Point(424, 510);
+            this.OrderControl_Panel.Location = new System.Drawing.Point(431, 510);
             this.OrderControl_Panel.Name = "OrderControl_Panel";
             this.OrderControl_Panel.Size = new System.Drawing.Size(563, 85);
             this.OrderControl_Panel.TabIndex = 2;
@@ -162,10 +163,11 @@
             // 
             // OrderControl
             // 
+            this.OrderControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OrderControl.BackColor = System.Drawing.Color.White;
             this.OrderControl.EmployeeId = 0;
-            this.OrderControl.Location = new System.Drawing.Point(6, 9);
-            this.OrderControl.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.OrderControl.Location = new System.Drawing.Point(13, 9);
+            this.OrderControl.Margin = new System.Windows.Forms.Padding(1);
             this.OrderControl.Name = "OrderControl";
             this.OrderControl.OrderType = "";
             this.OrderControl.Size = new System.Drawing.Size(403, 585);
@@ -173,22 +175,25 @@
             // 
             // ProductViewControl
             // 
+            this.ProductViewControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ProductViewControl.BackColor = System.Drawing.Color.Gray;
-            this.ProductViewControl.Location = new System.Drawing.Point(424, 8);
-            this.ProductViewControl.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.ProductViewControl.Location = new System.Drawing.Point(431, 8);
+            this.ProductViewControl.Margin = new System.Windows.Forms.Padding(1);
             this.ProductViewControl.Name = "ProductViewControl";
             this.ProductViewControl.Size = new System.Drawing.Size(563, 487);
             this.ProductViewControl.TabIndex = 6;
+            this.ProductViewControl.Load += new System.EventHandler(this.ProductViewControl_Load);
             // 
             // POSForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(994, 602);
+            this.ClientSize = new System.Drawing.Size(1008, 602);
             this.Controls.Add(this.OrderControl);
             this.Controls.Add(this.ProductViewControl);
             this.Controls.Add(this.OrderControl_Panel);
+            this.MinimumSize = new System.Drawing.Size(1024, 641);
             this.Name = "POSForm";
             this.Text = "POS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.POSForm_FormClosing);

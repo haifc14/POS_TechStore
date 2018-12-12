@@ -297,8 +297,7 @@ namespace POSLibrary
                         var customers = contex.GetTable<TCustomer>().Where(customer => customer.CustomerId == this.Customer.CustomerId).ToList();
                         if (customers.Count > 0)
                         {
-                            MessageBox.Show(this.Customer.GetPoints().ToString());
-                            //points available now - points redeemed + totalPrice
+                           //points available now - points redeemed + totalPrice
                             customers[0].TotalPoints = customers[0].TotalPoints - this.TotalRedeemPoints + (int)this.Total;
                         }
                         contex.SubmitChanges();

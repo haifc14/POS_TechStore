@@ -194,6 +194,9 @@ namespace POSApp
             }
         }
 
-        
+        private void ProductViewControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -166,5 +166,10 @@ namespace POSApp
         {
 
         }
+
+        private void EmployeeIDLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
