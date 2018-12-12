@@ -182,7 +182,6 @@
             this.ProductViewControl.Name = "ProductViewControl";
             this.ProductViewControl.Size = new System.Drawing.Size(563, 487);
             this.ProductViewControl.TabIndex = 6;
-            this.ProductViewControl.Load += new System.EventHandler(this.ProductViewControl_Load);
             // 
             // POSForm
             // 

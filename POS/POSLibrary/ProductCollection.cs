@@ -15,11 +15,14 @@ namespace POSLibrary
         
         public ProductCollection()
         {
+            // Contructor without params will get the two random products from system
             Products = GetTwoRandomProduct();
         }
 
         public ProductCollection(string customerCode)
         {
+            // Contructor with customerCode as param will get one latest product of customer purchase and
+            // one random product from system
             Products = new List<Product>();
 
             List<int> productInfoOfRandomProductOfCustomer = GetRandomProductInoFromCertainCustomserPurchases(customerCode);
