@@ -12,6 +12,28 @@ namespace POSLibrary
         public List<Product> Products { get; private set; }
         private Random rand = new Random();
 
+        
+        public ProductCollection()
+        {
+            Products = GetTwoRandomProduct();
+        }
+
+        public ProductCollection(string customerCode)
+        {
+            Products = new List<Product>();
+
+            List<int> productInfoOfRandomProductOfCustomer = GetRandomProductInoFromCertainCustomserPurchases(customerCode);
+            if (productInfoOfRandomProductOfCustomer != null)
+            {   // customer has bought product
+                Products = GetRecommendedProductForCurrentCustomer(productInfoOfRandomProductOfCustomer);
+            } 
+            else
+            {
+                // customer has not bought any product yet
+                Products = GetTwoRandomProduct();
+            }
+        }
+
         public ProductCollection(string keywords, string brandName = "", string categoryName = "")
         {
             Products = new List<Product>();
@@ -82,15 +104,16 @@ namespace POSLibrary
             }
         }
 
-        private Product GetRandomProduct()
+        public Product GetRandomProduct()
         {
             using (var contex = new DataContext(Helper.GetConnectionString()))
             {
                 var instock = GetInstock();
-                var products = contex.GetTable<TProductGroup>().Join(instock, product => product.Barcode, instockproduct => instockproduct.BarcodeID,
+                var productGroups = contex.GetTable<TProductGroup>().ToList();
+                var products = productGroups.Join(instock, product => product.Barcode, instockproduct => instockproduct.BarcodeID,
                                         (product, instockproduct) => new { product.Barcode, product.Name, product.Discount, product.Price, product.Tax, instockproduct.Quantity, instockproduct.LocationID })
                                         .Where(product => product.LocationID == Helper.LocationId).ToList();
-                int productNo = rand.Next(0, Products.Count);
+                int productNo = rand.Next(0, products.Count);
                 var filteredProduct = products[productNo];
                 var recommendedProduct = new Product(filteredProduct.Name, filteredProduct.Barcode, filteredProduct.Price, (decimal)filteredProduct.Discount, filteredProduct.Tax, filteredProduct.Quantity);
                 return recommendedProduct;
@@ -115,35 +138,70 @@ namespace POSLibrary
             }
         }
 
-        public int GetBarcodeOfLatestPurchasedForCertainCustomser(string customerCode)
+        public List<int> GetRandomProductInoFromCertainCustomserPurchases(string customerCode)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
+               
                 var inStock = GetInstock();
                 var orderItems = GetAllOrderItems();
                 var orders = GetAllOrders();
 
-                var barcodeOfLatestProductOfCuurentCustomer = orders
+                var listOfCustomerPurchasesBarcode = orders
                                                 .Join(orderItems, order => order.OrderNumber, item => item.OrderNumber, (order, item) => new { order, item })
                                                 .Join(inStock, itemAgain => itemAgain.item.Barcode, instock => instock.BarcodeID, (itemAgain, instock) => new { itemAgain, instock })
                                                 .Where(itemAgain => itemAgain.itemAgain.order.CustomerID == customerCode && itemAgain.instock.Quantity > 0)
-                                                .OrderByDescending(row => row.itemAgain.order.OrdeDate).Take(1)
+                                                .OrderByDescending(row => row.itemAgain.order.OrdeDate)
                                                 .Select(row => new
                                                 {
-                                                    Barcode = row.itemAgain.item.Barcode                                                  
+                                                    Barcode = row.itemAgain.item.Barcode,
+                                                    Quantity = row.instock.Quantity
                                                 }).ToList();
 
-                return (int)barcodeOfLatestProductOfCuurentCustomer[0].Barcode;
+                int productNo = rand.Next(0, listOfCustomerPurchasesBarcode.Count);
+
+                List<int> result = new List<int>();
+
+                if (listOfCustomerPurchasesBarcode.Count > 0)
+                {
+                    result.Add((int)listOfCustomerPurchasesBarcode[productNo].Barcode);
+                    result.Add((int)listOfCustomerPurchasesBarcode[productNo].Quantity);
+                    return result;
+                }
+                return null;                   
             }
         }
 
-        public TProductGroup GetProductInfoByBarcode(int barcode)
+        public Product GetProductInfoByBarcode( int barcode, int quantity)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
             {
                 var productInfo = context.GetTable<TProductGroup>().Where(product => product.Barcode == barcode).ToList();
-                return productInfo[0];
+                return new Product(productInfo[0].Name, productInfo[0].Barcode, productInfo[0].Price, (decimal)productInfo[0].Discount, productInfo[0].Tax, quantity);
             }
+        }
+
+        private List<Product> GetTwoRandomProduct()
+        {
+            List<Product> resultList = new List<Product>();
+            Product randomProductOne = GetRandomProduct();
+            Product randomProductTwo = GetRandomProduct();
+            resultList.Add(randomProductOne);
+            resultList.Add(randomProductTwo);
+            return resultList;
+        }
+
+        private List<Product> GetRecommendedProductForCurrentCustomer( List<int> productTokens) 
+        {
+            // it will include one latest product that customer bought + one random product from system
+
+            List<Product> result = new List<Product>();
+
+            Product randomProductFromFromCustomerPurchases = GetProductInfoByBarcode(productTokens[0], productTokens[1]);
+            Product randomProductFromSystem = GetRandomProduct();
+            result.Add(randomProductFromFromCustomerPurchases);
+            result.Add(randomProductFromSystem);
+            return result;
         }
     }
 }
