@@ -27,12 +27,13 @@ namespace POSLibrary
 
             List<int> productInfoOfRandomProductOfCustomer = GetRandomProductInoFromCertainCustomserPurchases(customerCode);
             if (productInfoOfRandomProductOfCustomer != null)
-            {   // customer has bought product
+            {   
                 Products = GetRecommendedProductForCurrentCustomer(productInfoOfRandomProductOfCustomer);
             } 
             else
             {
                 // customer has not bought any product yet
+                // just recommend 2 random products from system
                 Products = GetTwoRandomProduct();
             }
         }
@@ -107,6 +108,10 @@ namespace POSLibrary
             }
         }
 
+        /// <summary>
+        /// This method will return a randome product from the database
+        /// </summary>
+        /// <returns></returns>
         public Product GetRandomProduct()
         {
             using (var contex = new DataContext(Helper.GetConnectionString()))
@@ -141,6 +146,12 @@ namespace POSLibrary
             }
         }
 
+        /// <summary>
+        /// This method return a list containing Barcode and Quantity of product 
+        /// matching condition ==> latest product that customer bought and quantity > 0
+        /// </summary>
+        /// <param name="customerCode"></param>
+        /// <returns></returns>
         public List<int> GetRandomProductInoFromCertainCustomserPurchases(string customerCode)
         {
             using (var context = new DataContext(Helper.GetConnectionString()))
@@ -194,12 +205,15 @@ namespace POSLibrary
             return resultList;
         }
 
+        /// <summary>
+        /// This method return list of a random product from database and a latest product that customer purchased
+        /// </summary>
+        /// <param name="productTokens"></param>
+        /// <returns></returns>
         private List<Product> GetRecommendedProductForCurrentCustomer( List<int> productTokens) 
         {
             // it will include one latest product that customer bought + one random product from system
-
             List<Product> result = new List<Product>();
-
             Product randomProductFromFromCustomerPurchases = GetProductInfoByBarcode(productTokens[0], productTokens[1]);
             Product randomProductFromSystem = GetRandomProduct();
             result.Add(randomProductFromFromCustomerPurchases);
