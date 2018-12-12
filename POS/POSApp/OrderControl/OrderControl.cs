@@ -136,7 +136,7 @@ namespace POSApp
             }
             
         }
-
+        
         private void BindingOrderDataToOrderView(Order orderData, OrderSummaryControl orderUI)
         {
 

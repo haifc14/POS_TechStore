@@ -34,7 +34,6 @@ namespace POSApp
             this.OrderControl.EmployeeId = this.EmployeeID;
         }
 
-
         public Action<FinalizeOrderForm> ClearCurruntOrder()
         {
             return finalizeForm => 
@@ -61,6 +60,12 @@ namespace POSApp
             };
         }
 
+        /// <summary>
+        /// This event is to confirm and finalize the current order
+        /// calculate the order and show the change if it has
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FinalizeOrderButton_Click(object sender, EventArgs e)
         {
             if (this.OrderControl.CurrentOrder.ListOfItems.Count() != 0)
@@ -77,6 +82,11 @@ namespace POSApp
             this.Close();
         }
 
+        /// <summary>
+        /// This event is to print the summary data of last order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrintLastOrderBtn_Click(object sender, EventArgs e)
         {
             if (this._lastOrder == null || this._lastOrder.Customer == null)
@@ -89,6 +99,11 @@ namespace POSApp
             }
         }
 
+        /// <summary>
+        /// This event is to print the invoice of the current order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrintReceiptDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             int x = e.MarginBounds.Left;
@@ -103,9 +118,11 @@ namespace POSApp
             g.DrawString("-------------------------------------------------", font, brush, x, y += nxtLineIncrement);
             foreach (var item in _lastOrder.ListOfItems)
             {
+                // display each item within the order
                 g.DrawString(item.Name + "\t\t" + item.Price, font, brush, x, y += nxtLineIncrement);
                 g.DrawString("Discount : " + item.Discount, font, brush, x, y += nxtLineIncrement);
             }
+            // display overall detail of order
             g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
             g.DrawString("Subtotal : $" + _lastOrder.SubTotal.ToString(), font, brush, x, y += nxtLineIncrement);
             g.DrawString("Tax : $" + _lastOrder.Tax.ToString(), font, brush, x, y += nxtLineIncrement);
@@ -127,7 +144,11 @@ namespace POSApp
 
         }
 
-
+        /// <summary>
+        /// This event is to print the detail of all order of the the working day
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DayEndButton_Click_1(object sender, EventArgs e)
         {
             printDayDetailReport.Print();
@@ -141,6 +162,11 @@ namespace POSApp
             }
         }
 
+        /// <summary>
+        /// This event is to print the summary data when the day end
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DayReportButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to day close?", "warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
@@ -159,8 +185,6 @@ namespace POSApp
 
         private void printDayDetailReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-
-
             this.printDayDetailReport.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("papersize", 150, 500);
 
             DateTime currentDate = DateTime.UtcNow.Date;
@@ -220,9 +244,5 @@ namespace POSApp
             }
         }
 
-        private void ProductViewControl_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
