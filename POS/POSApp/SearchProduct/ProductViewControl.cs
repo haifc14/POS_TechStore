@@ -17,6 +17,9 @@ namespace POSApp
         private string[] _brands;
         private string _selectedBrand = "";
         private string _selectedCategory = "";
+        private ProductCollection _filteredProducts;
+
+        public Action<int> ScanBarcode;
 
         public ProductViewControl()
         {
@@ -58,9 +61,9 @@ namespace POSApp
             try
             {
                 var keywords = SearchTextbox.Text;
-                var filteredProducts = new ProductCollection(keywords, _selectedBrand, _selectedCategory);
+                _filteredProducts = new ProductCollection(keywords, _selectedBrand, _selectedCategory);
                 var bindingSource = new BindingSource();
-                bindingSource.DataSource = filteredProducts.Products;
+                bindingSource.DataSource = _filteredProducts.Products;
                 ProductDataGradeView.DataSource = bindingSource;
             }
             catch (Exception)
@@ -78,7 +81,10 @@ namespace POSApp
 
         private void ProductDataGradeView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (_filteredProducts != null && e.ColumnIndex == 0)
+            {
+                ScanBarcode?.Invoke(_filteredProducts.Products[e.RowIndex].Barcode);
+            }
         }
 
         private void ProductFilterPanel_Paint(object sender, PaintEventArgs e)

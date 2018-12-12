@@ -26,6 +26,7 @@ namespace POSApp
         {
             InitializeComponent();
             EmployeeID = employeeId;
+            ProductViewControl.ScanBarcode = OrderControl.ScanProduct;
         }
         
         private void PosForm_Load(object sender, EventArgs e)
@@ -39,11 +40,20 @@ namespace POSApp
             return finalizeForm => 
             {
                 //save last order so employee can print receipt
-                _lastOrder = finalizeForm.CurrentOrder;
+                try
+                {
+                    _lastOrder = new Order(finalizeForm.CurrentOrder.OrderNumber);
+                }
+                catch
+                {
+                    _lastOrder = null;
+                }
+                
 
                 //remove last order and add new one
                 this.Controls.Remove(this.OrderControl);
                 this.OrderControl = new OrderControl();
+                ProductViewControl.ScanBarcode = this.OrderControl.ScanProduct;
                 this.Controls.Add(this.OrderControl);
 
                 //close finalizeform to continue on new order
@@ -69,7 +79,14 @@ namespace POSApp
 
         private void PrintLastOrderBtn_Click(object sender, EventArgs e)
         {
-            PrintReceiptDocument.Print();
+            if (this._lastOrder == null || this._lastOrder.Customer == null)
+            {
+                MessageBox.Show("No order available to print!");
+            }
+            else
+            {
+                PrintReceiptDocument.Print();
+            }
         }
 
         private void PrintReceiptDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -103,7 +120,7 @@ namespace POSApp
                                     font, brush, x, y += nxtLineIncrement);
             }
             g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
-            g.DrawString("Chage Due: " + _lastOrder.GetBalanceDue().ToString(), font, brush, x, y += nxtLineIncrement);
+            g.DrawString("Chage Due: "  +( - (_lastOrder.Total - _lastOrder.TotalPaidByCard - _lastOrder.TotalPaidByCash - (_lastOrder.TotalRedeemPoints / Helper.PointsWorthTo1Dollar))).ToString(), font, brush, x, y += nxtLineIncrement);
 
         }
 

@@ -16,6 +16,8 @@ namespace POSLibrary
         public List<Product> ListOfItems { get; set; } = new List<Product>();
         public decimal TotalDiscount { get; set; } = 0;
 
+        public int OrderNumber { get; set; }
+
         private decimal _total;
 
         public decimal Total
@@ -90,6 +92,34 @@ namespace POSLibrary
             this.Customer = customer;
         }
 
+        public Order(int orderNumber)
+        {
+            using (var contex = new DataContext(Helper.GetConnectionString()))
+            {
+                var TOrders = contex.GetTable<TOrder>().Where(order => order.OrderNumber == orderNumber).ToList();
+                if (TOrders.Count == 1)
+                {
+                    this.Total = TOrders[0].TotalPrice;
+                    this.Tax = TOrders[0].TotalTax;
+                    this.Discount = TOrders[0].TotalTax;
+                    this.TotalPaidByCard = TOrders[0].CardPayment;
+                    this.TotalPaidByCash = TOrders[0].CashPayment;
+                    this.TotalRedeemPoints = (int) TOrders[0].PoitRedeem;
+                    
+                    if (TOrders[0].CustomerID != "-1")
+                    {
+                        this.Customer = new Customer(TOrders[0].CustomerID);
+                    }
+                    else
+                    {
+                        this.Customer = new Customer() { CustomerId = "-1"};
+                    }
+                    this.IsReturn = TOrders[0].IsReturned == 1 ? true : false;
+                    this.EmployeeID = TOrders[0].EmployeeID;
+                }
+            }
+        }
+
         public Order(Customer customer)
         {
             this.Customer = customer;
@@ -111,10 +141,6 @@ namespace POSLibrary
             if (balanceDue > 0)
             {
                 throw new Exception("Not sufficient money paid by customer. Balance due " + balanceDue);
-            }
-            if (balanceDue < 0)
-            {
-                TotalPaidByCash += balanceDue; //giving change back to customer
             }
             return -balanceDue;
         }
@@ -240,6 +266,7 @@ namespace POSLibrary
                         contex.GetTable<TOrder>().InsertOnSubmit(TOrder);
                         contex.SubmitChanges();
 
+                        this.OrderNumber = TOrder.OrderNumber;
                         //updating orderitem
 
                         List<TOrderItem> TorderItemsList = new List<TOrderItem>();

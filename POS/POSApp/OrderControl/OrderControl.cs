@@ -15,6 +15,8 @@ namespace POSApp
     {
         private Order _currentOrder;
 
+        public Action<int> ScanProduct;
+
         public Order CurrentOrder
         {
             get
@@ -54,6 +56,35 @@ namespace POSApp
             OrderSummaryView = new OrderSummaryControl();
             // Binding data of Temporary Order To OrderSummaryControl                 
             BindingOrderDataToOrderView(CurrentOrder, OrderSummaryView);
+            ScanProduct += ScanItem;
+        }
+
+        private void ScanItem(int barcode)
+        {
+            try
+            {
+                // Get Scanned Product info 
+                Product scannedItem = new Product(barcode);
+                if (CurrentOrder.IsReturn)
+                {
+                    scannedItem.RetrunProduct();
+                }
+                // display the scanned item on Left Product Panel            
+                OrderItemControl ItemControl = new OrderItemControl(scannedItem);
+                ItemControl.RemoveItemEvent += RemoveItem();
+                OrderView_Panel.Controls.Add(ItemControl);
+
+                // Adding scanned item to a order                 
+                CurrentOrder.AddItem(scannedItem);
+
+                // Display Order Info to form
+                // OrderSummaryFlowPanel.Controls.Clear();
+                OrderSummaryFlowPanel.Controls.Add(OrderSummaryView);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
 
@@ -75,23 +106,7 @@ namespace POSApp
 
                 if(canConvertToNumber == true) // is item barcode since item barcode is always a int number
                 {
-                    // Get Scanned Product info 
-                    Product scannedItem = new Product(itemBarcode);
-                    if (CurrentOrder.IsReturn)
-                    {
-                        scannedItem.RetrunProduct();
-                    }
-                    // display the scanned item on Left Product Panel            
-                    OrderItemControl ItemControl = new OrderItemControl(scannedItem);
-                    ItemControl.RemoveItemEvent += RemoveItem();
-                    OrderView_Panel.Controls.Add(ItemControl);
-
-                    // Adding scanned item to a order                 
-                    CurrentOrder.AddItem(scannedItem);
-
-                    // Display Order Info to form
-                    // OrderSummaryFlowPanel.Controls.Clear();
-                    OrderSummaryFlowPanel.Controls.Add(OrderSummaryView);
+                    ScanProduct(itemBarcode);
                 }
                 else
                 {

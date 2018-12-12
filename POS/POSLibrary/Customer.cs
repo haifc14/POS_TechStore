@@ -9,9 +9,9 @@ namespace POSLibrary
 {
     public class Customer
     {
-        private string CustomerName;
+        internal string CustomerName;
         public string CustomerId;
-        private int CustomerPoints;
+        internal int CustomerPoints;
 
         public Customer()
         {

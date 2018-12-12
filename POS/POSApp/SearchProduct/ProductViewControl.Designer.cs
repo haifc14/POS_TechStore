@@ -47,7 +47,7 @@
             this.ProductDataGradeView.RowTemplate.Height = 37;
             this.ProductDataGradeView.Size = new System.Drawing.Size(560, 379);
             this.ProductDataGradeView.TabIndex = 0;
-            this.ProductDataGradeView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductDataGradeView_CellContentClick);
+            this.ProductDataGradeView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductDataGradeView_CellContentClick);
             // 
             // SubmitButton
             // 

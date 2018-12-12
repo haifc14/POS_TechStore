@@ -9,8 +9,8 @@ namespace POSLibrary
 {
     public static class Helper
     {
-        internal const decimal PointsWorthTo1Dollar = 1000;
-        internal const decimal PointsGainFactorFrom1Dollar = 1;
+        public const decimal PointsWorthTo1Dollar = 1000;
+        public const decimal PointsGainFactorFrom1Dollar = 1;
         internal const int LocationId = 4;
 
         public static string FILE_PATH_DETAIL_REPORT = @"../../../ReportDataFiles/dayenddetail.txt";
