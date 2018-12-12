@@ -15,6 +15,9 @@ namespace POSApp
         public LoaderForm()
         {
             InitializeComponent();
+            this.ControlBox = false;
+            this.ProgressBar.Style = ProgressBarStyle.Marquee;
+            this.ProgressBar.MarqueeAnimationSpeed = 30;
         }
     }
 }

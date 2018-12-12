@@ -64,12 +64,27 @@ namespace POSApp
             ScanProduct += ScanItem;
         }
 
-        private void ScanItem(int barcode)
+        private async void ScanItem(int barcode)
         {
             try
             {
                 // Get Scanned Product info 
-                Product scannedItem = new Product(barcode, !CurrentOrder.IsReturn);
+
+                Product scannedItem = null;
+                LoaderForm loader = new LoaderForm();
+                loader.Show();
+                await Task.Run(() => 
+                {
+                    try
+                    {
+                        scannedItem = new Product(barcode, !CurrentOrder.IsReturn);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                });
+                loader.Close();
                 if (CurrentOrder.IsReturn)
                 {
                     scannedItem.RetrunProduct();
@@ -86,10 +101,7 @@ namespace POSApp
                 // OrderSummaryFlowPanel.Controls.Clear();
                 OrderSummaryFlowPanel.Controls.Add(OrderSummaryView);
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            catch {  }
         }
 
 

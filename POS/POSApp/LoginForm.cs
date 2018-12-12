@@ -25,13 +25,21 @@ namespace POSApp
 
         private void SignInBtn_Click(object sender, EventArgs e)
         {
+            AuthenticateUser();
+        }
+
+        private async void AuthenticateUser()
+        {
             string usernameInput = UserNameTextbox.Text;
             string passwordInput = PasswordTextbox.Text;
 
             try
             {
-                employee = new Employee(usernameInput, passwordInput);
-
+                LoaderForm loader = new LoaderForm();
+                this.Hide();
+                loader.Show();
+                await Task.Run(() => { employee = new Employee(usernameInput, passwordInput); });
+                loader.Close();
                 int returnedEmployeeID = employee.GetEmployeeID();
                 if (returnedEmployeeID > 0)
                 {
@@ -40,12 +48,13 @@ namespace POSApp
                     this.Close();
                 }
             }
-            catch (Exception egf) 
+            catch (Exception egf)
             {
+                this.Show();
                 MessageBox.Show("Invalid username and password. Try again...");
                 UserNameTextbox.Text = "";
                 PasswordTextbox.Text = "";
-            }                    
+            }
         }
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)

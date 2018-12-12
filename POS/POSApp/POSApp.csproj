@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoaderForm.Designer.cs">
+      <DependentUpon>LoaderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="POSReports\DailyReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LoaderForm.resx">
+      <DependentUpon>LoaderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="POSReports\DailyReportForm.resx">
       <DependentUpon>DailyReportForm.cs</DependentUpon>
     </EmbeddedResource>
