@@ -13,7 +13,7 @@ namespace POSApp
 {
     public partial class OrderItemControl : UserControl
     {
-
+        //event to remove orderItemFrom OrderControl
         public event Action<Product, OrderItemControl> RemoveItemEvent;
 
         private Product product;

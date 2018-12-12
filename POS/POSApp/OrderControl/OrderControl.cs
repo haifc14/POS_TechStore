@@ -15,8 +15,10 @@ namespace POSApp
     {
         private Order _currentOrder;
 
+        // delegate to call scan product outside user control
         public Action<int> ScanProduct;
 
+        //static variable to access customer default barcode outside
         public static string CustomerBarcode = "";
 
         public Order CurrentOrder
@@ -30,6 +32,7 @@ namespace POSApp
                 this._currentOrder = value;
             }
         }
+
         public OrderSummaryControl OrderSummaryView { get; private set; }
 
         public int EmployeeId
@@ -136,7 +139,8 @@ namespace POSApp
             }
             
         }
-        
+
+        //binding ordersummary 
         private void BindingOrderDataToOrderView(Order orderData, OrderSummaryControl orderUI)
         {
 
@@ -153,6 +157,8 @@ namespace POSApp
             orderUI.DataBindings.Add(bindingOrderTotal);
         }
 
+        //delegate remove item from the ui
+        // executes when  RemoveItemEvent called in OrderItemControl
         private Action<Product, OrderItemControl> RemoveItem()
         {           
             return (product, orderItemControl) =>

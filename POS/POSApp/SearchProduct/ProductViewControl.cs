@@ -56,6 +56,7 @@ namespace POSApp
             }
         }
 
+        //search product submit filters product and shows on screen
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             try
@@ -79,6 +80,7 @@ namespace POSApp
             }
         }
 
+        //double click on product name causes scan product
         private void ProductDataGradeView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (_filteredProducts != null && e.ColumnIndex == 0)

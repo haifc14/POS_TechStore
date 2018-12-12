@@ -41,7 +41,6 @@ namespace POSLibrary
             {
                 throw new Exception("Invalid data provided for customer!");
             }
-
         }
 
         public string GetName()

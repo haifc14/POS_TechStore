@@ -73,6 +73,8 @@ namespace POSLibrary
             get { return _employeeDiscount; }
             set { _employeeDiscount = value; }
         }
+
+        //props for the order payment
         public Customer Customer { get; set; }
         public decimal TotalPaidByCash { get; private set; }
         public decimal TotalPaidByCard { get; private set; }
@@ -92,6 +94,7 @@ namespace POSLibrary
             this.Customer = customer;
         }
 
+        //make order object from ordernumber by collecting info from database
         public Order(int orderNumber)
         {
             ListOfItems = new List<Product>();
@@ -140,10 +143,10 @@ namespace POSLibrary
             this.IsReturn = true;
         }
 
-
+        // calculate balance due and return it
         public decimal GetBalanceDue()
         {
-            UpdateOrderInfo();
+            UpdateOrderSummaryInfo();
             decimal balanceDue = Total - TotalPaidByCard - TotalPaidByCash - EmployeeDiscount - (TotalRedeemPoints / Helper.PointsWorthTo1Dollar);
             if (balanceDue > 0)
             {
@@ -170,7 +173,7 @@ namespace POSLibrary
             this.TotalPaidByCard = moneyPaid;
         }
 
-        public void ReedemPoints(int inputPoints)
+        public void RedeemCustomerPoints(int inputPoints)
         {
             if (Customer.CustomerId == "-1" && inputPoints != 0)
             {
@@ -191,6 +194,7 @@ namespace POSLibrary
             }
         }
 
+        //adding extra employee discount on order
         public void AddEmployeeDiscount(decimal discount)
         {
             if (discount < 0)
@@ -200,31 +204,29 @@ namespace POSLibrary
             EmployeeDiscount = discount;
         }
 
+        //add item to order and update order summary
         public void AddItem(Product productToAdd)
         {
             ListOfItems.Add(productToAdd);
-            UpdateOrderInfo();         
+            UpdateOrderSummaryInfo();         
         }
 
+        //remove item from order and update order summary
         public void RemoveItem(Product productToRemove)
         {
             ListOfItems.Remove(productToRemove);
-            UpdateOrderInfo();          
+            UpdateOrderSummaryInfo();          
         }
 
         public void EditDiscount(decimal newTotalDiscount)
         {
             TotalDiscount += newTotalDiscount;
         }
-      
-        public override string ToString()
-        {
-            return base.ToString();
-        }
         
-        private void UpdateOrderInfo()
+        // update order summary info
+        private void UpdateOrderSummaryInfo()
         {
-            ResetOrder();
+            ResetOrderSummary();
             foreach (var product in ListOfItems)
             {
                 SubTotal += product.Price;
@@ -234,7 +236,7 @@ namespace POSLibrary
             Total = (SubTotal + Tax) - Discount;
         }
 
-        private void ResetOrder()
+        private void ResetOrderSummary()
         {
             Total = 0;
             SubTotal = 0;
@@ -272,10 +274,10 @@ namespace POSLibrary
                         };
                         contex.GetTable<TOrder>().InsertOnSubmit(TOrder);
                         contex.SubmitChanges();
-
                         this.OrderNumber = TOrder.OrderNumber;
-                        //updating orderitem
 
+                        //updating orderitem 
+                        // if isReturn add to add to TReturned otherwise decrease from Instock
                         List<TOrderItem> TorderItemsList = new List<TOrderItem>();
                         foreach (var item in this.ListOfItems)
                         {
@@ -299,7 +301,7 @@ namespace POSLibrary
                         contex.GetTable<TOrderItem>().InsertAllOnSubmit(TorderItemsList);
                         contex.SubmitChanges(); 
 
-                        //updating customer
+                        //updating customer points
 
                         var customers = contex.GetTable<TCustomer>().Where(customer => customer.CustomerId == this.Customer.CustomerId).ToList();
                         if (customers.Count > 0)

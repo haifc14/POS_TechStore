@@ -43,6 +43,8 @@ namespace POSLibrary
             return Name + "-\t" + Barcode + "-\t" + Price + "-\t" + Discount;
         }
 
+        //get product info by barcode
+        //checkForQunatity if its scan, do not check if its returnOrder
         private void GetProductInfo(int barcode, bool checkForQuantity = false)
         {
             using (var contex = new DataContext(Helper.GetConnectionString()))
