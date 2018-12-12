@@ -17,6 +17,8 @@ namespace POSApp
 
         public Action<int> ScanProduct;
 
+        public static string CustomerBarcode = "";
+
         public Order CurrentOrder
         {
             get
@@ -112,6 +114,7 @@ namespace POSApp
                 {
                     // is Customer code since customer barcode contain 'C' letter befor number
                     // so that it cannot be parsed to int number
+                    CustomerBarcode = barcodeFromInput;
                     Customer customer = new Customer(barcodeFromInput);
 
                     CurrentOrder.Customer = customer;

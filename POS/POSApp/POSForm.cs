@@ -151,8 +151,7 @@ namespace POSApp
 
         private void printDayDetailReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //DateTime currentDate = DateTime.UtcNow.Date;
-            DateTime currentDate = DateTime.Parse("2018-12-09 20:44:02.3033333"); // for testing           
+            DateTime currentDate = DateTime.UtcNow.Date;
             List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd(currentDate);
 
             int x = e.MarginBounds.Left;

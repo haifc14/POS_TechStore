@@ -121,7 +121,7 @@ namespace POSApp
                 CurrentOrder.PayByCash(TotalMoneyPaidByCash);
                 CurrentOrder.ReedemPoints(TotalRedeemPoints);
                 var change = CurrentOrder.GetBalanceDue();
-                MessageBox.Show("Change : " + change.ToString());
+                MessageBox.Show("Change Due: " + change.ToString());
                 if (change >= 0)
                 {
                     CurrentOrder.SaveOrderToDatabase();
