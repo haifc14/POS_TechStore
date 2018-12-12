@@ -66,7 +66,7 @@ namespace POSApp
             try
             {
                 // Get Scanned Product info 
-                Product scannedItem = new Product(barcode);
+                Product scannedItem = new Product(barcode, !CurrentOrder.IsReturn);
                 if (CurrentOrder.IsReturn)
                 {
                     scannedItem.RetrunProduct();
@@ -108,7 +108,7 @@ namespace POSApp
 
                 if(canConvertToNumber == true) // is item barcode since item barcode is always a int number
                 {
-                    ScanProduct(itemBarcode);
+                    ScanProduct(itemBarcode);  
                 }
                 else
                 {

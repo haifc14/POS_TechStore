@@ -33,39 +33,63 @@ namespace POSLibrary
             Tax = -Tax;
         }
 
-        public Product(int barcode)
+        public Product(int barcode, bool checkForQuantity = false)
         {
-            GetProductInfo(barcode);
+            GetProductInfo(barcode, checkForQuantity);
         }
 
         public override string ToString()
         {
-            return Name + " " + Barcode + " " + Price + " " + Discount;
+            return Name + "-\t" + Barcode + "-\t" + Price + "-\t" + Discount;
         }
 
-        private void GetProductInfo(int barcode)
+        private void GetProductInfo(int barcode, bool checkForQuantity = false)
         {
             using (var contex = new DataContext(Helper.GetConnectionString()))
             {
                 var products = contex.GetTable<TProductGroup>();
                 var inStocks = contex.GetTable<TInStock>();
-                var filteredProductInStore = products.Join(inStocks, product => product.Barcode, instock => instock.BarcodeID, 
-                                                (product, instock) => new { product.Barcode, product.Name, product.Price, product.Discount, product.Tax, instock.Quantity, instock.LocationID})
-                                                .Where(filtered => filtered.LocationID == Helper.LocationId);
-                var productAvailableInStore = filteredProductInStore.Where( filteredProduct => filteredProduct.Quantity > 0 && filteredProduct.Barcode == barcode).ToList();
-                if (productAvailableInStore.Count > 0)
+                
+                if (checkForQuantity)
                 {
-                    this.Name = productAvailableInStore[0].Name;
-                    this.Price = productAvailableInStore[0].Price;
-                    this.Tax = productAvailableInStore[0].Tax;
-                    this.Barcode = productAvailableInStore[0].Barcode;
-                    this.Discount = (decimal) productAvailableInStore[0].Discount;
-                    this.Quantity = productAvailableInStore[0].Quantity;
+                    var filteredProductInStore = products.Join(inStocks, product => product.Barcode, instock => instock.BarcodeID,
+                                                (product, instock) => new { product.Barcode, product.Name, product.Price, product.Discount, product.Tax, instock.Quantity, instock.LocationID })
+                                                .Where(filtered => filtered.LocationID == Helper.LocationId);
+                    var productAvailableInStore = filteredProductInStore.Where(filteredProduct => (filteredProduct.Quantity > 0) && filteredProduct.Barcode == barcode).ToList();
+                    if (productAvailableInStore.Count > 0)
+                    {
+                        this.Name = productAvailableInStore[0].Name;
+                        this.Price = productAvailableInStore[0].Price;
+                        this.Tax = productAvailableInStore[0].Tax;
+                        this.Barcode = productAvailableInStore[0].Barcode;
+                        this.Discount = (decimal)productAvailableInStore[0].Discount;
+                        this.Quantity = productAvailableInStore[0].Quantity;
+                    }
+                    else
+                    {
+                        throw new Exception("Product not available in store!");
+                    }
                 }
                 else
                 {
-                    throw new Exception("Product not available in store!");
-                }
+                    var filteredProductInStore = products.Join(inStocks, product => product.Barcode, instock => instock.BarcodeID,
+                                                (product, instock) => new { product.Barcode, product.Name, product.Price, product.Discount, product.Tax, instock.Quantity, instock.LocationID })
+                                                .Where(filtered => filtered.LocationID == Helper.LocationId);
+                    var productAvailableInStore = filteredProductInStore.Where(filteredProduct => filteredProduct.Barcode == barcode).ToList();
+                    if (productAvailableInStore.Count > 0)
+                    {
+                        this.Name = productAvailableInStore[0].Name;
+                        this.Price = productAvailableInStore[0].Price;
+                        this.Tax = productAvailableInStore[0].Tax;
+                        this.Barcode = productAvailableInStore[0].Barcode;
+                        this.Discount = (decimal)productAvailableInStore[0].Discount;
+                        this.Quantity = productAvailableInStore[0].Quantity;
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid barcode!!!");
+                    }
+                } 
             }
         }       
     }

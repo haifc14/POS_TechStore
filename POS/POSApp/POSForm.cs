@@ -98,10 +98,13 @@ namespace POSApp
             var font = new Font("Arial", 16);
             var brush = new SolidBrush(Color.Black);
             g.DrawString("Order summary", font, brush, x, y);
-            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("-------------------------------------------------", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("ProductName \t\t price", font, brush, x, y += nxtLineIncrement);
+            g.DrawString("-------------------------------------------------", font, brush, x, y += nxtLineIncrement);
             foreach (var item in _lastOrder.ListOfItems)
             {
-                g.DrawString(item.ToString(), font, brush, x, y += nxtLineIncrement);
+                g.DrawString(item.Name + "\t\t" + item.Price, font, brush, x, y += nxtLineIncrement);
+                g.DrawString("Discount : " + item.Discount, font, brush, x, y += nxtLineIncrement);
             }
             g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
             g.DrawString("Subtotal : $" + _lastOrder.SubTotal.ToString(), font, brush, x, y += nxtLineIncrement);
@@ -149,21 +152,32 @@ namespace POSApp
             }
         }
 
+        //variables to print
+        private int _printIndex = 0;
+        private int _numberOfRecordPerPage = 3;
+        private int _currentPage = 0;
+
         private void printDayDetailReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+
+
+            this.printDayDetailReport.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("papersize", 150, 500);
+
             DateTime currentDate = DateTime.UtcNow.Date;
             List<TOrder> listOfOrdersWithinCurrentDay = Helper.GetAllOrdersForDayEnd(currentDate);
 
             int x = e.MarginBounds.Left;
-            int y = e.MarginBounds.Top;
+            int y = 0;
             int nxtLineIncrement = 20;
             Graphics g = e.Graphics;
             var font = new Font("Arial", 16);
             var brush = new SolidBrush(Color.Black);
-            g.DrawString("Daily Detail Report", font, brush, x, y);
-            g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
-            foreach (TOrder order in listOfOrdersWithinCurrentDay)
+            g.DrawString("Daily Detail Report", font, brush, x, y += nxtLineIncrement);
+            while (_printIndex < listOfOrdersWithinCurrentDay.Count)
             {
+                var order = listOfOrdersWithinCurrentDay[_printIndex];
+               
+                g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
                 int employeeIdForEachOrder = (int)order.EmployeeID;
                 g.DrawString(Helper.GetEmployeeNameFromOrderReport(employeeIdForEachOrder).ToString(), font, brush, x, y += nxtLineIncrement);
                 g.DrawString("\tOrder Number : " + order.OrderNumber.ToString(), font, brush, x, y += nxtLineIncrement);
@@ -176,8 +190,20 @@ namespace POSApp
                 g.DrawString("\tTotal Points Earned : " + order.PointEarned.ToString(), font, brush, x, y += nxtLineIncrement);
                 g.DrawString("\tCustomerID : " + order.CustomerID.ToString(), font, brush, x, y += nxtLineIncrement);
                 g.DrawString("--------------------------------------", font, brush, x, y += nxtLineIncrement);
+                _printIndex++;
+                _currentPage++;
+                if (_currentPage > _numberOfRecordPerPage && _printIndex < listOfOrdersWithinCurrentDay.Count)
+                {
+                    _currentPage = 0;
+                    y = 0;
+                    e.HasMorePages = true;
+                    return;
+                }
+                else
+                {
+                    e.HasMorePages = false;
+                }
             }
-                       
         }
 
         private void ReturnButton_Click(object sender, EventArgs e)

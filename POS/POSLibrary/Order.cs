@@ -94,6 +94,7 @@ namespace POSLibrary
 
         public Order(int orderNumber)
         {
+            ListOfItems = new List<Product>();
             using (var contex = new DataContext(Helper.GetConnectionString()))
             {
                 var TOrders = contex.GetTable<TOrder>().Where(order => order.OrderNumber == orderNumber).ToList();
@@ -105,7 +106,13 @@ namespace POSLibrary
                     this.TotalPaidByCard = TOrders[0].CardPayment;
                     this.TotalPaidByCash = TOrders[0].CashPayment;
                     this.TotalRedeemPoints = (int) TOrders[0].PoitRedeem;
-                    
+
+                    var orderItems = contex.GetTable<TOrderItem>().Where(order => order.OrderNumber == TOrders[0].OrderNumber).ToList();
+                    foreach (var item in orderItems)
+                    {
+                        this.ListOfItems.Add(new Product((int)item.Barcode));
+                    }
+
                     if (TOrders[0].CustomerID != "-1")
                     {
                         this.Customer = new Customer(TOrders[0].CustomerID);
