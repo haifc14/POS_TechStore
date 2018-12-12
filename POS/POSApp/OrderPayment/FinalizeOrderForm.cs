@@ -15,6 +15,7 @@ namespace POSApp
     {
         public Order CurrentOrder;
 
+        // event to reset order from the POSForm
         private event Action<FinalizeOrderForm> CloseCurrentOrder;
 
         public FinalizeOrderForm(Order curruntOrder, Action<FinalizeOrderForm> closeCurrentOrder)
@@ -35,6 +36,7 @@ namespace POSApp
             }
         }
 
+        //showing list of product of current order
         private void AddProductsToOrderSummaryPanel()
         {
             foreach (var item in CurrentOrder.ListOfItems)
@@ -49,6 +51,7 @@ namespace POSApp
             }
         }
 
+        //showing order summary of current order
         private void AddOrderSummaryInfoToSummaryPanel()
         {
             Label label = new Label()
@@ -99,11 +102,13 @@ namespace POSApp
             
         }
 
+        
         private void CompleteOrderButton_Click(object sender, EventArgs e)
         {
             CompleteOrderTransaction();
         }
 
+        //get input of payments and finishing order payment
         private void CompleteOrderTransaction()
         {
             decimal employeeDiscount = 0;
@@ -119,7 +124,7 @@ namespace POSApp
                 CurrentOrder.AddEmployeeDiscount(employeeDiscount);
                 CurrentOrder.PayByCard(TotalMoneyPaidByCard);
                 CurrentOrder.PayByCash(TotalMoneyPaidByCash);
-                CurrentOrder.ReedemPoints(TotalRedeemPoints);
+                CurrentOrder.RedeemCustomerPoints(TotalRedeemPoints);
                 var change = CurrentOrder.GetBalanceDue();
                 MessageBox.Show("Change Due: " + change.ToString());
                 if (change >= 0)

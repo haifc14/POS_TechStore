@@ -58,6 +58,7 @@ namespace POSApp
             return variance;
         }
 
+        //showing calculated values on form
         private void DisplayReportData()
         {
             labelCurrentDate.Text = CurrentDate.ToLongDateString();
@@ -81,6 +82,7 @@ namespace POSApp
             }
         }
 
+        //exporting file in debug folder
         private void btnExportData_Click(object sender, EventArgs e)
         {
             try
@@ -106,6 +108,7 @@ namespace POSApp
             
         }
 
+        //printing document
         private void printDayEndReportDocs_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             //DateTime currentDate = DateTime.UtcNow.Date;

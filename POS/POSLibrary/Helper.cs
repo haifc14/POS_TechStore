@@ -74,8 +74,7 @@ namespace POSLibrary
 
         public static decimal GetTotalIncomeOfCurrentDay(DateTime currentDate)
         {
-            //var currentDay = currentDate.Day;
-            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+            var currentDay = currentDate.Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
@@ -87,8 +86,7 @@ namespace POSLibrary
 
         public static decimal GetTotalIncomeByCardOfCurrentDay(DateTime currentDate)
         {
-            //var currentDay = currentDate.Day;
-            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+            var currentDay = currentDate.Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
@@ -100,8 +98,7 @@ namespace POSLibrary
 
         public static decimal GetTotalIncomeByCashOfCurrentDay(DateTime currentDate)
         {
-            //var currentDay = currentDate.Day;
-            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+            var currentDay = currentDate.Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
@@ -113,8 +110,7 @@ namespace POSLibrary
 
         public static int GetTotalOrdersOfCurrentDay(DateTime currentDate)
         {
-            //var currentDay = currentDate.Day;
-            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+            var currentDay = currentDate.Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
@@ -126,8 +122,7 @@ namespace POSLibrary
 
         public static int GetTotalRedeemPointsOfCurrentDay(DateTime currentDate)
         {
-            //var currentDay = currentDate.Day;
-            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+            var currentDay = currentDate.Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
@@ -138,8 +133,7 @@ namespace POSLibrary
 
         public static int GetTotalItemsOfCurrentDay(DateTime currentDate)
         {
-            //var currentDay = currentDate.Day;
-            var currentDay = DateTime.Parse("2018 - 12 - 09 00:00:03.9508688").Day;
+            var currentDay = currentDate.Day;
 
             using (var context = new DataContext(GetConnectionString()))
             {
